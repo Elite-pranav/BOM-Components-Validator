@@ -2,7 +2,6 @@ venv/
 __pycache__/
 *.pyc
 .env
-backend/documents/processed/
 *.png
 .claude/
 README.md
