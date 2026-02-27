@@ -12,10 +12,6 @@ pip install -r backend/requirements.txt
 
 Create `backend/.env` with your API key:
 
-```
-GEMINI_API_KEY = "AIzaSyDUvGX1_U2GmEK6QcNQEyqslCcCND5rzGc"
-```
-
 ## Usage
 
 Process all document folders:
