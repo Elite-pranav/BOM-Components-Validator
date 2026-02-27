@@ -1,0 +1,526 @@
+{
+  "session_id": "81351387",
+  "comparison": [
+    {
+      "component": "Adjusting Ring",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "ADJ RING"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Alignment Pad",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "ALIGN PAD"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Bearing Bracket",
+      "in_bom": false,
+      "in_sap": true,
+      "in_cs": false,
+      "bom_terms": [],
+      "sap_terms": [
+        "Bearing Bracket"
+      ],
+      "cs_terms": []
+    },
+    {
+      "component": "Bearing Bush",
+      "in_bom": true,
+      "in_sap": true,
+      "in_cs": true,
+      "bom_terms": [
+        "BRG BUSH"
+      ],
+      "sap_terms": [
+        "Bearing bush"
+      ],
+      "cs_terms": [
+        "Bearing bush"
+      ]
+    },
+    {
+      "component": "Bearing Bush Carrier",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "BRG BUSH CARR"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Bearing Housing Sub-Assembly",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "BRG HSG"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Column Pipe",
+      "in_bom": false,
+      "in_sap": true,
+      "in_cs": false,
+      "bom_terms": [],
+      "sap_terms": [
+        "Column Pipe"
+      ],
+      "cs_terms": []
+    },
+    {
+      "component": "Cooling Coil",
+      "in_bom": false,
+      "in_sap": false,
+      "in_cs": true,
+      "bom_terms": [],
+      "sap_terms": [],
+      "cs_terms": [
+        "COOLING COIL"
+      ]
+    },
+    {
+      "component": "Delivery Bend & Motor Stool",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "DBMS"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Delivery Bend / Tee",
+      "in_bom": false,
+      "in_sap": true,
+      "in_cs": false,
+      "bom_terms": [],
+      "sap_terms": [
+        "Delivery Bend / Tee"
+      ],
+      "cs_terms": []
+    },
+    {
+      "component": "Diffuser",
+      "in_bom": true,
+      "in_sap": true,
+      "in_cs": true,
+      "bom_terms": [
+        "DIFF"
+      ],
+      "sap_terms": [
+        "DIFF"
+      ],
+      "cs_terms": [
+        "DIFF"
+      ]
+    },
+    {
+      "component": "Distance Sleeve",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "DIST SLV"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Gland Sleeve",
+      "in_bom": true,
+      "in_sap": true,
+      "in_cs": true,
+      "bom_terms": [
+        "GLD SLV"
+      ],
+      "sap_terms": [
+        "Gland Sleeve"
+      ],
+      "cs_terms": [
+        "Gland Sleeve"
+      ]
+    },
+    {
+      "component": "Imp Wear Ring",
+      "in_bom": false,
+      "in_sap": true,
+      "in_cs": false,
+      "bom_terms": [],
+      "sap_terms": [
+        "IMP WEAR RING"
+      ],
+      "cs_terms": []
+    },
+    {
+      "component": "Impeller",
+      "in_bom": true,
+      "in_sap": true,
+      "in_cs": true,
+      "bom_terms": [
+        "IMP"
+      ],
+      "sap_terms": [
+        "IMP"
+      ],
+      "cs_terms": [
+        "IMP",
+        "Impeller"
+      ]
+    },
+    {
+      "component": "Impeller Wear Ring",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "IMP WEAR RING"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Int Shaft",
+      "in_bom": false,
+      "in_sap": true,
+      "in_cs": false,
+      "bom_terms": [],
+      "sap_terms": [
+        "Shaft"
+      ],
+      "cs_terms": []
+    },
+    {
+      "component": "Int Sleeve",
+      "in_bom": false,
+      "in_sap": true,
+      "in_cs": false,
+      "bom_terms": [],
+      "sap_terms": [
+        "Int Sleeve"
+      ],
+      "cs_terms": []
+    },
+    {
+      "component": "Intermediate Bearing Sleeve",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "INT BRG SLV"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Intermediate Shaft",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "SHAFT INT"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Lock Nut",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": true,
+      "bom_terms": [
+        "LOCK NUT"
+      ],
+      "sap_terms": [],
+      "cs_terms": [
+        "LOCK NUT"
+      ]
+    },
+    {
+      "component": "Logging Ring",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "LOG RING"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Loose Stuffing Box",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "L STF BOX"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Motor Stool",
+      "in_bom": false,
+      "in_sap": true,
+      "in_cs": true,
+      "bom_terms": [],
+      "sap_terms": [
+        "Motor Stool"
+      ],
+      "cs_terms": [
+        "Motor Stool"
+      ]
+    },
+    {
+      "component": "Muff Coupling",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "MUF COUP"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Neck Ring",
+      "in_bom": true,
+      "in_sap": true,
+      "in_cs": true,
+      "bom_terms": [
+        "NECK RING"
+      ],
+      "sap_terms": [
+        "NECK RING"
+      ],
+      "cs_terms": [
+        "NECK RING"
+      ]
+    },
+    {
+      "component": "Pump Bearing Sleeve",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "P BRG SLV"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Pump Brg Sleeve",
+      "in_bom": false,
+      "in_sap": true,
+      "in_cs": false,
+      "bom_terms": [],
+      "sap_terms": [
+        "Pump Brg Sleeve"
+      ],
+      "cs_terms": []
+    },
+    {
+      "component": "Pump Shaft",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "SHAFT RH"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "RM Pipe (Intermediate)",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "R.M.PIPE INT"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "RM Pipe (Taper/Bottom)",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "R.M.PIPE TAP"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Ratchet",
+      "in_bom": false,
+      "in_sap": false,
+      "in_cs": true,
+      "bom_terms": [],
+      "sap_terms": [],
+      "cs_terms": [
+        "RATCHET"
+      ]
+    },
+    {
+      "component": "Sand Collar",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": true,
+      "bom_terms": [
+        "SAND COLL"
+      ],
+      "sap_terms": [],
+      "cs_terms": [
+        "SAND COLL"
+      ]
+    },
+    {
+      "component": "Shaft",
+      "in_bom": false,
+      "in_sap": true,
+      "in_cs": true,
+      "bom_terms": [],
+      "sap_terms": [
+        "Shaft"
+      ],
+      "cs_terms": [
+        "Shaft"
+      ]
+    },
+    {
+      "component": "Sleeve Nut",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "SLV NUT"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Sole Plate",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "SOLE PLT"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Split Collar",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "SPT COLL"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Split Gland",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "GLD SPLIT"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Strainer",
+      "in_bom": true,
+      "in_sap": true,
+      "in_cs": true,
+      "bom_terms": [
+        "STRAINER"
+      ],
+      "sap_terms": [
+        "STRAINER"
+      ],
+      "cs_terms": [
+        "STRAINER"
+      ]
+    },
+    {
+      "component": "Suc Bell Mouth",
+      "in_bom": false,
+      "in_sap": true,
+      "in_cs": false,
+      "bom_terms": [],
+      "sap_terms": [
+        "Suc Bell Mouth"
+      ],
+      "cs_terms": []
+    },
+    {
+      "component": "Suction Bell Mouth",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "SUC MTH"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Taper Connecting Piece",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": false,
+      "bom_terms": [
+        "TAP CON"
+      ],
+      "sap_terms": [],
+      "cs_terms": []
+    },
+    {
+      "component": "Top Shaft",
+      "in_bom": true,
+      "in_sap": true,
+      "in_cs": false,
+      "bom_terms": [
+        "SHAFT RH TOP"
+      ],
+      "sap_terms": [
+        "Shaft"
+      ],
+      "cs_terms": []
+    },
+    {
+      "component": "Water Deflector",
+      "in_bom": true,
+      "in_sap": false,
+      "in_cs": true,
+      "bom_terms": [
+        "WATER DEFL"
+      ],
+      "sap_terms": [],
+      "cs_terms": [
+        "WATER DEFL"
+      ]
+    }
+  ]
+}

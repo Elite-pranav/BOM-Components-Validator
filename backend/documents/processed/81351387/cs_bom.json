@@ -183,102 +183,102 @@
     "ref": "2832",
     "description": "PUMP BRG. SLEEVE (DIFFUSER BOT SIDE)",
     "qty": 1,
-    "material": "CUTLESS RUBBER+SS410 SHELL"
+    "material": null
   },
   {
     "ref": "2830-1",
     "description": "PUMP BRG. BUSH (SUCTION BELL)",
     "qty": 4,
-    "material": "M.S. IS:2062, GR.E250 BR."
+    "material": "CUTLESS RUBBER+SS410 SHELL"
   },
   {
     "ref": "2830",
     "description": "PUMP BRG. BUSH (DIFFUSER)",
     "qty": 1,
-    "material": "CI IS 210 GR FG260"
+    "material": "M.S. IS:2062, GR.E250 BR."
   },
   {
     "ref": "2810",
     "description": "OIL RETAINER BUSH.",
     "qty": 1,
-    "material": null
+    "material": "CI IS 210 GR FG260"
   },
   {
     "ref": "2802-1",
     "description": "ST. BOX. BUSH CARRIER",
     "qty": 1,
-    "material": "CUTLESS RUBBER+SS410 SHELL"
+    "material": null
   },
   {
     "ref": "2801-1",
     "description": "BRG. BUSH (ST. BOX)",
     "qty": 9,
-    "material": null
+    "material": "CUTLESS RUBBER+SS410 SHELL"
   },
   {
     "ref": "2801",
     "description": "INT. BEARING BUSH",
     "qty": 1,
-    "material": "COPPER"
+    "material": null
   },
   {
     "ref": "2732",
     "description": "COOLING COIL.",
     "qty": 1,
-    "material": "NO. 29440E"
+    "material": "COPPER"
   },
   {
     "ref": "2602",
     "description": "SPHERICAL ROLLER THRUST BRG.",
     "qty": 1,
-    "material": "GRAPHITED COTTON."
+    "material": "NO. 29440E"
   },
   {
     "ref": "2410",
     "description": "GLAND PACKING.",
     "qty": "AS REQD",
-    "material": null
+    "material": "GRAPHITED COTTON."
   },
   {
     "ref": "2401",
     "description": "LOOSE STUFFING BOX",
     "qty": 1,
-    "material": "CI IS 210 GR FG260"
+    "material": null
   },
   {
     "ref": "2318",
     "description": "LOGGING RING.",
     "qty": 1,
-    "material": null
+    "material": "CI IS 210 GR FG260"
   },
   {
     "ref": "2311",
     "description": "GLAND.",
     "qty": 1,
-    "material": "ASTM A276 GR SS410"
+    "material": null
   },
   {
     "ref": "2106",
     "description": "GLAND SLEEVE",
     "qty": 1,
-    "material": "NITRILE RUBBER"
+    "material": "ASTM A276 GR SS410"
   },
   {
     "ref": "2070",
     "description": "WATER DEFLECTOR",
     "qty": 1,
-    "material": "M.S. IS:2062 GR-B"
+    "material": "NITRILE RUBBER"
   },
   {
     "ref": "2061",
     "description": "SAND COLLAR",
-    "qty": 10,
-    "material": null
+    "qty": 1,
+    "material": "M.S. IS:2062 GR-B"
   },
   {
     "ref": "2060",
     "description": "SPLIT COLLAR",
-    "qty": 1,
+    "qty": 10,
     "material": "ASTM A276 GR SS410"
   },
   {
@@ -412,5 +412,11 @@
     "description": "DIFFUSER (STAGE)",
     "qty": 1,
     "material": "GGG50 + COATING"
+  },
+  {
+    "ref": "REF.",
+    "description": "DESCRIPTION",
+    "qty": "QTY.",
+    "material": "MATERIAL."
   }
 ]
