@@ -57,7 +57,7 @@ class CSExtractor(BaseExtractor):
         bom_data = self._extract_with_ai(cropped)
 
         if bom_data is not None:
-            self._save_json(bom_data, self.processed_folder / "bom.json")
+            self._save_json(bom_data, self.processed_folder / "cs_bom.json")
             self.logger.info(f"Extracted {len(bom_data)} parts from CS drawing")
             return bom_data
 
@@ -71,7 +71,7 @@ class CSExtractor(BaseExtractor):
         doc = fitz.open(str(pdf_path))
         page = doc.load_page(0)
         pix = page.get_pixmap(dpi=config.PDF_RENDER_DPI)
-        output = self.processed_folder / "rendered_page.png"
+        output = self.processed_folder / "rendered_cs_page.png"
         pix.save(str(output))
         doc.close()
         self.logger.info(f"Rendered PDF page to {output}")
@@ -82,7 +82,7 @@ class CSExtractor(BaseExtractor):
         h, w, _ = img.shape
         table = img[int(h * 0.70):int(h * 1.00), int(w * 0.13):int(w * 0.96)]
         rotated = cv2.rotate(table, cv2.ROTATE_90_COUNTERCLOCKWISE)
-        output = self.processed_folder / "cs_table.png"
+        output = self.processed_folder / "rendered_cs_table.png"
         cv2.imwrite(str(output), rotated)
         self.logger.info(f"Cropped and rotated table to {output}")
         return output

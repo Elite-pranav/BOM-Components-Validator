@@ -4,4 +4,3 @@ __pycache__/
 .env
 *.png
 .claude/
-README.md

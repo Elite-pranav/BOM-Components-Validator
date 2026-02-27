@@ -121,7 +121,7 @@ class BOMExtractor(BaseExtractor):
         parts = [self._parse_row(r) for r in rows]
         self.logger.info(f"Extracted {len(parts)} line items from BOM Excel")
 
-        self._save_json(parts, self.processed_folder / "bom_excel.json")
+        self._save_json(parts, self.processed_folder / "bom.json")
         return parts
 
     def _find_xlsx(self) -> Path | None:
@@ -137,9 +137,8 @@ class BOMExtractor(BaseExtractor):
 
         rows = []
         for i, row in enumerate(ws.iter_rows(values_only=True)):
-            if i == 0:  # skip header
+            if i == 0: 
                 continue
-            # skip fully empty rows
             if all(v is None for v in row):
                 continue
             rows.append(list(row))
@@ -160,7 +159,6 @@ class BOMExtractor(BaseExtractor):
         part_type = self._identify_part_type(description)
         category = SORT_CATEGORIES.get(sort_str, sort_str or None)
 
-        # Combine text lines into a single "usage" note
         usage_parts = [t for t in (text1, text2) if t]
         usage = "; ".join(usage_parts) if usage_parts else None
 
@@ -188,7 +186,6 @@ class BOMExtractor(BaseExtractor):
         matches before "IMP".
         """
         desc_upper = description.upper()
-        # Sort by length descending so longer (more specific) keys match first
         for abbrev in sorted(PART_ABBREV, key=len, reverse=True):
             if desc_upper.startswith(abbrev.upper()):
                 return PART_ABBREV[abbrev]
@@ -202,7 +199,6 @@ class BOMExtractor(BaseExtractor):
             m = re.search(pat, upper)
             if m:
                 result = m.group(1).strip()
-                # Append coating info if present
                 if "+COAT" in upper and "COAT" not in result:
                     result += " + COATING"
                 return result

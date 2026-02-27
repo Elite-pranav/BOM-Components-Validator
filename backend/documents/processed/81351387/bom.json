@@ -1,416 +1,1538 @@
 [
   {
-    "ref": "-",
-    "description": "NON WETTED FASTNERS",
-    "qty": "AS REQD",
-    "material": "HTS"
-  },
-  {
-    "ref": "-",
-    "description": "WETTED FASTNERS",
-    "qty": "AS REQD",
-    "material": "SS304"
-  },
-  {
-    "ref": "4910",
-    "description": "SUCTION BELL MOUTH",
-    "qty": 1,
-    "material": "CI IS 210 GR FG260"
-  },
-  {
-    "ref": "4900",
-    "description": "SUCTION STRAINER.",
-    "qty": 1,
-    "material": "ASTM A276 GR SS304"
-  },
-  {
-    "ref": "4890",
-    "description": "SOLE PLATE",
-    "qty": 1,
-    "material": "M.S. IS:2062 GR-B"
-  },
-  {
-    "ref": "4830",
-    "description": "FLEXIBLE COUPLING ( P.H. )",
-    "qty": 1,
-    "material": "FORGED STEEL."
-  },
-  {
-    "ref": "4700",
-    "description": "OIL LEVEL INDICATOR",
-    "qty": 1,
-    "material": "MFG.STD"
-  },
-  {
-    "ref": "4660",
-    "description": "FLEXIBLE COUPLING ( M.H. )",
-    "qty": 1,
-    "material": "FORGED STEEL."
-  },
-  {
-    "ref": "4640",
-    "description": "FOUNDATION BOLTS",
-    "qty": 16,
-    "material": "M.S."
-  },
-  {
-    "ref": "4600",
-    "description": "ERECTION PACKERS",
-    "qty": 32,
-    "material": "M.S."
-  },
-  {
-    "ref": "4250-4",
-    "description": "'O' RING ( R.M. PIPE.)",
-    "qty": 9,
-    "material": null
-  },
-  {
-    "ref": "4250-3",
-    "description": "'O' RING ( ST. BOX )",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "4250-1",
-    "description": "'O' RING (SUCT BELLMOUTH & TAPER CONN PC)",
-    "qty": 2,
-    "material": "NITRILE RUBBER"
-  },
-  {
-    "ref": "4250",
-    "description": "'O' RING (DIFFUSER)",
-    "qty": 2,
-    "material": null
-  },
-  {
-    "ref": "4080-2",
-    "description": "GASKET (FOR BRG. HSG. & OIL BUSH).",
-    "qty": 1,
-    "material": "CHAMPION AF 120."
-  },
-  {
-    "ref": "4080-1",
-    "description": "GASKET (FOR BRG. HSG. & BRG COVER).",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "3280-1",
-    "description": "KEY ( RATCHET HOLDER PL.)",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "3280",
-    "description": "KEY ( THRUST BLOCK.)",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "3260",
-    "description": "KEY ( SOLID MUFF COUPLING.)",
-    "qty": 20,
-    "material": null
-  },
-  {
-    "ref": "3250",
-    "description": "KEY FOR FLEX. COUPLING",
-    "qty": 1,
-    "material": "ASTM A276 GR SS410"
-  },
-  {
-    "ref": "3210",
-    "description": "KEY FOR IMPELLER",
-    "qty": 2,
-    "material": null
-  },
-  {
-    "ref": "3032",
-    "description": "LOCK NUT- IMPELLER (LH)",
-    "qty": 2,
-    "material": null
-  },
-  {
-    "ref": "3031",
-    "description": "LOCK NUT- IMPELLER (RH)",
-    "qty": 2,
-    "material": null
-  },
-  {
-    "ref": "3011",
-    "description": "THRUST BRG. LOCK NUT (LH)",
-    "qty": 1,
-    "material": "IS:1570, GR.40C8."
-  },
-  {
-    "ref": "2883",
-    "description": "THRUST BLOCK",
-    "qty": 1,
-    "material": "CI IS 210 GR FG260"
-  },
-  {
-    "ref": "2882",
-    "description": "THRUST BRG. HSG.",
-    "qty": 1,
-    "material": "ASTM A743, GR.CA15."
-  },
-  {
-    "ref": "2881",
-    "description": "BRG.COVER CUM RATCHET PLATE",
-    "qty": 9,
-    "material": null
-  },
-  {
-    "ref": "2834",
-    "description": "INT. BRG. SLEEVE",
-    "qty": 2,
-    "material": null
-  },
-  {
-    "ref": "2832-2",
-    "description": "PUMP BRG. SLEEVE (DIFFUSER TOP SIDE)",
-    "qty": 1,
-    "material": "ASTM A276 GR SS410"
-  },
-  {
-    "ref": "2832-1",
-    "description": "PUMP BRG. SLEEVE (SUCTION BELL)",
-    "qty": 2,
-    "material": null
-  },
-  {
-    "ref": "2832",
-    "description": "PUMP BRG. SLEEVE (DIFFUSER BOT SIDE)",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "2830-1",
-    "description": "PUMP BRG. BUSH (SUCTION BELL)",
-    "qty": 4,
-    "material": "CUTLESS RUBBER+SS410 SHELL"
-  },
-  {
-    "ref": "2830",
-    "description": "PUMP BRG. BUSH (DIFFUSER)",
-    "qty": 1,
-    "material": "M.S. IS:2062, GR.E250 BR."
-  },
-  {
-    "ref": "2810",
-    "description": "OIL RETAINER BUSH.",
-    "qty": 1,
-    "material": "CI IS 210 GR FG260"
-  },
-  {
-    "ref": "2802-1",
-    "description": "ST. BOX. BUSH CARRIER",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "2801-1",
-    "description": "BRG. BUSH (ST. BOX)",
-    "qty": 9,
-    "material": null
-  },
-  {
-    "ref": "2801",
-    "description": "INT. BEARING BUSH",
-    "qty": 1,
-    "material": "CUTLESS RUBBER+SS410 SHELL"
-  },
-  {
-    "ref": "2732",
-    "description": "COOLING COIL.",
-    "qty": 1,
-    "material": "COPPER"
-  },
-  {
-    "ref": "2602",
-    "description": "SPHERICAL ROLLER THRUST BRG.",
-    "qty": 1,
-    "material": "NO. 29440E"
-  },
-  {
-    "ref": "2410",
-    "description": "GLAND PACKING.",
-    "qty": "AS REQD",
-    "material": "GRAPHITED COTTON."
-  },
-  {
-    "ref": "2401",
-    "description": "LOOSE STUFFING BOX",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "2318",
-    "description": "LOGGING RING.",
-    "qty": 1,
-    "material": "CI IS 210 GR FG260"
-  },
-  {
-    "ref": "2311",
-    "description": "GLAND.",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "2106",
-    "description": "GLAND SLEEVE",
-    "qty": 1,
-    "material": "ASTM A276 GR SS410"
-  },
-  {
-    "ref": "2070",
-    "description": "WATER DEFLECTOR",
-    "qty": 1,
-    "material": "NITRILE RUBBER"
-  },
-  {
-    "ref": "2061",
-    "description": "SAND COLLAR",
-    "qty": 1,
-    "material": "M.S. IS:2062 GR-B"
-  },
-  {
-    "ref": "2060",
-    "description": "SPLIT COLLAR",
-    "qty": 10,
-    "material": "ASTM A276 GR SS410"
-  },
-  {
-    "ref": "2050",
-    "description": "SOLID MUFF COUPLING",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "2008",
-    "description": "RATCHET LOCK PLATE",
-    "qty": 1,
-    "material": "M.S. IS:2062 GR-B"
-  },
-  {
-    "ref": "2007",
-    "description": "RATCHET HOLDER PLATE",
-    "qty": 1,
-    "material": "C.S. ASTMA-216 GR-WCB"
-  },
-  {
-    "ref": "2004",
-    "description": "RATCHET PIN",
-    "qty": 13,
-    "material": "SS410 HARD CHROME PLT."
-  },
-  {
-    "ref": "2001",
-    "description": "RATCHET BUSH",
-    "qty": 13,
-    "material": "EN24 NICKEL PLATED"
-  },
-  {
-    "ref": "1822",
-    "description": "ADJUSTING RING",
-    "qty": 1,
-    "material": "M.S. IS:2062 GR-B"
-  },
-  {
-    "ref": "1805-2",
-    "description": "INT. SHAFT (INT-SMALL)",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "1805-1",
-    "description": "INT. SHAFT (SMALL)",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "1805",
-    "description": "INT. SHAFT",
-    "qty": 7,
-    "material": "ASTM A276 GR SS410T"
-  },
-  {
-    "ref": "1803",
-    "description": "TOP SHAFT",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "1801",
-    "description": "PUMP SHAFT",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "1708",
-    "description": "DISTANCE SLEEVE",
-    "qty": 1,
-    "material": "ASTM A276 GR SS410"
-  },
-  {
-    "ref": "1600",
-    "description": "IMPELLER WEAR RING",
-    "qty": 4,
-    "material": "ASTM A743 GR CF8M/SS410H"
-  },
-  {
-    "ref": "1503",
-    "description": "IMPELLER",
-    "qty": 2,
-    "material": "CA6NM + COATING"
-  },
-  {
-    "ref": "1181",
-    "description": "NECK RING",
-    "qty": 4,
-    "material": "ASTM A743 GR CA15/SS410"
-  },
-  {
-    "ref": "1160",
-    "description": "TAPER CONNECTING PIECE",
-    "qty": 1,
-    "material": "GGG50 + COATING"
-  },
-  {
-    "ref": "1161",
-    "description": "R.M.PIPE (BOTTOM)",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "1151-1",
-    "description": "R.M.PIPE (INT-SMALL)",
-    "qty": 1,
-    "material": "M.S."
-  },
-  {
-    "ref": "1151",
-    "description": "R.M.PIPE (INT)",
-    "qty": 7,
-    "material": null
-  },
-  {
-    "ref": "1041",
-    "description": "DELIVERY BEND AND MOTOR STOOL",
-    "qty": 1,
-    "material": null
-  },
-  {
-    "ref": "1030-1",
-    "description": "DIFFUSER (DELY)",
-    "qty": 1,
-    "material": "GGG50 + COATING"
-  },
-  {
-    "ref": "1030",
-    "description": "DIFFUSER (STAGE)",
-    "qty": 1,
-    "material": "GGG50 + COATING"
+    "item_number": "0010",
+    "component_number": "8263538",
+    "description": "STRAINER 2 5638 4900 0501 SS304",
+    "part_type": "Strainer",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS304",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "G.A.DRG.NO.:813351387-40 GA.; C.S.DRG.NO.:813351387-40 CS."
+  },
+  {
+    "item_number": "0020",
+    "component_number": "8285502",
+    "description": "SUC MTH 1000594560 FG260+COAT",
+    "part_type": "Suction Bell Mouth",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "FG260 + COATING",
+    "coating": true,
+    "category": "Bowl Assembly",
+    "usage": null
+  },
+  {
+    "item_number": "0040",
+    "component_number": "8269165",
+    "description": "DIFF 2 5638 1030 0501 GGG50+COAT",
+    "part_type": "Diffuser",
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "GGG50 + COATING",
+    "coating": true,
+    "category": "Bowl Assembly",
+    "usage": null
+  },
+  {
+    "item_number": "0050",
+    "component_number": "8269568",
+    "description": "TAP CON PC 1000531667 GGG50+COAT",
+    "part_type": "Taper Connecting Piece",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "GGG50 + COATING",
+    "coating": true,
+    "category": "Bowl Assembly",
+    "usage": null
+  },
+  {
+    "item_number": "0060",
+    "component_number": "8246674",
+    "description": "NECK RING 1 5575 1181 001 R3 SS410",
+    "part_type": "Neck Ring",
+    "quantity": 4.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": null
+  },
+  {
+    "item_number": "0070",
+    "component_number": "3055190603",
+    "description": "S-SOC SET SCR M6X12 A2-21H ISO4029",
+    "part_type": null,
+    "quantity": 12.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR NECK RING."
+  },
+  {
+    "item_number": "0080",
+    "component_number": "8210483",
+    "description": "IMP 2 5638 1500 0501 CA6NM+COAT",
+    "part_type": "Impeller",
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "CA6NM + COATING",
+    "coating": true,
+    "category": "Bowl Assembly",
+    "usage": null
+  },
+  {
+    "item_number": "0090",
+    "component_number": "8252999",
+    "description": "IMP WEAR RING 1 5575 1600 001 R3 SS410H",
+    "part_type": "Impeller Wear Ring",
+    "quantity": 4.0,
+    "unit": "PC",
+    "material": "SS410H",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR IMPELLER."
+  },
+  {
+    "item_number": "0100",
+    "component_number": "3055190603",
+    "description": "S-SOC SET SCR M6X12 A2-21H ISO4029",
+    "part_type": null,
+    "quantity": 12.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR IMPELLER/IMP WEAR RING."
+  },
+  {
+    "item_number": "0110",
+    "component_number": "8232702",
+    "description": "BRG BUSH 1 5616 2830 001 SS410+CUTRUB",
+    "part_type": "Bearing Bush",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR SUCT BELLMOUTH."
+  },
+  {
+    "item_number": "0120",
+    "component_number": "8210523",
+    "description": "BRG BUSH 1 5638 2830 0501 CUT RUB SS410",
+    "part_type": "Bearing Bush",
+    "quantity": 4.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR DIFFUSER."
+  },
+  {
+    "item_number": "0130",
+    "component_number": "3362740600",
+    "description": "S-CORD 6MM DIA NITRILE HD 80 \u00b1 5 A",
+    "part_type": null,
+    "quantity": 6.7,
+    "unit": "M",
+    "material": "NITRILE",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "1050 I.DIA.-2 NOS.-PER PUMP; FOR SUC BELL MOUTH & TAP CONN PC."
+  },
+  {
+    "item_number": "0140",
+    "component_number": "3362740600",
+    "description": "S-CORD 6MM DIA NITRILE HD 80 \u00b1 5 A",
+    "part_type": null,
+    "quantity": 4.5,
+    "unit": "M",
+    "material": "NITRILE",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "700 I.DIA.-2 NOS.-PER PUMP; FOR DIFFUSER."
+  },
+  {
+    "item_number": "0150",
+    "component_number": "8210502",
+    "description": "SHAFT RH 2 5638 1801 0502 SS410T",
+    "part_type": "Pump Shaft",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS410T",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "PUMP SHAFT."
+  },
+  {
+    "item_number": "0160",
+    "component_number": "8019218",
+    "description": "S-BER KEY 36X20X295 SS410",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR IMPELLER/PUMP SHAFT."
+  },
+  {
+    "item_number": "0170",
+    "component_number": "8150401",
+    "description": "P BRG SLV 1 5616 2832 001 SS410",
+    "part_type": "Pump Bearing Sleeve",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR SUCT BELLMOUTH."
+  },
+  {
+    "item_number": "0180",
+    "component_number": "8175356",
+    "description": "P BRG SLV 1 7440 2100 001 SS410",
+    "part_type": "Pump Bearing Sleeve",
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR DIFFUSER-BOTTOM SIDE."
+  },
+  {
+    "item_number": "0190",
+    "component_number": "8210506",
+    "description": "P BRG SLV 1 5638 2832 0502 SS410",
+    "part_type": "Pump Bearing Sleeve",
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR DIFFUSER-TOP SIDE."
+  },
+  {
+    "item_number": "0200",
+    "component_number": "8210507",
+    "description": "DIST SLV 1 5638 1708 0501 SS410",
+    "part_type": "Distance Sleeve",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR PUMP SHAFT."
+  },
+  {
+    "item_number": "0210",
+    "component_number": "8150403",
+    "description": "SAND COLL 1 5616 2061 001 MS",
+    "part_type": "Sand Collar",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR PUMP SHAFT."
+  },
+  {
+    "item_number": "0220",
+    "component_number": "3055190608",
+    "description": "S-SOC SET SCR M6X20 A2-21H ISO4029",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR SAND COLLAR/PUMP SHAFT."
+  },
+  {
+    "item_number": "0230",
+    "component_number": "8175359",
+    "description": "LOCK NUT RH 1 7440 3012 001 SS410",
+    "part_type": "Lock Nut",
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR PUMP SHAFT."
+  },
+  {
+    "item_number": "0240",
+    "component_number": "8150058",
+    "description": "SLV NUT LH 1 5614 3031 001 SS410",
+    "part_type": "Sleeve Nut",
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR PUMP SHAFT."
+  },
+  {
+    "item_number": "0250",
+    "component_number": "3301192012",
+    "description": "STUD AM20X80 A2-50 IS1862",
+    "part_type": null,
+    "quantity": 12.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR SUCT BELLMOUTH/STRAINER."
+  },
+  {
+    "item_number": "0260",
+    "component_number": "3140192000",
+    "description": "S-HEX NUT M20 A2-50 ISO4032",
+    "part_type": null,
+    "quantity": 12.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR SUCT BELLMOUTH/STRAINER."
+  },
+  {
+    "item_number": "0270",
+    "component_number": "3176192000",
+    "description": "S-PL WASHER M20 A2 ISO7089",
+    "part_type": null,
+    "quantity": 12.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR SUCT BELLMOUTH/STRAINER."
+  },
+  {
+    "item_number": "0280",
+    "component_number": "3301192001",
+    "description": "M-STUD AM20X70 A2-50 IS1862",
+    "part_type": null,
+    "quantity": 72.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR SUCT BELLMOUTH/DIFFUSER.; FOR DIFFUSER/TAP CONN PC."
+  },
+  {
+    "item_number": "0290",
+    "component_number": "3140192000",
+    "description": "S-HEX NUT M20 A2-50 ISO4032",
+    "part_type": null,
+    "quantity": 72.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR SUCT BELLMOUTH/DIFFUSER.; FOR DIFFUSER/TAP CONN PC."
+  },
+  {
+    "item_number": "0300",
+    "component_number": "3176192000",
+    "description": "S-PL WASHER M20 A2 ISO7089",
+    "part_type": null,
+    "quantity": 72.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR SUCT BELLMOUTH/DIFFUSER.; FOR DIFFUSER/TAP CONN PC."
+  },
+  {
+    "item_number": "0310",
+    "component_number": "3031192009",
+    "description": "HEX HD SCR M20X110 A2-50 ISO4017",
+    "part_type": null,
+    "quantity": 24.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR DIFFUSER/R.M.PIPE TAPER."
+  },
+  {
+    "item_number": "0320",
+    "component_number": "3140192000",
+    "description": "S-HEX NUT M20 A2-50 ISO4032",
+    "part_type": null,
+    "quantity": 24.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR DIFFUSER/R.M.PIPE TAPER."
+  },
+  {
+    "item_number": "0330",
+    "component_number": "3176192000",
+    "description": "S-PL WASHER M20 A2 ISO7089",
+    "part_type": null,
+    "quantity": 24.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR DIFFUSER/R.M.PIPE TAPER."
+  },
+  {
+    "item_number": "0340",
+    "component_number": "8264739",
+    "description": "BES KEY 32X18X188 SS410",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Bowl Assembly",
+    "usage": "FOR MUFF COUPLING.; FOR PUMP SHAFT."
+  },
+  {
+    "item_number": "0510",
+    "component_number": "8285491",
+    "description": "R.M.PIPE TAP 3 5638 1161 0510 MS",
+    "part_type": "RM Pipe (Taper/Bottom)",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Rising Main Pipe",
+    "usage": "1300 LG."
+  },
+  {
+    "item_number": "0520",
+    "component_number": "8216914",
+    "description": "R.M.PIPE INT 3 5636 1151 0514 MS",
+    "part_type": "RM Pipe (Intermediate)",
+    "quantity": 7.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Rising Main Pipe",
+    "usage": "2500 LG."
+  },
+  {
+    "item_number": "0525",
+    "component_number": "8285493",
+    "description": "R.M.PIPE INT 3 5638 1151 0511 MS",
+    "part_type": "RM Pipe (Intermediate)",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Rising Main Pipe",
+    "usage": "2000 LG."
+  },
+  {
+    "item_number": "0530",
+    "component_number": "8191308",
+    "description": "BRG BUSH 1 5552 2801 006 SS410 CUTL RUB",
+    "part_type": "Bearing Bush",
+    "quantity": 9.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Rising Main Pipe",
+    "usage": "INT BRG BUSH"
+  },
+  {
+    "item_number": "0540",
+    "component_number": "3362740600",
+    "description": "S-CORD 6MM DIA NITRILE HD 80 \u00b1 5 A",
+    "part_type": null,
+    "quantity": 30.0,
+    "unit": "M",
+    "material": "NITRILE",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "1050 I.DIA -9 NOS. PER PUMP.; FOR R.M.PIPES."
+  },
+  {
+    "item_number": "0550",
+    "component_number": "8285497",
+    "description": "SHAFT INT 2 5638 1805 0504 SS410T",
+    "part_type": "Intermediate Shaft",
+    "quantity": 7.0,
+    "unit": "PC",
+    "material": "SS410T",
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": "2500 LG."
+  },
+  {
+    "item_number": "0555",
+    "component_number": "8285495",
+    "description": "SHAFT INT 2 5638 1805 0512 SS410T",
+    "part_type": "Intermediate Shaft",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS410T",
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": "1300 LG."
+  },
+  {
+    "item_number": "0556",
+    "component_number": "8210504",
+    "description": "SHAFT INT 2 5638 1805 0503 SS410T",
+    "part_type": "Intermediate Shaft",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS410T",
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": "2000 LG."
+  },
+  {
+    "item_number": "0560",
+    "component_number": "7441258154",
+    "description": "INT BRG SLV 1MP/P-2935 R1 SS410",
+    "part_type": "Intermediate Bearing Sleeve",
+    "quantity": 9.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": "FOR INT SHAFT."
+  },
+  {
+    "item_number": "0570",
+    "component_number": "3055190610",
+    "description": "S-SOC SET SCR M6X16 A2-21H ISO4029",
+    "part_type": null,
+    "quantity": 18.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": "FOR INT BRG SLEEVE."
+  },
+  {
+    "item_number": "0590",
+    "component_number": "8264739",
+    "description": "BES KEY 32X18X188 SS410",
+    "part_type": null,
+    "quantity": 19.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": "FOR MUFF COUPLING."
+  },
+  {
+    "item_number": "0600",
+    "component_number": "7441128154",
+    "description": "MUF COUP 2 5528 2050 001 R1 SS410",
+    "part_type": "Muff Coupling",
+    "quantity": 10.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": null
+  },
+  {
+    "item_number": "0610",
+    "component_number": "7441136154",
+    "description": "SPT COLL 2 5528 2050 001 R2 SS410",
+    "part_type": "Split Collar",
+    "quantity": 10.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": null
+  },
+  {
+    "item_number": "0620",
+    "component_number": "3055191603",
+    "description": "M-SOC SET SCR M16X20 A2-21H ISO4029",
+    "part_type": null,
+    "quantity": 20.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": "FOR MUFF COUPLING."
+  },
+  {
+    "item_number": "0660",
+    "component_number": "3114192410",
+    "description": "HEX HD SCR M24X130 A2-50 ISO4017",
+    "part_type": null,
+    "quantity": 192.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR R.M.PIPES."
+  },
+  {
+    "item_number": "0670",
+    "component_number": "3140192400",
+    "description": "S-HEX NUT M24 A2-50 ISO4032",
+    "part_type": null,
+    "quantity": 192.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR R.M.PIPES."
+  },
+  {
+    "item_number": "0680",
+    "component_number": "3176192400",
+    "description": "S-PL WASHER M24 A2 ISO7089",
+    "part_type": null,
+    "quantity": 192.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR R.M.PIPES."
+  },
+  {
+    "item_number": "0690",
+    "component_number": "3301192410",
+    "description": "STUD AM24X85 A2-50 IS1862",
+    "part_type": null,
+    "quantity": 24.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR R.M.PIPE/D BEND & M STOOL."
+  },
+  {
+    "item_number": "0700",
+    "component_number": "3140192400",
+    "description": "S-HEX NUT M24 A2-50 ISO4032",
+    "part_type": null,
+    "quantity": 24.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR R.M.PIPE/D BEND & M STOOL."
+  },
+  {
+    "item_number": "0710",
+    "component_number": "3176192400",
+    "description": "S-PL WASHER M24 A2 ISO7089",
+    "part_type": null,
+    "quantity": 24.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR R.M.PIPE/D BEND & M STOOL."
+  },
+  {
+    "item_number": "0995",
+    "component_number": "8285506",
+    "description": "SHAFT RH TOP 2 5638 1803 0512 SS410T",
+    "part_type": "Top Shaft",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS410T",
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": null
+  },
+  {
+    "item_number": "0996",
+    "component_number": "8175333",
+    "description": "GLD SLV 1 7440 2106 001 SS410",
+    "part_type": "Gland Sleeve",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": "FOR TOP SHAFT/FLEX COUPLING."
+  },
+  {
+    "item_number": "0997",
+    "component_number": "3055191004",
+    "description": "S-SOC SET SCR M10X16 A2-21H ISO4029",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": "FOR TOP SHAFT."
+  },
+  {
+    "item_number": "0998",
+    "component_number": "8263151",
+    "description": "BES KEY 32X18X249 SS410",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": "FOR GLAND SLEEVE/TOP SHAFT."
+  },
+  {
+    "item_number": "0999",
+    "component_number": "8232804",
+    "description": "ADJ RING 1 5641 1822 003 MS",
+    "part_type": "Adjusting Ring",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Shaft Assembly",
+    "usage": "FOR FLEX COUPLING."
+  },
+  {
+    "item_number": "1000",
+    "component_number": "8150130",
+    "description": "S-WATER DEFL 111516PR32 NITRILE(HD70-75)",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "NITRILE",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR TOP SHAFT."
+  },
+  {
+    "item_number": "1001",
+    "component_number": "8282077",
+    "description": "BRG HSG S/A 29440E / 140MM / CW / HTS",
+    "part_type": "Bearing Housing Sub-Assembly",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "HTS",
+    "coating": false,
+    "category": null,
+    "usage": null
+  },
+  {
+    "item_number": "1110",
+    "component_number": "8264888",
+    "description": "SOLE PLT 1 5636 4890 0507 R1 MS",
+    "part_type": "Sole Plate",
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": null
+  },
+  {
+    "item_number": "1120",
+    "component_number": "8264889",
+    "description": "SOLE PLT 1 5636 4890 0507 R2 MS",
+    "part_type": "Sole Plate",
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": null
+  },
+  {
+    "item_number": "1130",
+    "component_number": "8285616",
+    "description": "DBMS 3 5638 1041 0507 MS",
+    "part_type": "Delivery Bend & Motor Stool",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": null
+  },
+  {
+    "item_number": "1131",
+    "component_number": "8269308",
+    "description": "ALIGN PAD 1 5431 5600 0503 FG 260",
+    "part_type": "Alignment Pad",
+    "quantity": 4.0,
+    "unit": "PC",
+    "material": "FG 260",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR D BEND & M STOOL-MOTOR ALIGNING."
+  },
+  {
+    "item_number": "1132",
+    "component_number": "3114413010",
+    "description": "HEX HD SCR M30x100 HTS BL 8.8 ISO4017",
+    "part_type": null,
+    "quantity": 4.0,
+    "unit": "PC",
+    "material": "HTS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR D BEND & M STOOL-MOTOR ALIGNING."
+  },
+  {
+    "item_number": "1133",
+    "component_number": "3046411600",
+    "description": "SOC HD CAP SCR M16X45 HTS BL 12.9ISO4762",
+    "part_type": null,
+    "quantity": 8.0,
+    "unit": "PC",
+    "material": "HTS",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR D BEND & M STOOL-MOTOR ALIGNING."
+  },
+  {
+    "item_number": "1134",
+    "component_number": "3463190165",
+    "description": "S-HEX PLUG 1 BSP 1MP/P-3122 R5 SS304",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS304",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR D BEND & M STOOL."
+  },
+  {
+    "item_number": "1135",
+    "component_number": "3463190083",
+    "description": "S-HEX PLUG 1/2 BSP 1MP/P-3122 R3 SS304",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "SS304",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR D BEND & M STOOL."
+  },
+  {
+    "item_number": "1140",
+    "component_number": "3350740614",
+    "description": "S-O RING 270 IDx6 CS NITRILE HD 80\u00b15A",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "NITRILE",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR LOOSE ST BOX."
+  },
+  {
+    "item_number": "1141",
+    "component_number": "8163101",
+    "description": "L STF BOX 2 5613 2401 001 FG260",
+    "part_type": "Loose Stuffing Box",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "FG260",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": null
+  },
+  {
+    "item_number": "1150",
+    "component_number": "3463190083",
+    "description": "S-HEX PLUG 1/2 BSP 1MP/P-3122 R3 SS304",
+    "part_type": null,
+    "quantity": 3.0,
+    "unit": "PC",
+    "material": "SS304",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR LOOSE ST BOX."
+  },
+  {
+    "item_number": "1160",
+    "component_number": "7438372500",
+    "description": "BRG BUSH CARR 1MP/P-2155 R1 FG260",
+    "part_type": "Bearing Bush Carrier",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "FG260",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR LOOSE ST BOX."
+  },
+  {
+    "item_number": "1170",
+    "component_number": "8191310",
+    "description": "BRG BUSH 1 5568 2801 002 SS410 CUTL RUB",
+    "part_type": "Bearing Bush",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS410",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR ST BOX CARRIER."
+  },
+  {
+    "item_number": "1180",
+    "component_number": "3114191204",
+    "description": "S-HEX HD SCR M12X30 A2-50 DIN933",
+    "part_type": null,
+    "quantity": 4.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR LOOSE ST BOX/ST BOX CARRIER."
+  },
+  {
+    "item_number": "1190",
+    "component_number": "3188431200",
+    "description": "S-SC SPRING WASHER M12 SP STEEL DIN7980A",
+    "part_type": null,
+    "quantity": 4.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR LOOSE ST BOX/ST BOX CARRIER."
+  },
+  {
+    "item_number": "1200",
+    "component_number": "3301191204",
+    "description": "S-STUD AM12X45 A2-50 IS1862",
+    "part_type": null,
+    "quantity": 6.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR LOOSE ST BOX/D BEND & M STOOL."
+  },
+  {
+    "item_number": "1210",
+    "component_number": "3140191200",
+    "description": "S-HEX NUT M12 A2-50 DIN934",
+    "part_type": null,
+    "quantity": 6.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR LOOSE ST BOX/D BEND & M STOOL."
+  },
+  {
+    "item_number": "1220",
+    "component_number": "3176191200",
+    "description": "S-PL WASHER M12 A2 ISO7089",
+    "part_type": null,
+    "quantity": 6.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR LOOSE ST BOX/D BEND & M STOOL."
+  },
+  {
+    "item_number": "1230",
+    "component_number": "7438400500",
+    "description": "GLD SPLIT 2MP/P-1437 R1 FG260",
+    "part_type": "Split Gland",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "FG260",
+    "coating": false,
+    "category": "Accessories",
+    "usage": null
+  },
+  {
+    "item_number": "1240",
+    "component_number": "3210211004",
+    "description": "DOWEL PIN 10MMx25 SS316",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "SS316",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR GLAND."
+  },
+  {
+    "item_number": "1250",
+    "component_number": "7438306500",
+    "description": "LOG RING 2MP/P-1795 R1 FG260",
+    "part_type": "Logging Ring",
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "FG260",
+    "coating": false,
+    "category": "Accessories",
+    "usage": null
+  },
+  {
+    "item_number": "1260",
+    "component_number": "8269481",
+    "description": "GLAND PACKING 25MMSQ GRAPHITED COTTON",
+    "part_type": null,
+    "quantity": 320.0,
+    "unit": "CM",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "3200 MM LG.-FOR 1 PUMP."
+  },
+  {
+    "item_number": "1270",
+    "component_number": "3301193009",
+    "description": "S-STUD AM30X100 A2-50 IS1862",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "GLAND STUDS."
+  },
+  {
+    "item_number": "1280",
+    "component_number": "3140193000",
+    "description": "S-HEX NUT M30 A2-50 ISO4032",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR GLAND STUDS."
+  },
+  {
+    "item_number": "1290",
+    "component_number": "3176193000",
+    "description": "S-PL WASHER M30 A2 ISO7089",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR GLAND STUDS."
+  },
+  {
+    "item_number": "1300",
+    "component_number": "3301413611",
+    "description": "STUD AM36X110 HTS BL CL8.8 IS1862",
+    "part_type": null,
+    "quantity": 16.0,
+    "unit": "PC",
+    "material": "HTS",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR SOLE PL/D BEND & M STOOL."
+  },
+  {
+    "item_number": "1310",
+    "component_number": "8032543",
+    "description": "S-HEX NUT M36 HTS BL CL8 ISO4032",
+    "part_type": null,
+    "quantity": 16.0,
+    "unit": "PC",
+    "material": "HTS",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR SOLE PL/D BEND & M STOOL."
+  },
+  {
+    "item_number": "1320",
+    "component_number": "3176413600",
+    "description": "S-PL WASHER M36 HTS BL 8.8 ISO7089",
+    "part_type": null,
+    "quantity": 16.0,
+    "unit": "PC",
+    "material": "HTS",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR SOLE PL/D BEND & M STOOL."
+  },
+  {
+    "item_number": "1330",
+    "component_number": "3301412463",
+    "description": "S-STUD AM24X75 HTS BL CL8.8 IS1862",
+    "part_type": null,
+    "quantity": 12.0,
+    "unit": "PC",
+    "material": "HTS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR MOTOR/D BEND & M STOOL."
+  },
+  {
+    "item_number": "1340",
+    "component_number": "3140412400",
+    "description": "S-HEX NUT M24 HTS BL CL8 ISO4032",
+    "part_type": null,
+    "quantity": 12.0,
+    "unit": "PC",
+    "material": "HTS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR MOTOR/D BEND & M STOOL."
+  },
+  {
+    "item_number": "1350",
+    "component_number": "3176412400",
+    "description": "S-PL WASHER M24 HTS BL 8.8 ISO7089",
+    "part_type": null,
+    "quantity": 12.0,
+    "unit": "PC",
+    "material": "HTS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR MOTOR/D BEND & M STOOL."
+  },
+  {
+    "item_number": "1360",
+    "component_number": "8265426",
+    "description": "COUP FLEX PB 630B P130(32) M220(50) FS",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "SET",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": null
+  },
+  {
+    "item_number": "1510",
+    "component_number": "8072779",
+    "description": "S-NAME PLATE 1 1453 5600 005 SS304",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS304",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": null
+  },
+  {
+    "item_number": "1520",
+    "component_number": "3701191001",
+    "description": "S-INDICATOR ARROW STRGT 1MP/P-246 SS304",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "SS304",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": null
+  },
+  {
+    "item_number": "1530",
+    "component_number": "3262010401",
+    "description": "S-RD HD NPK U RIVET 4X5/16IN ALUM",
+    "part_type": null,
+    "quantity": 8.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR NAMEPLATE."
+  },
+  {
+    "item_number": "1540",
+    "component_number": "3011013604",
+    "description": "FDBOLT+NUT+WASH M36x597 AX-1059/1 R19 MS",
+    "part_type": null,
+    "quantity": 16.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR SOLE PLATE."
+  },
+  {
+    "item_number": "1550",
+    "component_number": "8053768",
+    "description": "TAP WEDGE PACK 2MP/P-4628 R6 MS",
+    "part_type": null,
+    "quantity": 32.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR PUMP ERECTION."
+  },
+  {
+    "item_number": "1560",
+    "component_number": "8190042",
+    "description": "GUARD 1 5407 4580 027 MS",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR D BEND & M STOOL."
+  },
+  {
+    "item_number": "1570",
+    "component_number": "8190208",
+    "description": "GUARD 1 5407 4580 028 MS",
+    "part_type": null,
+    "quantity": 4.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR D BEND & M STOOL."
+  },
+  {
+    "item_number": "1580",
+    "component_number": "8190836",
+    "description": "S-Self Tap Scr ST 4.8X19-DIN7504K-MSGALV",
+    "part_type": null,
+    "quantity": 24.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR D BEND & M STOOL/GUARD."
+  },
+  {
+    "item_number": "1610",
+    "component_number": "7545521407",
+    "description": "M-PIPE 1 NBX500L BET 1 BSPX25L CL B MS",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR GLAND DRAIN CONN."
+  },
+  {
+    "item_number": "1620",
+    "component_number": "8025537",
+    "description": "S-PIPE 1 NBX350L BET 1 BSPX25L CL B MS",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR AIR VENT CONN."
+  },
+  {
+    "item_number": "1630",
+    "component_number": "3445010160",
+    "description": "S-EQUAL ELBOW 1 BSP (F) 90 DEG MS",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR AIR VENT CONN."
+  },
+  {
+    "item_number": "1640",
+    "component_number": "3484010160",
+    "description": "S-HEX NIPPLE 1 BSP (M) MS",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR AIR VENT CONN."
+  },
+  {
+    "item_number": "1650",
+    "component_number": "3403610160",
+    "description": "S-GATE VALVE 1 BSP (F) GM",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR AIR VENT CONN."
+  },
+  {
+    "item_number": "1660",
+    "component_number": "3157191600",
+    "description": "HEX LOCK NUT 1 BSP A2",
+    "part_type": null,
+    "quantity": 4.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR AIR VENT CONN."
+  },
+  {
+    "item_number": "1670",
+    "component_number": "7545521209",
+    "description": "S-PIPE 1/2 NBX380L BET 1/2 BSPX25 CLB MS",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR LEAK OFF CONN."
+  },
+  {
+    "item_number": "1680",
+    "component_number": "7545521218",
+    "description": "PIPE 1/2 NBX950LBET1/2 BSPX25L CLB MS",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR LEAK OFF CONN."
+  },
+  {
+    "item_number": "1690",
+    "component_number": "3404610080",
+    "description": "S-ANGLE WHEEL VALVE 1/2 BSP (F) GM",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR LEAK OFF CONN."
+  },
+  {
+    "item_number": "1700",
+    "component_number": "3157190800",
+    "description": "S-HEX LOCK NUT 1/2 BSP A2",
+    "part_type": null,
+    "quantity": 3.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR LEAK OFF CONN."
+  },
+  {
+    "item_number": "1710",
+    "component_number": "8190572",
+    "description": "ADPT 1MP/P-3051 R2 SS304",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "SS304",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER INLET CONN."
+  },
+  {
+    "item_number": "1720",
+    "component_number": "8169491",
+    "description": "PIPE 1/2 NBX600LBET1/2 BSPX50L CLB MS",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER INLET CONN."
+  },
+  {
+    "item_number": "1730",
+    "component_number": "7545521212",
+    "description": "S-PIPE 1/2 NBX550L BET 1/2 BSPX25 CLB MS",
+    "part_type": null,
+    "quantity": 3.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER INLET CONN."
+  },
+  {
+    "item_number": "1740",
+    "component_number": "7545521211",
+    "description": "S-PIPE 1/2 NBX500L BET 1/2 BSPX25 CLB MS",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER INLET CONN."
+  },
+  {
+    "item_number": "1750",
+    "component_number": "3455010080",
+    "description": "S-SOC 1/2 BSP (F) MS",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER INLET CONN."
+  },
+  {
+    "item_number": "1760",
+    "component_number": "3445010080",
+    "description": "S-EQUAL ELBOW 1/2 BSP (F) 90 DEG MS",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER INLET CONN."
+  },
+  {
+    "item_number": "1770",
+    "component_number": "3454010080",
+    "description": "S-UNION 1/2 BSP (F) MS",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER INLET CONN."
+  },
+  {
+    "item_number": "1780",
+    "component_number": "3404610080",
+    "description": "S-ANGLE WHEEL VALVE 1/2 BSP (F) GM",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER INLET CONN."
+  },
+  {
+    "item_number": "1790",
+    "component_number": "3157190800",
+    "description": "S-HEX LOCK NUT 1/2 BSP A2",
+    "part_type": null,
+    "quantity": 7.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER INLET CONN."
+  },
+  {
+    "item_number": "1800",
+    "component_number": "8169491",
+    "description": "PIPE 1/2 NBX600LBET1/2 BSPX50L CLB MS",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER OUTLET CONN."
+  },
+  {
+    "item_number": "1810",
+    "component_number": "7545521210",
+    "description": "S-PIPE 1/2 NBX400LBET1/2 BSPX25L CLB MS",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER OUTLET CONN."
+  },
+  {
+    "item_number": "1820",
+    "component_number": "7545521208",
+    "description": "S-PIPE 1/2 NBX300L BET 1/2 BSPX25 CLB MS",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER OUTLET CONN."
+  },
+  {
+    "item_number": "1830",
+    "component_number": "7545521218",
+    "description": "PIPE 1/2 NBX950LBET1/2 BSPX25L CLB MS",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER OUTLET CONN."
+  },
+  {
+    "item_number": "1840",
+    "component_number": "3445010080",
+    "description": "S-EQUAL ELBOW 1/2 BSP (F) 90 DEG MS",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER OUTLET CONN."
+  },
+  {
+    "item_number": "1850",
+    "component_number": "3454010080",
+    "description": "S-UNION 1/2 BSP (F) MS",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": "MS",
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER OUTLET CONN."
+  },
+  {
+    "item_number": "1860",
+    "component_number": "3404610080",
+    "description": "S-ANGLE WHEEL VALVE 1/2 BSP (F) GM",
+    "part_type": null,
+    "quantity": 1.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER OUTLET CONN."
+  },
+  {
+    "item_number": "1870",
+    "component_number": "3157190800",
+    "description": "S-HEX LOCK NUT 1/2 BSP A2",
+    "part_type": null,
+    "quantity": 6.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Accessories",
+    "usage": "FOR BRG COOLING WATER OUTLET CONN."
+  },
+  {
+    "item_number": "1880",
+    "component_number": "8219081",
+    "description": "WILO LOGO STICKER SIZE 310 X 140 MM",
+    "part_type": null,
+    "quantity": 2.0,
+    "unit": "PC",
+    "material": null,
+    "coating": false,
+    "category": "Delivery Bend / Motor Stool",
+    "usage": "FOR DBMS"
   }
 ]
