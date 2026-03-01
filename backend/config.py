@@ -2,7 +2,7 @@
 Centralized configuration for the BOM Components Validator.
 
 Loads environment variables from backend/.env and exposes:
-  - Directory paths (RAW_DIR, PROCESSED_DIR) for document I/O
+  - Directory paths (DOCUMENTS_DIR, RAW_DIR, PROCESSED_DIR) for document I/O
   - Gemini API settings (key, model name)
   - PDF rendering parameters
 """
@@ -12,8 +12,9 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 BACKEND_DIR = Path(__file__).resolve().parent
-RAW_DIR = BACKEND_DIR / "documents" / "raw"
-PROCESSED_DIR = BACKEND_DIR / "documents" / "processed"
+DOCUMENTS_DIR = BACKEND_DIR / "documents"
+RAW_DIR = DOCUMENTS_DIR / "raw"
+PROCESSED_DIR = DOCUMENTS_DIR / "processed"
 
 load_dotenv(BACKEND_DIR / ".env")
 
