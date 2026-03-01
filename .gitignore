@@ -4,3 +4,10 @@ __pycache__/
 .env
 *.png
 .claude/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Uploaded documents (user data)
+backend/documents/*/uploaded_documents/
