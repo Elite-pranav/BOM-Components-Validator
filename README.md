@@ -46,25 +46,6 @@ cd ..
 
 Open **two terminals** from the project root (`C:\BOM-Components-Validator`):
 
-### Terminal 1 — Backend API
-
-```bash
-cd backend
-venv\Scripts\activate
-python main.py
-```
-
-Backend starts at **http://localhost:8000**. Swagger docs available at http://localhost:8000/docs.
-
-### Terminal 2 — Frontend
-
-```bash
-cd frontend
-npm run dev
-```
-
-Frontend starts at **http://localhost:5173**.
-
 ## Usage
 
 ### Web Interface
