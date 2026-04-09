@@ -30,7 +30,7 @@ This image contains a parts list / Bill of Materials (BOM) table from an enginee
 Extract ALL rows from the table and return the data as a JSON array.
 Each row should be an object with these keys:
 - "ref": the part reference number
-- "description": part description
+- "description": part description, if available.
 - "qty": quantity (as a number, or "AS REQD" if applicable)
 - "material": material specification
 

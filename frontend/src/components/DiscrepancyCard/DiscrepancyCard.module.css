@@ -1,0 +1,203 @@
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.agreed {
+  border-color: var(--color-error);
+  background: #fef2f2;
+}
+
+.dismissed {
+  border-color: var(--color-success);
+  background: #f0fdf4;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.partName {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.presence {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.badge {
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.present {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.missing {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.materials {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+}
+
+.matRow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.matLabel {
+  color: var(--color-text-muted);
+  min-width: 90px;
+  flex-shrink: 0;
+}
+
+.matValue {
+  font-weight: 500;
+}
+
+.discrepancy {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #fffbeb;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+}
+
+.warnIcon {
+  color: #d97706;
+  flex-shrink: 0;
+}
+
+.discType {
+  font-weight: 600;
+  color: #92400e;
+  flex-shrink: 0;
+}
+
+.discDetail {
+  color: #78350f;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.agreeBtn,
+.disagreeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: var(--color-surface);
+  transition: all 0.2s;
+}
+
+.agreeBtn:hover {
+  border-color: var(--color-error);
+  color: var(--color-error);
+  background: #fef2f2;
+}
+
+.disagreeBtn:hover {
+  border-color: var(--color-success);
+  color: var(--color-success);
+  background: #f0fdf4;
+}
+
+.decisionStatus {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+}
+
+.dropdown {
+  margin-top: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  background: var(--color-surface);
+}
+
+.dropdownLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: var(--color-accent);
+}
+
+.dropdownList {
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownItem {
+  text-align: left;
+  padding: 0.4rem 0.65rem;
+  border: none;
+  background: none;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
+}
+
+.dropdownItem:hover {
+  background: #f1f5f9;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .actions {
+    flex-direction: column;
+  }
+}

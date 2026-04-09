@@ -19,18 +19,16 @@ import openpyxl
 
 from backend.extractors.base import BaseExtractor
 
-# Column mapping (0-indexed) for the BOM Excel files.
-COL_ITEM_NUMBER = 0       # A: Item Number
-COL_COMPONENT_NUM = 1     # B: Component number (SAP part number)
-COL_DESCRIPTION = 2       # C: Object description
-COL_QUANTITY = 3           # D: Comp. Qty
-COL_UNIT = 4              # E: Base Unit of Measure
-COL_TEXT_1 = 5            # F: Item Text Line 1
-COL_TEXT_2 = 6            # G: Item text line 2
-COL_SORT_STRING = 7       # H: Sort String
 
-# Abbreviation map: short forms found in description → full part name.
-# Used to identify the part type from the description column.
+COL_ITEM_NUMBER = 0       
+COL_COMPONENT_NUM = 1      
+COL_DESCRIPTION = 2       
+COL_QUANTITY = 3           
+COL_UNIT = 4              
+COL_TEXT_1 = 5            
+COL_TEXT_2 = 6            
+COL_SORT_STRING = 7       
+
 PART_ABBREV = {
     "STRAINER": "Strainer",
     "SUC MTH": "Suction Bell Mouth",
@@ -78,7 +76,6 @@ PART_ABBREV = {
     "RATCHET": "Ratchet",
 }
 
-# Sort string to category mapping.
 SORT_CATEGORIES = {
     "PL BOWL": "Bowl Assembly",
     "PL SHAFT": "Shaft Assembly",
@@ -87,7 +84,6 @@ SORT_CATEGORIES = {
     "PL DB/MS": "Delivery Bend / Motor Stool",
 }
 
-# Material patterns commonly found at the end of description strings.
 MATERIAL_PATTERNS = [
     r"(SS\d{3}\w?)",
     r"(CF\d+M?\b)",

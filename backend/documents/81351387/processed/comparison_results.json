@@ -1,0 +1,1209 @@
+{
+  "identifier": "81351387",
+  "timestamp": "2026-03-20T11:18:42.042462+00:00",
+  "summary": {
+    "total_canonical_parts": 43,
+    "discrepancies_found": 45,
+    "unresolved_parts": 1
+  },
+  "parts": [
+    {
+      "canonical_name": "Adjusting Ring",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Alignment Pad",
+      "cs": null,
+      "bom": {
+        "present": true,
+        "material": "FG 260",
+        "qty": 4.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in bom but missing from cs, sap",
+          "present_in": [
+            "bom"
+          ],
+          "missing_from": [
+            "cs",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Bearing Bush",
+      "cs": {
+        "present": true,
+        "material": "M.S. IS:2062, GR.E250 BR.",
+        "qty": 4
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "SS410",
+        "raw_material": "CUTLESS + SS410",
+        "coating": false
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: M.S. IS:2062, GR.E250 BR., bom: SS410, sap: SS410",
+          "materials": {
+            "cs": "M.S. IS:2062, GR.E250 BR.",
+            "bom": "SS410",
+            "sap": "SS410"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Bearing Bush Carrier",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "FG260",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Bearing Housing Sub-Assembly",
+      "cs": {
+        "present": true,
+        "material": "ASTM A743, GR.CA15.",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "HTS",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "CI",
+        "raw_material": "CI IS 210 GR FG260",
+        "coating": false
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: CA15, bom: HTS, sap: CI",
+          "materials": {
+            "cs": "CA15",
+            "bom": "HTS",
+            "sap": "CI"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Cooling Coil",
+      "cs": {
+        "present": true,
+        "material": "NO. 29440E",
+        "qty": 1
+      },
+      "bom": null,
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs but missing from bom, sap",
+          "present_in": [
+            "cs"
+          ],
+          "missing_from": [
+            "bom",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Delivery Bend & Motor Stool",
+      "cs": {
+        "present": true,
+        "material": "GGG50 + COATING",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "MS",
+        "raw_material": "Standard (MS)",
+        "coating": false
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: GGG50 + COATING, bom: MS, sap: MS",
+          "materials": {
+            "cs": "GGG50 + COATING",
+            "bom": "MS",
+            "sap": "MS"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Diffuser",
+      "cs": {
+        "present": true,
+        "material": "GGG50 + COATING",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "GGG50 + COATING",
+        "qty": 2.0,
+        "coating": true
+      },
+      "sap": {
+        "present": true,
+        "material": "GGG50",
+        "raw_material": "GGG50 + COATING",
+        "coating": true
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: GGG50 + COATING, bom: GGG50 + COATING, sap: GGG50",
+          "materials": {
+            "cs": "GGG50 + COATING",
+            "bom": "GGG50 + COATING",
+            "sap": "GGG50"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Distance Sleeve",
+      "cs": {
+        "present": true,
+        "material": "ASTM A743 GR CF8M/SS410H",
+        "qty": 4
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        },
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: CF8M, bom: SS410",
+          "materials": {
+            "cs": "CF8M",
+            "bom": "SS410"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Erection Packers",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 32
+      },
+      "bom": null,
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs but missing from bom, sap",
+          "present_in": [
+            "cs"
+          ],
+          "missing_from": [
+            "bom",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Flexible Coupling",
+      "cs": {
+        "present": true,
+        "material": "FORGED STEEL.",
+        "qty": 1
+      },
+      "bom": null,
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs but missing from bom, sap",
+          "present_in": [
+            "cs"
+          ],
+          "missing_from": [
+            "bom",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Foundation Bolts",
+      "cs": {
+        "present": true,
+        "material": "M.S.",
+        "qty": 16
+      },
+      "bom": null,
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs but missing from bom, sap",
+          "present_in": [
+            "cs"
+          ],
+          "missing_from": [
+            "bom",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Gland Packing",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": "AS REQD"
+      },
+      "bom": null,
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs but missing from bom, sap",
+          "present_in": [
+            "cs"
+          ],
+          "missing_from": [
+            "bom",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Gland Sleeve",
+      "cs": {
+        "present": true,
+        "material": "NITRILE RUBBER",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "SS410",
+        "raw_material": "ASTM A276 GR SS410",
+        "coating": false
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: NITRILE, bom: SS410, sap: SS410",
+          "materials": {
+            "cs": "NITRILE",
+            "bom": "SS410",
+            "sap": "SS410"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Impeller",
+      "cs": {
+        "present": true,
+        "material": "ASTM A743 GR CA15/SS410",
+        "qty": 4
+      },
+      "bom": {
+        "present": true,
+        "material": "CA6NM + COATING",
+        "qty": 2.0,
+        "coating": true
+      },
+      "sap": {
+        "present": true,
+        "material": "CA6NM",
+        "raw_material": "CA6NM + COATING",
+        "coating": true
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: CA15, bom: CA6NM + COATING, sap: CA6NM",
+          "materials": {
+            "cs": "CA15",
+            "bom": "CA6NM + COATING",
+            "sap": "CA6NM"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Impeller Wear Ring",
+      "cs": {
+        "present": true,
+        "material": "CA6NM + COATING",
+        "qty": 2
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410H",
+        "qty": 4.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "SS410",
+        "raw_material": "ASTM A743 GR CF8M/SS410 HARDEN",
+        "coating": false
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: CA6NM + COATING, bom: SS410H, sap: SS410",
+          "materials": {
+            "cs": "CA6NM + COATING",
+            "bom": "SS410H",
+            "sap": "SS410"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Intermediate Bearing Sleeve",
+      "cs": {
+        "present": true,
+        "material": "ASTM A276 GR SS410",
+        "qty": 2
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 9.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "SS410",
+        "raw_material": "ASTM A276 GR SS410",
+        "coating": false
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Intermediate Shaft",
+      "cs": {
+        "present": true,
+        "material": "ASTM A276 GR SS410T",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410T",
+        "qty": 7.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "SS410",
+        "raw_material": "A276 GR SS410(T Condition)",
+        "coating": false
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: SS410T, bom: SS410T, sap: SS410",
+          "materials": {
+            "cs": "SS410T",
+            "bom": "SS410T",
+            "sap": "SS410"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Key",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1
+      },
+      "bom": null,
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs but missing from bom, sap",
+          "present_in": [
+            "cs"
+          ],
+          "missing_from": [
+            "bom",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Lock Nut",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 2
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 2.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Logging Ring",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "FG260",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Loose Stuffing Box",
+      "cs": {
+        "present": true,
+        "material": "CI IS 210 GR FG260",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "FG260",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Muff Coupling",
+      "cs": {
+        "present": true,
+        "material": "M.S. IS:2062 GR-B",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 10.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        },
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: M.S. IS:2062 GR-B, bom: SS410",
+          "materials": {
+            "cs": "M.S. IS:2062 GR-B",
+            "bom": "SS410"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Neck Ring",
+      "cs": {
+        "present": true,
+        "material": "GGG50 + COATING",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 4.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "SS410",
+        "raw_material": "ASTM A743 GR CA15/SS410",
+        "coating": false
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: GGG50 + COATING, bom: SS410, sap: SS410",
+          "materials": {
+            "cs": "GGG50 + COATING",
+            "bom": "SS410",
+            "sap": "SS410"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Oil Level Indicator",
+      "cs": {
+        "present": true,
+        "material": "MFG.STD",
+        "qty": 1
+      },
+      "bom": null,
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs but missing from bom, sap",
+          "present_in": [
+            "cs"
+          ],
+          "missing_from": [
+            "bom",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Oil Retainer Bush",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1
+      },
+      "bom": null,
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs but missing from bom, sap",
+          "present_in": [
+            "cs"
+          ],
+          "missing_from": [
+            "bom",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Pump Bearing Sleeve",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "SS410",
+        "raw_material": "ASTM A276 GR SS410",
+        "coating": false
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Pump Shaft",
+      "cs": {
+        "present": true,
+        "material": "ASTM A276 GR SS410",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410T",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "SS410",
+        "raw_material": "A276 GR SS410(T Condition)",
+        "coating": false
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: SS410, bom: SS410T, sap: SS410",
+          "materials": {
+            "cs": "SS410",
+            "bom": "SS410T",
+            "sap": "SS410"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "RM Pipe (Intermediate)",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 7
+      },
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 7.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "MS",
+        "raw_material": "MS",
+        "coating": false
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "RM Pipe (Taper/Bottom)",
+      "cs": {
+        "present": true,
+        "material": "M.S.",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        },
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: M.S., bom: MS",
+          "materials": {
+            "cs": "M.S.",
+            "bom": "MS"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Ratchet",
+      "cs": {
+        "present": true,
+        "material": "C.S. ASTMA-216 GR-WCB",
+        "qty": 1
+      },
+      "bom": null,
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs but missing from bom, sap",
+          "present_in": [
+            "cs"
+          ],
+          "missing_from": [
+            "bom",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Sand Collar",
+      "cs": {
+        "present": true,
+        "material": "ASTM A276 GR SS410",
+        "qty": 10
+      },
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        },
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: SS410, bom: MS",
+          "materials": {
+            "cs": "SS410",
+            "bom": "MS"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Sleeve Nut",
+      "cs": null,
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 2.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in bom but missing from cs, sap",
+          "present_in": [
+            "bom"
+          ],
+          "missing_from": [
+            "cs",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Sole Plate",
+      "cs": {
+        "present": true,
+        "material": "M.S. IS:2062 GR-B",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 2.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        },
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: M.S. IS:2062 GR-B, bom: MS",
+          "materials": {
+            "cs": "M.S. IS:2062 GR-B",
+            "bom": "MS"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Split Collar",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 10.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Split Gland",
+      "cs": {
+        "present": true,
+        "material": "ASTM A276 GR SS410",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "FG260",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        },
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: SS410, bom: FG260",
+          "materials": {
+            "cs": "SS410",
+            "bom": "FG260"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Strainer",
+      "cs": {
+        "present": true,
+        "material": "ASTM A276 GR SS304",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "SS304",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "SS304",
+        "raw_material": "ASTM A276 GR SS304",
+        "coating": false
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Suction Bell Mouth",
+      "cs": {
+        "present": true,
+        "material": "CI IS 210 GR FG260",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "FG260 + COATING",
+        "qty": 1.0,
+        "coating": true
+      },
+      "sap": {
+        "present": true,
+        "material": "CI",
+        "raw_material": "CI IS 210 GR FG260",
+        "coating": false
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 cs: FG260, bom: FG260 + COATING, sap: CI",
+          "materials": {
+            "cs": "FG260",
+            "bom": "FG260 + COATING",
+            "sap": "CI"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Taper Connecting Piece",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "GGG50 + COATING",
+        "qty": 1.0,
+        "coating": true
+      },
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs, bom but missing from sap",
+          "present_in": [
+            "cs",
+            "bom"
+          ],
+          "missing_from": [
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Thrust Bearing",
+      "cs": {
+        "present": true,
+        "material": "GRAPHITED COTTON.",
+        "qty": 1
+      },
+      "bom": null,
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs but missing from bom, sap",
+          "present_in": [
+            "cs"
+          ],
+          "missing_from": [
+            "bom",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Thrust Block",
+      "cs": {
+        "present": true,
+        "material": "CI IS 210 GR FG260",
+        "qty": 1
+      },
+      "bom": null,
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs but missing from bom, sap",
+          "present_in": [
+            "cs"
+          ],
+          "missing_from": [
+            "bom",
+            "sap"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_name": "Top Shaft",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410T",
+        "qty": 1.0,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "SS410",
+        "raw_material": "A276 GR SS410(T Condition)",
+        "coating": false
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "detail": "Material differs \u2014 bom: SS410T, sap: SS410",
+          "materials": {
+            "bom": "SS410T",
+            "sap": "SS410"
+          }
+        }
+      ]
+    },
+    {
+      "canonical_name": "Water Deflector",
+      "cs": {
+        "present": true,
+        "material": "M.S. IS:2062 GR-B",
+        "qty": 1
+      },
+      "bom": null,
+      "sap": null,
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "detail": "Present in cs but missing from bom, sap",
+          "present_in": [
+            "cs"
+          ],
+          "missing_from": [
+            "bom",
+            "sap"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "source": "cs",
+      "original_name": "BRG.COVER CUM RATCHET PLATE",
+      "ref": "2881"
+    }
+  ]
+}

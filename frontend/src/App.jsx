@@ -4,14 +4,17 @@ import Footer from "./components/Footer/Footer";
 import UploadSection from "./components/UploadSection/UploadSection";
 import ProgressIndicator from "./components/ProgressIndicator/ProgressIndicator";
 import ResultsSection from "./components/ResultsSection/ResultsSection";
-import { uploadDocuments, triggerExtraction } from "./api/client";
+import ValidationSection from "./components/ValidationSection/ValidationSection";
+import { uploadDocuments, triggerExtraction, runComparison } from "./api/client";
 import styles from "./App.module.css";
 
 export default function App() {
-  const [step, setStep] = useState("upload"); // upload | extracting | results
+  // Steps: upload → extracting → results → comparing → validation
+  const [step, setStep] = useState("upload");
   const [files, setFiles] = useState({ cs: null, bom: null, sap: null });
   const [identifier, setIdentifier] = useState(null);
   const [results, setResults] = useState(null);
+  const [comparison, setComparison] = useState(null);
   const [error, setError] = useState(null);
 
   function handleFileChange(type, file) {
@@ -37,11 +40,26 @@ export default function App() {
     }
   }
 
+  async function handleCompare() {
+    setError(null);
+    setStep("comparing");
+
+    try {
+      const res = await runComparison(identifier);
+      setComparison(res.comparison);
+      setStep("validation");
+    } catch (err) {
+      setError(err.message || "Comparison failed");
+      setStep("results");
+    }
+  }
+
   function handleReset() {
     setStep("upload");
     setFiles({ cs: null, bom: null, sap: null });
     setIdentifier(null);
     setResults(null);
+    setComparison(null);
     setError(null);
   }
 
@@ -72,6 +90,18 @@ export default function App() {
             results={results}
             identifier={identifier}
             onReset={handleReset}
+            onCompare={handleCompare}
+            comparing={false}
+          />
+        )}
+
+        {step === "comparing" && <ProgressIndicator />}
+
+        {step === "validation" && comparison && (
+          <ValidationSection
+            comparison={comparison}
+            identifier={identifier}
+            onBack={() => setStep("results")}
           />
         )}
       </main>

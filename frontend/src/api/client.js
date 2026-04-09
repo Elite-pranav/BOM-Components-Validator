@@ -43,3 +43,35 @@ export function getDocumentUrl(identifier, docType, download = false) {
   const params = download ? "?download=true" : "";
   return `${BASE}/documents/${identifier}/${docType}${params}`;
 }
+
+export async function runComparison(identifier) {
+  const res = await fetch(`${BASE}/compare/${identifier}`, { method: "POST" });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || "Comparison failed");
+  }
+  return res.json();
+}
+
+export async function submitValidation(identifier, decisions) {
+  const res = await fetch(`${BASE}/validate/${identifier}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ decisions }),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || "Validation failed");
+  }
+  return res.json();
+}
+
+export async function getNomenclature() {
+  const res = await fetch(`${BASE}/nomenclature`);
+  if (!res.ok) throw new Error("Failed to fetch nomenclature");
+  return res.json();
+}
+
+export function getReportUrl(identifier) {
+  return `${BASE}/report/${identifier}`;
+}

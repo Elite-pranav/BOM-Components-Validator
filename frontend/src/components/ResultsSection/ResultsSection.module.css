@@ -27,6 +27,34 @@
   border-radius: var(--radius-sm);
 }
 
+.headerActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.compareBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.compareBtn:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+.compareBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .resetBtn {
   padding: 0.5rem 1rem;
   border: 1px solid var(--color-border);

@@ -225,6 +225,54 @@ def create_app():
 
         raise HTTPException(404, f"No {doc_type} document found for {identifier}")
 
+    # ── Comparison & Validation Endpoints ────────────────────────────────
+
+    @app.post("/api/compare/{identifier}")
+    async def compare_parts(identifier: str):
+        _, processed_dir = _get_dirs(identifier)
+        if not processed_dir.exists():
+            raise HTTPException(404, "No extracted data found. Run extraction first.")
+
+        from backend.comparator import compare
+        results = compare(identifier, processed_dir)
+        return {"status": "completed", "identifier": identifier, "comparison": results}
+
+    @app.post("/api/validate/{identifier}")
+    async def validate_parts(identifier: str, body: dict):
+        _, processed_dir = _get_dirs(identifier)
+        if not processed_dir.exists():
+            raise HTTPException(404, "No comparison results found. Run comparison first.")
+
+        from backend.comparator import apply_validation
+        decisions = body.get("decisions", [])
+        validation = apply_validation(identifier, processed_dir, decisions)
+        return {"status": "completed", "identifier": identifier, "validation": validation}
+
+    @app.get("/api/report/{identifier}")
+    async def get_report(identifier: str):
+        _, processed_dir = _get_dirs(identifier)
+        report_path = processed_dir / f"{identifier}_validation_report.pdf"
+
+        if not report_path.exists():
+            # Generate on the fly
+            from backend.report import generate_report
+            report_path = generate_report(identifier, processed_dir)
+
+        if not report_path.exists():
+            raise HTTPException(404, "Could not generate report. Ensure validation is complete.")
+
+        return FileResponse(
+            path=str(report_path),
+            media_type="application/pdf",
+            filename=report_path.name,
+        )
+
+    @app.get("/api/nomenclature")
+    async def get_nomenclature():
+        from backend.comparator import Nomenclature
+        nom = Nomenclature()
+        return {"canonical_names": nom.get_all_canonical()}
+
     return app
 
 
