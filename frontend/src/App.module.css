@@ -2,29 +2,33 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--color-bg);
 }
 
 .main {
   flex: 1;
-  max-width: 1200px;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 .error {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1rem;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
+  padding: 0.875rem 1.25rem;
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+  border-left: 4px solid var(--color-error);
   border-radius: var(--radius);
   color: var(--color-error);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .error button {
@@ -33,10 +37,29 @@
   font-size: 1.25rem;
   color: var(--color-error);
   line-height: 1;
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+.error button:hover {
+  background: rgba(220, 38, 38, 0.1);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {
   .main {
-    padding: 1rem;
+    padding: 1.25rem 1rem;
+    gap: 1.25rem;
   }
 }

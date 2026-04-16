@@ -1,85 +1,140 @@
 {
   "Suction Bell Mouth": {
     "aliases": [
-      "SUCTION BELL MOUTH", "SUC MTH", "Suc Bell Mouth",
-      "SUCT BELLMOUTH", "SUC BELL MTH", "SUC MOUTH"
+      "SUCTION BELL MOUTH",
+      "SUC MTH",
+      "Suc Bell Mouth",
+      "SUCT BELLMOUTH",
+      "SUC BELL MTH",
+      "SUC MOUTH"
     ]
   },
   "Strainer": {
     "aliases": [
-      "STRAINER", "SUCTION STRAINER", "SUCTION STRAINER."
+      "STRAINER",
+      "SUCTION STRAINER",
+      "SUCTION STRAINER."
     ]
   },
   "Diffuser": {
     "aliases": [
-      "DIFF", "DIFFUSER", "DIFFUSER (STAGE)", "DIFFUSER (DLY)",
-      "DIFFUSER (DELY)", "STD DIFF", "Diffuser Moc", "Diffuser MOC",
-      "CASING & DIFFUSER (BOWL)"
+      "DIFF",
+      "DIFFUSER",
+      "DIFFUSER (STAGE)",
+      "DIFFUSER (DLY)",
+      "DIFFUSER (DELY)",
+      "STD DIFF",
+      "Diffuser Moc",
+      "Diffuser MOC",
+      "CASING & DIFFUSER (BOWL)",
+      "BOWL"
     ]
   },
   "Delivery Diffuser": {
     "aliases": [
-      "DEL DIFF", "DELIVERY DIFFUSER"
+      "DEL DIFF",
+      "DELIVERY DIFFUSER"
     ]
   },
   "Taper Connecting Piece": {
     "aliases": [
-      "TAP CON", "TAP CON PC", "TAPER CONNECTING PIECE",
-      "TAPER CONN PIECE", "TAP CONN PIECE", "TAPER CONN PC"
+      "TAP CON",
+      "TAP CON PC",
+      "TAPER CONNECTING PIECE",
+      "TAPER CONN PIECE",
+      "TAP CONN PIECE",
+      "TAPER CONN PC"
     ]
   },
   "Neck Ring": {
     "aliases": [
-      "NECK RING", "CASING RING (WEAR RING) (NECK RING)",
-      "CASING RING", "CSG W/RING"
+      "NECK RING",
+      "CASING RING (WEAR RING) (NECK RING)",
+      "CASING RING",
+      "CSG W/RING"
     ]
   },
   "Impeller": {
     "aliases": [
-      "IMP", "IMPELLER", "IMP RH", "IMP LH", "IMP S/O",
-      "IMP C/T", "IMP O/T", "IMP SUC", "IMP STAGG", "IMP DEL",
-      "IMPELLER RH", "IMPELLER LH", "IMPELLER SEMI OPEN",
-      "IMPELLER SUCTION", "IMPELLER STAGERED", "IMPELLER DELIVERY"
+      "IMP",
+      "IMPELLER",
+      "IMP RH",
+      "IMP LH",
+      "IMP S/O",
+      "IMP C/T",
+      "IMP O/T",
+      "IMP SUC",
+      "IMP STAGG",
+      "IMP DEL",
+      "IMPELLER RH",
+      "IMPELLER LH",
+      "IMPELLER SEMI OPEN",
+      "IMPELLER SUCTION",
+      "IMPELLER STAGERED",
+      "IMPELLER DELIVERY"
     ]
   },
   "Impeller Wear Ring": {
     "aliases": [
-      "IMP WEAR RING", "IMPELLER WEAR RING", "Imp Wear Ring",
-      "IMP RING", "IMPELLER RING"
+      "IMP WEAR RING",
+      "IMPELLER WEAR RING",
+      "Imp Wear Ring",
+      "IMP RING",
+      "IMPELLER RING"
     ]
   },
   "Impeller Nose Cap": {
     "aliases": [
-      "IMP N/CAP", "IMP N/CAP RH", "IMP N/CAP LH",
-      "IMPELLER NOSE CAP", "IMPELLER NOSE CAP RH", "IMPELLER NOSE CAP LH"
+      "IMP N/CAP",
+      "IMP N/CAP RH",
+      "IMP N/CAP LH",
+      "IMPELLER NOSE CAP",
+      "IMPELLER NOSE CAP RH",
+      "IMPELLER NOSE CAP LH"
     ]
   },
   "Impeller Distance Sleeve": {
     "aliases": [
-      "IMP DIST SLV", "IMPELLER DISTANCE SLEEVE", "IMP DIST PC",
+      "IMP DIST SLV",
+      "IMPELLER DISTANCE SLEEVE",
+      "IMP DIST PC",
       "IMPELLER DISTANCE PIECE"
     ]
   },
   "Pump Shaft": {
     "aliases": [
-      "SHAFT RH", "SHAFT LH", "PUMP SHAFT", "Shaft"
+      "SHAFT RH",
+      "SHAFT LH",
+      "PUMP SHAFT",
+      "Shaft"
     ]
   },
   "Top Shaft": {
     "aliases": [
-      "SHAFT RH TOP", "SHAFT LH TOP", "TOP SHAFT", "Top Shaft",
-      "SHAFT RH (TOP)", "SHAFT LH (TOP)"
+      "SHAFT RH TOP",
+      "SHAFT LH TOP",
+      "TOP SHAFT",
+      "Top Shaft",
+      "SHAFT RH (TOP)",
+      "SHAFT LH (TOP)"
     ]
   },
   "Intermediate Shaft": {
     "aliases": [
-      "SHAFT INT", "INT. SHAFT", "Int Shaft", "INT SHAFT",
-      "SHAFT (INTERMEDIATE)", "INT. SHAFT (SMALL)", "INT. SHAFT (INT-SMALL)"
+      "SHAFT INT",
+      "INT. SHAFT",
+      "Int Shaft",
+      "INT SHAFT",
+      "SHAFT (INTERMEDIATE)",
+      "INT. SHAFT (SMALL)",
+      "INT. SHAFT (INT-SMALL)"
     ]
   },
   "Pump Bearing Sleeve": {
     "aliases": [
-      "P BRG SLV", "PUMP BRG. SLEEVE", "Pump Brg Sleeve",
+      "P BRG SLV",
+      "PUMP BRG. SLEEVE",
+      "Pump Brg Sleeve",
       "PUMP BRG. SLEEVE (DIFFUSER BOT SIDE)",
       "PUMP BRG. SLEEVE (DIFFUSER TOP SIDE)",
       "PUMP BRG. SLEEVE (SUCTION BELL)"
@@ -87,148 +142,212 @@
   },
   "Intermediate Bearing Sleeve": {
     "aliases": [
-      "INT BRG SLV", "INT. BRG. SLEEVE", "Int Sleeve",
-      "INTERMEDIATE BEARING SLEEVE", "INT BRG SLEEVE"
+      "INT BRG SLV",
+      "INT. BRG. SLEEVE",
+      "Int Sleeve",
+      "INTERMEDIATE BEARING SLEEVE",
+      "INT BRG SLEEVE"
     ]
   },
   "Bearing Bush": {
     "aliases": [
-      "BRG BUSH", "BEARING BUSH", "Bearing bush", "Bearing Bush",
-      "PUMP BRG. BUSH", "PUMP BRG. BUSH (DIFFUSER)",
-      "PUMP BRG. BUSH (SUCTION BELL)", "BRG. BUSH (ST. BOX)",
-      "I BRG BUSH", "INT. BEARING BUSH", "INT BEARING BUSH"
+      "BRG BUSH",
+      "BEARING BUSH",
+      "Bearing bush",
+      "Bearing Bush",
+      "PUMP BRG. BUSH",
+      "PUMP BRG. BUSH (DIFFUSER)",
+      "PUMP BRG. BUSH (SUCTION BELL)",
+      "BRG. BUSH (ST. BOX)",
+      "I BRG BUSH",
+      "INT. BEARING BUSH",
+      "INT BEARING BUSH"
     ]
   },
   "Bearing Bush Carrier": {
     "aliases": [
-      "BRG BUSH CARR", "BEARING BUSH CARRIER",
-      "ST. BOX. BUSH CARRIER", "BRG BUSH CARRIER",
-      "INT BRG CARR", "INTERMEDIATE BEARING CARRIER"
+      "BRG BUSH CARR",
+      "BEARING BUSH CARRIER",
+      "ST. BOX. BUSH CARRIER",
+      "BRG BUSH CARRIER",
+      "INT BRG CARR",
+      "INTERMEDIATE BEARING CARRIER"
     ]
   },
   "Bearing Housing Sub-Assembly": {
     "aliases": [
-      "BRG HSG", "BEARING HOUSING", "Bearing Bracket",
-      "THRUST BRG. HSG.", "BRG HSG S/A"
+      "BRG HSG",
+      "BEARING HOUSING",
+      "Bearing Bracket",
+      "THRUST BRG. HSG.",
+      "BRG HSG S/A"
     ]
   },
   "Distance Sleeve": {
     "aliases": [
-      "DIST SLV", "DISTANCE SLEEVE"
+      "DIST SLV",
+      "DISTANCE SLEEVE"
     ]
   },
   "Sand Collar": {
     "aliases": [
-      "SAND COLL", "SAND COLLAR"
+      "SAND COLL",
+      "SAND COLLAR"
     ]
   },
   "Gland Sleeve": {
     "aliases": [
-      "GLD SLV", "GLAND SLEEVE", "Gland Sleeve"
+      "GLD SLV",
+      "GLAND SLEEVE",
+      "Gland Sleeve"
     ]
   },
   "Split Gland": {
     "aliases": [
-      "GLD SPLIT", "SPLIT GLAND", "GLAND.", "GLAND"
+      "GLD SPLIT",
+      "SPLIT GLAND",
+      "GLAND.",
+      "GLAND"
     ]
   },
   "Gland Packing": {
     "aliases": [
-      "GLD PACK", "GLAND PACKING", "GLAND PACKING."
+      "GLD PACK",
+      "GLAND PACKING",
+      "GLAND PACKING."
     ]
   },
   "Lock Nut": {
     "aliases": [
-      "LOCK NUT", "LOCK NUT- IMPELLER (LH)", "LOCK NUT- IMPELLER (RH)",
-      "THRUST BRG. LOCK NUT", "IMP NUT RH", "IMP NUT LH",
-      "IMPELLER NUT RH", "IMPELLER NUT LH"
+      "LOCK NUT",
+      "LOCK NUT- IMPELLER (LH)",
+      "LOCK NUT- IMPELLER (RH)",
+      "THRUST BRG. LOCK NUT",
+      "IMP NUT RH",
+      "IMP NUT LH",
+      "IMPELLER NUT RH",
+      "IMPELLER NUT LH"
     ]
   },
   "Sleeve Nut": {
     "aliases": [
-      "SLV NUT", "SLEEVE NUT"
+      "SLV NUT",
+      "SLEEVE NUT"
     ]
   },
   "Muff Coupling": {
     "aliases": [
-      "MUF COUP", "MUFF COUPLING", "SOLID MUFF COUPLING", "MUFF COUP"
+      "MUF COUP",
+      "MUFF COUPLING",
+      "SOLID MUFF COUPLING",
+      "MUFF COUP"
     ]
   },
   "Split Collar": {
     "aliases": [
-      "SPT COLL", "SPLIT COLLAR"
+      "SPT COLL",
+      "SPLIT COLLAR"
     ]
   },
   "Adjusting Ring": {
     "aliases": [
-      "ADJ RING", "ADJUSTING RING"
+      "ADJ RING",
+      "ADJUSTING RING"
     ]
   },
   "Water Deflector": {
     "aliases": [
-      "WATER DEFL", "WATER DEFLECTOR"
+      "WATER DEFL",
+      "WATER DEFLECTOR"
     ]
   },
   "Sole Plate": {
     "aliases": [
-      "SOLE PLT", "SOLE PLATE"
+      "SOLE PLT",
+      "SOLE PLATE"
     ]
   },
   "Delivery Bend & Motor Stool": {
     "aliases": [
-      "DBMS", "DELIVERY BEND AND MOTOR STOOL",
-      "DELIVERY BEND CUM MOTOR STOOL", "DEL BEND",
-      "DELIVERY BEND", "Delivery Bend / Tee", "Motor Stool",
-      "MOTOR STOOL"
+      "DBMS",
+      "DELIVERY BEND AND MOTOR STOOL",
+      "DELIVERY BEND CUM MOTOR STOOL",
+      "DEL BEND",
+      "DELIVERY BEND",
+      "Delivery Bend / Tee",
+      "Motor Stool",
+      "MOTOR STOOL",
+      "DISCHARGE HEAD"
     ]
   },
   "Alignment Pad": {
     "aliases": [
-      "ALIGN PAD", "ALIGNMENT PAD"
+      "ALIGN PAD",
+      "ALIGNMENT PAD"
     ]
   },
   "Loose Stuffing Box": {
     "aliases": [
-      "L STF BOX", "ST BOX LOOSE", "LOOSE STUFFING BOX",
-      "LOOSE ST BOX", "STF BOX", "STUFFING BOX"
+      "L STF BOX",
+      "ST BOX LOOSE",
+      "LOOSE STUFFING BOX",
+      "LOOSE ST BOX",
+      "STF BOX",
+      "STUFFING BOX"
     ]
   },
   "Logging Ring": {
     "aliases": [
-      "LOG RING", "LOGGING RING", "LOGGING RING."
+      "LOG RING",
+      "LOGGING RING",
+      "LOGGING RING."
     ]
   },
   "Adapter Plate": {
     "aliases": [
-      "ADPT PLT", "ADAPTER PLATE"
+      "ADPT PLT",
+      "ADAPTER PLATE"
     ]
   },
   "RM Pipe (Taper/Bottom)": {
     "aliases": [
-      "R.M.PIPE TAP", "R.M.PIPE (BOTTOM)", "R.M.PIPE BOT",
-      "TAPER RISING MAIN PIPE", "RISING MAIN PIPE (BOTTOM)"
+      "R.M.PIPE TAP",
+      "R.M.PIPE (BOTTOM)",
+      "R.M.PIPE BOT",
+      "TAPER RISING MAIN PIPE",
+      "RISING MAIN PIPE (BOTTOM)"
     ]
   },
   "RM Pipe (Intermediate)": {
     "aliases": [
-      "R.M.PIPE INT", "R.M.PIPE (INT)", "R.M.PIPE (INT-SMALL)",
-      "RISING MAIN PIPE (INTERMEDIATE)", "Column Pipe"
+      "R.M.PIPE INT",
+      "R.M.PIPE (INT)",
+      "R.M.PIPE (INT-SMALL)",
+      "RISING MAIN PIPE (INTERMEDIATE)",
+      "Column Pipe",
+      "COLUMN PIPE"
     ]
   },
   "RM Pipe (Top)": {
     "aliases": [
-      "R.M.PIPE TOP", "RISING MAIN PIPE (TOP)"
+      "R.M.PIPE TOP",
+      "RISING MAIN PIPE (TOP)"
     ]
   },
   "Cooling Coil": {
     "aliases": [
-      "COOLING COIL", "COOLING COIL."
+      "COOLING COIL",
+      "COOLING COIL."
     ]
   },
   "Ratchet": {
     "aliases": [
-      "RATCHET", "RATCHET PIN", "RATCHET BUSH",
-      "RATCHET LOCK PLATE", "RATCHET HOLDER PLATE"
+      "RATCHET",
+      "RATCHET PIN",
+      "RATCHET BUSH",
+      "RATCHET LOCK PLATE",
+      "RATCHET HOLDER PLATE",
+      "BRG.COVER CUM RATCHET PLATE"
     ]
   },
   "Thrust Block": {
@@ -238,7 +357,8 @@
   },
   "Thrust Bearing": {
     "aliases": [
-      "SPHERICAL ROLLER THRUST BRG.", "THRUST BEARING",
+      "SPHERICAL ROLLER THRUST BRG.",
+      "THRUST BEARING",
       "SPHERICAL ROLLER THRUST BRG"
     ]
   },
@@ -249,13 +369,16 @@
   },
   "Oil Retainer Bush": {
     "aliases": [
-      "OIL RETAINER BUSH", "OIL RETAINER BUSH."
+      "OIL RETAINER BUSH",
+      "OIL RETAINER BUSH."
     ]
   },
   "Flexible Coupling": {
     "aliases": [
-      "FLEXIBLE COUPLING", "FLEXIBLE COUPLING ( P.H. )",
-      "FLEXIBLE COUPLING ( M.H. )", "FLEX COUPLING"
+      "FLEXIBLE COUPLING",
+      "FLEXIBLE COUPLING ( P.H. )",
+      "FLEXIBLE COUPLING ( M.H. )",
+      "FLEX COUPLING"
     ]
   },
   "Shaft Collar": {
@@ -275,7 +398,8 @@
   },
   "Wear Plate": {
     "aliases": [
-      "WEAR PLT", "WEAR PLATE"
+      "WEAR PLT",
+      "WEAR PLATE"
     ]
   },
   "Throat Liner": {
@@ -285,27 +409,33 @@
   },
   "Impeller Lock Washer": {
     "aliases": [
-      "IMP L/WASH", "IMPELLER LOCK WASHER"
+      "IMP L/WASH",
+      "IMPELLER LOCK WASHER"
     ]
   },
   "Impeller Locking Ring": {
     "aliases": [
-      "IMP LOCK RING", "IMPELLER LOCKING RING"
+      "IMP LOCK RING",
+      "IMPELLER LOCKING RING"
     ]
   },
   "Impeller Cover Plate": {
     "aliases": [
-      "IMP COV PLT", "IMPELLER COVER PLATE"
+      "IMP COV PLT",
+      "IMPELLER COVER PLATE"
     ]
   },
   "Interstage Ring": {
     "aliases": [
-      "INT STG RING", "INTERSTAGE RING"
+      "INT STG RING",
+      "INTERSTAGE RING"
     ]
   },
   "Interstage Bush": {
     "aliases": [
-      "INT BUSH", "INTERSTAGE BUSH", "INT BUSH SPLIT",
+      "INT BUSH",
+      "INTERSTAGE BUSH",
+      "INT BUSH SPLIT",
       "INTERSTAGE BUSH (SPLIT)"
     ]
   },
@@ -326,9 +456,14 @@
   },
   "Key": {
     "aliases": [
-      "KEY FOR IMPELLER", "KEY FOR FLEX. COUPLING",
-      "KEY ( SOLID MUFF COUPLING.)", "KEY ( THRUST BLOCK.)",
-      "KEY ( RATCHET HOLDER PL.)", "BES KEY", "BER KEY"
+      "KEY FOR IMPELLER",
+      "KEY FOR FLEX. COUPLING",
+      "KEY ( SOLID MUFF COUPLING.)",
+      "KEY ( THRUST BLOCK.)",
+      "KEY ( RATCHET HOLDER PL.)",
+      "SUNK KEY",
+      "GIB HEAD KEY",
+      "PARALLEL KEY"
     ]
   }
 }

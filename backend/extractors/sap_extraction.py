@@ -22,6 +22,7 @@ from pathlib import Path
 import pdfplumber
 
 from backend.extractors.base import BaseExtractor
+from backend.materials import extract_material_code
 
 # Known part/component keys found in SAP DATA documents.
 # Values are canonical names (stripped of "Moc"/"MOC" suffixes).
@@ -45,6 +46,8 @@ PART_KEYS = {
     "Delivery Bend / Tee": "Delivery Bend / Tee",
     "Motor Stool": "Motor Stool",
     "Column Pipe": "Column Pipe",
+    "Muff Coupling": "Muff Coupling",
+    "Coupling Moc": "Coupling Moc",
 }
 
 
@@ -132,21 +135,7 @@ class SAPExtractor(BaseExtractor):
     @staticmethod
     def _extract_material_code(value: str) -> str | None:
         """Try to extract a standard material code from a value string."""
-        patterns = [
-            r"(SS\s?\d{3}\w?)",       # SS304, SS410, SS 316L
-            r"(CF\s?\d+M?)",          # CF8M, CF3M
-            r"(CA\s?\d+\w*)",         # CA6NM, CA15
-            r"(GGG\s?\d+)",           # GGG50
-            r"(EN\s?\d+\w*)",         # EN24
-            r"\b(CI)\b",             # CI (Cast Iron)
-            r"(M\.?S\.?)",           # MS, M.S.
-        ]
-        upper = value.upper()
-        for pat in patterns:
-            m = re.search(pat, upper)
-            if m:
-                return m.group(1).strip()
-        return None
+        return extract_material_code(value)
 
     def _save_json(self, data, output_path: Path):
         output_path.parent.mkdir(parents=True, exist_ok=True)

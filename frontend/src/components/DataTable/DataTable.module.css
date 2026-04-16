@@ -1,44 +1,65 @@
 .wrapper {
   overflow-x: auto;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.82rem;
+  font-size: 0.825rem;
   white-space: nowrap;
 }
 
 .th {
   text-align: left;
-  padding: 0.65rem 0.75rem;
+  padding: 0.75rem 1rem;
   background: var(--color-primary);
-  color: #fff;
+  color: rgba(255, 255, 255, 0.92);
   font-weight: 600;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
   position: sticky;
   top: 0;
 }
 
+.th:first-child {
+  padding-left: 1.25rem;
+}
+
+.th:last-child {
+  padding-right: 1.25rem;
+}
+
 .td {
-  padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid var(--color-border);
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid var(--color-border-light);
   max-width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--color-text-secondary);
+}
+
+.td:first-child {
+  padding-left: 1.25rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.td:last-child {
+  padding-right: 1.25rem;
 }
 
 .even {
-  background: #f8fafc;
+  background: #fafbfc;
+}
+
+tr:hover .td {
+  background: var(--color-accent-subtle);
 }
 
 .empty {
   text-align: center;
-  padding: 2rem;
-  color: var(--color-text-muted);
+  padding: 3rem 2rem;
+  color: var(--color-text-faint);
   font-size: 0.9rem;
 }

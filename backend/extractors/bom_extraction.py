@@ -18,6 +18,7 @@ from pathlib import Path
 import openpyxl
 
 from backend.extractors.base import BaseExtractor
+from backend.materials import extract_material_code
 
 
 COL_ITEM_NUMBER = 0       
@@ -84,20 +85,6 @@ SORT_CATEGORIES = {
     "PL DB/MS": "Delivery Bend / Motor Stool",
 }
 
-MATERIAL_PATTERNS = [
-    r"(SS\d{3}\w?)",
-    r"(CF\d+M?\b)",
-    r"(CA\d+\w*)",
-    r"(GGG\d+)",
-    r"(FG\s?\d+)",
-    r"(WCB)",
-    r"(LTB\d+)",
-    r"(CIP\s+Marine)",
-    r"(CUTL?\s*RUB(?:BER)?)",
-    r"(NITRILE)",
-    r"(HTS)",
-    r"\b(MS)\b",
-]
 
 
 class BOMExtractor(BaseExtractor):
@@ -190,15 +177,7 @@ class BOMExtractor(BaseExtractor):
     @staticmethod
     def _extract_material(description: str) -> str | None:
         """Extract material code from the tail of the description string."""
-        upper = description.upper()
-        for pat in MATERIAL_PATTERNS:
-            m = re.search(pat, upper)
-            if m:
-                result = m.group(1).strip()
-                if "+COAT" in upper and "COAT" not in result:
-                    result += " + COATING"
-                return result
-        return None
+        return extract_material_code(description)
 
     def _save_json(self, data, output_path: Path):
         output_path.parent.mkdir(parents=True, exist_ok=True)

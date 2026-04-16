@@ -2,12 +2,12 @@
   "parts": {
     "Suc Bell Mouth": {
       "raw": "CI IS 210 GR FG260",
-      "material": "CI",
+      "material": "FG260",
       "coating": false
     },
     "Diffuser": {
       "raw": "GGG50 + COATING",
-      "material": "GGG50",
+      "material": "GGG50 + COATING",
       "coating": true
     },
     "Strainer": {
@@ -17,17 +17,17 @@
     },
     "Impeller": {
       "raw": "CA6NM + COATING",
-      "material": "CA6NM",
+      "material": "CA6NM + COATING",
       "coating": true
     },
     "Imp Wear Ring": {
       "raw": "ASTM A743 GR CF8M/SS410 HARDEN",
-      "material": "SS410",
+      "material": "CF8M",
       "coating": false
     },
     "Neck Ring": {
       "raw": "ASTM A743 GR CA15/SS410",
-      "material": "SS410",
+      "material": "CA15",
       "coating": false
     },
     "Shaft": {
@@ -65,6 +65,16 @@
       "material": "MS",
       "coating": false
     },
+    "Coupling Moc": {
+      "raw": "Forged Steel",
+      "material": "FORGED STEEL",
+      "coating": false
+    },
+    "Muff Coupling": {
+      "raw": "ASTM A276 GR SS410",
+      "material": "SS410",
+      "coating": false
+    },
     "Column Pipe": {
       "raw": "MS",
       "material": "MS",
@@ -82,7 +92,7 @@
     },
     "Bearing Bracket": {
       "raw": "CI IS 210 GR FG260",
-      "material": "CI",
+      "material": "FG260",
       "coating": false
     }
   },
@@ -116,12 +126,10 @@
     "Motor Rating (kW)": "3,400.00 KW",
     "Flange Drilling": "IS 1538 FF",
     "Frame Size HT Motor": "VTPC1700",
-    "Coupling Moc": "Forged Steel",
     "Performance Curve No.": "VMF 95A_50_8_A_R02",
     "Inspection Applicable": "Yes",
     "Power Loss": "2.93",
     "Bowl Head (m)": "113.57 m",
-    "Muff Coupling": "ASTM A276 GR SS410",
     "Shaft Tube requirement": "No",
     "Lubrication System": "Self Lubrication",
     "Location Of Delivery": "Above floor",

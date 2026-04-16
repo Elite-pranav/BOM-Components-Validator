@@ -1,9 +1,14 @@
 """
 PDF report generator for the BOM Components Validator.
 
-Generates a validation report containing pump metadata, a part-by-part
-comparison table, and details of confirmed discrepancies. Uses reportlab
-for PDF generation.
+Generates a validation report containing:
+  - Pump metadata (from SAP data)
+  - Comparison summary statistics
+  - Part-by-part comparison table with material and status
+  - Confirmed discrepancies with per-mismatch reasons/explanations
+  - Dismissed (false positive) summary
+
+Uses reportlab for PDF generation.
 """
 
 import json
@@ -80,7 +85,9 @@ def generate_report(identifier: str, processed_dir: Path) -> Path:
         meta_keys = [
             "VT pump Common Name", "No of Stages", "Flow (m3/h)",
             "Shut off Head (m)", "Motor Rating (kW)", "Region",
-            "Manufacturing Clearance",
+            "Manufacturing Clearance", "Liquid Handled",
+            "Full Load Speed (RPM)", "Coupling Type",
+            "Type of Sealing", "Scope of Supply",
         ]
         meta_rows = [["Field", "Value"]]
         for key in meta_keys:
@@ -156,7 +163,6 @@ def generate_report(identifier: str, processed_dir: Path) -> Path:
         col_widths = [45 * mm, 35 * mm, 35 * mm, 30 * mm, 20 * mm]
         comp_table = Table(table_data, colWidths=col_widths, repeatRows=1)
 
-        # Build row-level styling
         table_styles = [
             ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1E293B")),
             ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
@@ -190,25 +196,75 @@ def generate_report(identifier: str, processed_dir: Path) -> Path:
         elements.append(comp_table)
         elements.append(Spacer(1, 6 * mm))
 
-    # ── Confirmed Discrepancies Detail ───────────────────────────────────
+    # ── Confirmed Discrepancies Detail (with reasons) ───────────────────
     confirmed_list = validation.get("confirmed_discrepancies", [])
     if confirmed_list:
         elements.append(Paragraph("Confirmed Discrepancies", styles["Heading2"]))
         elements.append(Spacer(1, 3 * mm))
 
+        disc_header = ["Part Name", "Type", "Reason"]
+        disc_table_data = [disc_header]
+
         for conf in confirmed_list:
             name = conf["canonical_name"]
-            # Find the part in comparison results
+            disc_idx = conf.get("discrepancy_index", 0)
+            reason = conf.get("reason", "")
+
+            # Find the part in comparison results for type info
             part_data = next(
                 (p for p in parts if p["canonical_name"] == name), None
             )
+            disc_type = ""
             if part_data:
-                for disc in part_data.get("discrepancies", []):
-                    detail_text = (
-                        f"<b>{name}</b> — {disc['type']}: {disc['detail']}"
-                    )
-                    elements.append(Paragraph(detail_text, styles["Normal"]))
-                    elements.append(Spacer(1, 2 * mm))
+                discs = part_data.get("discrepancies", [])
+                if disc_idx < len(discs):
+                    disc_type = discs[disc_idx].get("type", "")
+                    if not reason:
+                        reason = discs[disc_idx].get("reason", discs[disc_idx].get("detail", ""))
+
+            # Also check material_comparison for LLM explanation
+            if not reason and part_data:
+                mat_comp = part_data.get("material_comparison", {})
+                reason = mat_comp.get("explanation", "")
+
+            disc_table_data.append([name, disc_type, reason or "No reason provided"])
+
+        if len(disc_table_data) > 1:
+            disc_col_widths = [40 * mm, 30 * mm, 100 * mm]
+            disc_table = Table(disc_table_data, colWidths=disc_col_widths, repeatRows=1)
+            disc_table.setStyle(TableStyle([
+                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#DC2626")),
+                ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+                ("FONTSIZE", (0, 0), (-1, -1), 7),
+                ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+                ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#E2E8F0")),
+                ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.HexColor("#FEF2F2"), colors.white]),
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                ("TOPPADDING", (0, 0), (-1, -1), 3),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+                ("LEFTPADDING", (0, 0), (-1, -1), 4),
+            ]))
+            elements.append(disc_table)
+            elements.append(Spacer(1, 6 * mm))
+
+    # ── Dismissed (false positives) summary ─────────────────────────────
+    dismissed_list = validation.get("dismissed_discrepancies", [])
+    if dismissed_list:
+        elements.append(Paragraph("Dismissed (False Positives)", styles["Heading2"]))
+        elements.append(Spacer(1, 3 * mm))
+
+        dismissed_text_parts = []
+        for d in dismissed_list:
+            name = d.get("canonical_name", "")
+            mapped = d.get("mapped_to", "")
+            if mapped:
+                dismissed_text_parts.append(f"<b>{name}</b> — remapped to: {mapped}")
+            else:
+                dismissed_text_parts.append(f"<b>{name}</b> — dismissed by user")
+
+        dismissed_text = "<br/>".join(dismissed_text_parts)
+        elements.append(Paragraph(dismissed_text, styles["Normal"]))
+        elements.append(Spacer(1, 6 * mm))
 
     # Build PDF
     doc.build(elements)
@@ -225,6 +281,6 @@ def _load_json(path: Path, default=None):
 
 def _get_material(entry: dict | None) -> str:
     if not entry:
-        return "—"
+        return "\u2014"
     mat = entry.get("material") or entry.get("raw_material") or ""
-    return mat if mat else "—"
+    return mat if mat else "\u2014"

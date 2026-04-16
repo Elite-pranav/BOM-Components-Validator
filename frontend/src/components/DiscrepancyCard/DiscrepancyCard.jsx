@@ -80,12 +80,22 @@ export default function DiscrepancyCard({
         ))}
       </div>
 
+      {/* Material comparison explanation */}
+      {part.material_comparison?.explanation && (
+        <div className={styles.explanation}>
+          <span className={styles.explMethod}>
+            {part.material_comparison.method === "llm" ? "AI Analysis" : "Auto-matched"}:
+          </span>{" "}
+          {part.material_comparison.explanation}
+        </div>
+      )}
+
       {/* Discrepancy details */}
       {part.discrepancies.map((disc, i) => (
         <div key={i} className={styles.discrepancy}>
           <FiAlertTriangle className={styles.warnIcon} />
           <span className={styles.discType}>{disc.type}</span>
-          <span className={styles.discDetail}>{disc.detail}</span>
+          <span className={styles.discDetail}>{disc.reason || disc.detail}</span>
         </div>
       ))}
 
