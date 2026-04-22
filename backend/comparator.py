@@ -40,63 +40,187 @@ NOMENCLATURE_PATH = config.BACKEND_DIR / "nomenclature.json"
 # ── Gemini LLM Prompt ──────────────────────────────────────────────────────
 
 LLM_EVALUATION_PROMPT = """\
-You are an expert in engineering materials, metallurgy, and industrial vertical turbine pump components.
+You are an expert in engineering materials, metallurgy, industrial pumps, BOM validation, and SAP master data.
 
-You are reviewing a cross-reference comparison of parts extracted from three engineering document sources:
-- **CS**: Cross-Section engineering drawing — shows ALL components including installation hardware, accessories, and site items.
-- **BOM**: Bill of Materials Excel — lists manufactured and purchased components with total quantities.
-- **SAP**: SAP enterprise system data — tracks only major structural/rotating components (typically 15-20 key parts).
+You are reviewing a comparison of parts extracted from three engineering document sources for a CUSTOM ENGINEERED pump.
 
-## Pump Details
+The pump is project-specific. Every pump may have different:
+- components
+- nomenclature
+- quantities
+- materials
+- optional accessories
+- scope of supply
+
+Do NOT assume standard pump structure.
+Use ONLY the evidence provided from the three documents.
+
+You must prioritize:
+1. Zero false positives
+2. Detect real engineering discrepancies
+3. If uncertain, choose REVIEW_REQUIRED
+
+--------------------------------------------------
+DOCUMENT SOURCES
+--------------------------------------------------
+
+CS:
+Cross Section drawing.
+Usually shows physical assembly parts, accessories, fasteners, installation items, and visible components.
+
+BOM:
+Bill of Materials.
+Usually shows manufacturing + procurement components with planned quantities.
+
+SAP:
+ERP / Master Data.
+Usually tracks key business-critical components only.
+Minor accessories may be absent.
+
+--------------------------------------------------
+PUMP DETAILS
+--------------------------------------------------
+
 {pump_info}
 
-## Your Task
-For each part below, determine whether there are **genuine engineering discrepancies** that would concern a procurement or manufacturing engineer. Most potential issues will be EXPECTED behavior, not real errors.
+--------------------------------------------------
+IMPORTANT COMPARISON RULES
+--------------------------------------------------
 
-## What is NORMAL (do NOT flag these):
+1. CUSTOMIZED PUMP RULE
+Because this pump is custom-built, part names, materials, and quantities may legitimately vary.
 
-**Missing parts:**
-- SAP only tracks major components (impellers, shafts, diffusers, bearing sleeves, wear rings, column pipes, bell mouths, etc.). Installation items, accessories, hardware, and auxiliary parts (foundation bolts, erection packers, keys, oil indicators, cooling coils, sole plates, ratchets, sand collars, split collars, lock nuts, sleeve nuts, gland packing, water deflectors, thrust blocks, thrust bearings, logging rings, oil retainer bushes, flexible couplings, alignment pads, adjusting rings, split glands, loose stuffing boxes, distance sleeves, bearing bush carriers, etc.) being absent from SAP is EXPECTED.
-- BOM may not include site/installation items (foundation bolts, erection packers, etc.) or accessories.
-- CS drawings show everything — parts present ONLY in CS are often accessories or installation items. This is normal.
-- A part present in only one or two sources is only a real MISSING discrepancy if it is a MAJOR structural or rotating component that the other source should definitely track.
+2. NAME MATCH RULE
+Different names may still refer to same component.
 
-**Material notation differences:**
-- "ASTM A276 GR SS410" and "SS410" are the SAME material (full specification vs short code).
-- "M.S. IS:2062 GR-B" and "MS" are the SAME material (Mild Steel with specification prefix).
-- "CI IS 210 GR FG260" and "FG260" are the SAME material (Cast Iron with specification prefix).
-- Composite materials like "CUTLESS RUBBER + SS410 SHELL" matching "SS410" is expected — the primary structural material matches.
-- Cast/wrought equivalents of the same alloy are the same base material (e.g., CA6NM cast and wrought forms).
-- Heat treatment suffixes (T condition, H, etc.) do not change the base alloy identity.
-- "FORGED STEEL" is a general term — if no other source has specific data, this is not a mismatch.
-- "MFG.STD" or "M&P Std" means manufacturer standard — not a material specification, skip comparison.
+Examples:
+- BEARING BUSH = BUSH BEARING
+- COLUMN PIPE ASSY = COLUMN PIPE
+- SHAFT SLEEVE = SPECIAL SHAFT SLEEVE
 
-**Quantity differences in multi-stage pumps:**
-- This pump has {stages} stage(s). For per-stage components (diffusers, impellers, wear rings, bearing sleeves, muff couplings, intermediate shafts, intermediate bearing sleeves, RM pipes), BOM lists TOTAL quantity across all stages while CS shows PER-STAGE or PER-UNIT quantity.
-- BOM qty being a multiple of CS qty (approximately CS qty × stages, with some variance for design specifics or spares) is EXPECTED, not an error.
-- Single-instance components (suction bell mouth, sole plate, bearing housing, delivery bend, top shaft) should have matching quantities.
+Do NOT flag naming mismatch unless clearly different functions.
 
-**Coating:**
-- Minor coating notation differences are not significant if the base material matches.
-- One source saying "GGG50 + COATING" and another saying "GGG50 + COATING" is a match even with slight notation variance.
+3. MATERIAL MATCH RULE
 
-## What IS a real discrepancy (DO flag these):
-- **MATERIAL_MISMATCH**: Materials from different sources are genuinely different alloy families (e.g., stainless steel vs cast iron, CA15 vs FG260, SS410 vs HTS).
-- **MISSING**: A major structural/rotating component (impeller, shaft, diffuser, bearing housing, wear ring, etc.) that SHOULD be tracked in a source but is genuinely absent.
-- **QUANTITY_MISMATCH**: Quantities that CANNOT be explained by multi-stage multiplication or standard engineering practice.
-- **COATING_MISMATCH**: One source explicitly requires coating while another explicitly specifies no coating for a part where coating is structurally significant.
+Treat these as SAME unless strong evidence says otherwise:
 
-## Parts to Evaluate
+- SS410 = ASTM A276 GR SS410
+- CA15 = cast equivalent of SS410 family
+- MS = Mild Steel
+- M.S. IS2062 = MS
+- FG260 = Cast Iron Grade
+- CF8M = SS316 cast family
+- MFG STD = unknown standard, not mismatch
+- M&P STD = unknown standard, not mismatch
+
+Formatting/spec prefix differences are NOT mismatches.
+
+4. MISSING PART RULE
+
+Do NOT flag missing if part is likely:
+- accessory
+- hardware
+- fastener
+- optional item
+- installation item
+- site item
+- custom minor item
+- not normally tracked in SAP
+
+Only flag if major functional component appears genuinely missing:
+- impeller
+- shaft
+- diffuser
+- bearing housing
+- wear ring
+- column pipe
+- bell mouth
+- coupling
+- sleeve
+- stuffing box
+- motor stool
+- discharge head
+
+5. QUANTITY RULE
+
+Quantity differences may be normal because of:
+- multi-stage design
+- assemblies
+- spare quantities
+- handed parts
+- optional extras
+- project customization
+
+If pump has {stages} stages, repeated components may scale with stages.
+
+Only flag quantity mismatch if clearly unreasonable.
+
+6. COATING RULE
+
+Minor coating wording differences are acceptable.
+
+Only flag if one source explicitly requires coating and another clearly conflicts.
+
+--------------------------------------------------
+REAL DISCREPANCIES TO FLAG
+--------------------------------------------------
+
+Use only these types:
+
+- MATERIAL_MISMATCH
+- MISSING_CRITICAL
+- QUANTITY_MISMATCH
+- COATING_MISMATCH
+- NAME_MISMATCH
+
+If uncertain:
+- REVIEW_REQUIRED
+
+--------------------------------------------------
+PARTS TO EVALUATE
+--------------------------------------------------
 
 {parts_text}
 
-## Response Format
-Return ONLY a valid JSON array. No markdown formatting, no code fences, no extra text.
-For each part return an object with these exact keys:
-- "part": the canonical part name (string, must match exactly)
-- "status": "CLEAR" if no real discrepancies, "FLAGGED" if there are genuine issues
-- "discrepancies": array of confirmed issues (empty array for CLEAR parts), each with "type" (MATERIAL_MISMATCH, MISSING, QUANTITY_MISMATCH, or COATING_MISMATCH) and "reason" (concise 1-line explanation)
-- "explanation": brief 1-line summary of your evaluation
+--------------------------------------------------
+RESPONSE FORMAT
+--------------------------------------------------
+
+Return ONLY a valid JSON array.
+No markdown.
+No code fences.
+No explanation outside JSON.
+
+For each part return object with these exact keys:
+
+part
+status
+confidence
+discrepancies
+explanation
+
+status allowed values:
+
+CLEAR
+FLAGGED
+REVIEW_REQUIRED
+
+confidence:
+integer from 0 to 100
+
+If CLEAR:
+discrepancies = empty array
+
+If FLAGGED:
+discrepancies = array of objects with keys:
+type
+reason
+
+Example discrepancy object keys only:
+type
+reason
+
+Keep explanation to one short sentence.
 """
 
 
@@ -410,7 +534,7 @@ def _llm_evaluate_all(parts: list[dict], sap_metadata: dict):
     )
 
     # Call Gemini
-    llm_results = _call_gemini_with_retry(prompt, retries=2)
+    llm_results = _call_gemini_with_retry(prompt, retries=3)
 
     if llm_results is None:
         logger.error("LLM evaluation failed — falling back to conservative flagging")
@@ -463,8 +587,8 @@ def _format_part_for_prompt(index: int, part: dict) -> str:
 
 
 def _apply_llm_results(parts: list[dict], llm_results: list[dict]):
-    """Map LLM evaluation results back to part objects. Mutates in-place."""
-    # Build lookup by part name
+    """Map LLM evaluation results back to part objects."""
+    
     llm_by_name = {}
     for result in llm_results:
         llm_by_name[result.get("part", "")] = result
@@ -473,43 +597,47 @@ def _apply_llm_results(parts: list[dict], llm_results: list[dict]):
         llm_result = llm_by_name.get(part["canonical_name"])
 
         if not llm_result:
-            logger.warning(
-                f"LLM returned no result for '{part['canonical_name']}' — "
-                "applying conservative fallback"
-            )
             _fallback_flag_single(part)
             continue
 
-        status = llm_result.get("status", "CLEAR")
+        status = llm_result.get("status", "CLEAR").upper()
+        confidence = llm_result.get("confidence", 70)
         explanation = llm_result.get("explanation", "")
         discrepancies = llm_result.get("discrepancies", [])
 
-        # Update material comparison with LLM evaluation
         part["material_comparison"]["method"] = "llm"
+        part["material_comparison"]["confidence"] = confidence
         part["material_comparison"]["explanation"] = explanation
 
-        if status == "FLAGGED" and discrepancies:
-            # Check if there's a material mismatch among the discrepancies
-            has_material_issue = any(
-                d.get("type") == "MATERIAL_MISMATCH" for d in discrepancies
-            )
-            if has_material_issue:
-                part["material_comparison"]["result"] = "MISMATCH"
-            # Keep rigid result otherwise (MATCH, INSUFFICIENT, etc.)
+        if status == "FLAGGED":
+            has_material_issue = False
 
-            # Add confirmed discrepancies
             for disc in discrepancies:
+                if disc.get("type") == "MATERIAL_MISMATCH":
+                    has_material_issue = True
+
                 part["discrepancies"].append({
                     "type": disc.get("type", "UNKNOWN"),
-                    "reason": disc.get("reason", "Flagged by AI evaluation"),
-                    "detail": disc.get("reason", ""),
+                    "reason": disc.get("reason", "Flagged by AI"),
+                    "detail": disc.get("reason", "")
                 })
+
+            if has_material_issue:
+                part["material_comparison"]["result"] = "MISMATCH"
+
+        elif status == "REVIEW_REQUIRED":
+            part["discrepancies"].append({
+                "type": "REVIEW_REQUIRED",
+                "reason": explanation or "Manual engineering review needed",
+                "detail": explanation or ""
+            })
+
         else:
-            # LLM says CLEAR — no discrepancies
-            if part["material_comparison"]["result"] == "MISMATCH":
-                # LLM overrides rigid mismatch — materials actually match
-                part["material_comparison"]["result"] = "MATCH"
+            # CLEAR
             part["discrepancies"] = []
+
+            if part["material_comparison"]["result"] == "MISMATCH":
+                part["material_comparison"]["result"] = "MATCH"
 
 
 def _fallback_flag_all(parts: list[dict]):
@@ -522,7 +650,7 @@ def _fallback_flag_single(part: dict):
     """Conservative fallback for a single part — flags all potential issues."""
     part["material_comparison"]["method"] = "fallback"
     part["material_comparison"]["explanation"] = (
-        "AI evaluation unavailable — flagged for manual review"
+        "AI unavailable for custom pump validation — manual engineering review advised"
     )
 
     # Flag MISSING
