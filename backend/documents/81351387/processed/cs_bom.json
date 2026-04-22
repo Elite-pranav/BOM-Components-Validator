@@ -57,13 +57,13 @@
     "ref": "4600",
     "description": "ERECTION PACKERS",
     "qty": 32,
-    "material": null
+    "material": "M.S."
   },
   {
     "ref": "4250-4",
     "description": "'O' RING ( R.M. PIPE.)",
     "qty": 9,
-    "material": null
+    "material": "NITRILE RUBBER"
   },
   {
     "ref": "4250-3",
@@ -75,13 +75,13 @@
     "ref": "4250-1",
     "description": "'O' RING (SUCT BELLMOUTH & TAPER CONN PC)",
     "qty": 2,
-    "material": null
+    "material": "NITRILE RUBBER"
   },
   {
     "ref": "4250",
     "description": "'O' RING (DIFFUSER)",
     "qty": 2,
-    "material": null
+    "material": "NITRILE RUBBER"
   },
   {
     "ref": "4080-2",
@@ -93,25 +93,25 @@
     "ref": "4080-1",
     "description": "GASKET (FOR BRG. HSG. & BRG COVER).",
     "qty": 1,
-    "material": null
+    "material": "CHAMPION AF 120."
   },
   {
     "ref": "3280-1",
     "description": "KEY ( RATCHET HOLDER PL.)",
     "qty": 1,
-    "material": null
+    "material": "ASTM A276 GR SS410"
   },
   {
     "ref": "3280",
     "description": "KEY ( THRUST BLOCK.)",
     "qty": 1,
-    "material": null
+    "material": "ASTM A276 GR SS410"
   },
   {
     "ref": "3260",
     "description": "KEY ( SOLID MUFF COUPLING.)",
     "qty": 20,
-    "material": null
+    "material": "ASTM A276 GR SS410"
   },
   {
     "ref": "3250",
@@ -123,19 +123,19 @@
     "ref": "3210",
     "description": "KEY FOR IMPELLER",
     "qty": 2,
-    "material": null
+    "material": "ASTM A276 GR SS410"
   },
   {
     "ref": "3032",
     "description": "LOCK NUT- IMPELLER (LH)",
     "qty": 2,
-    "material": null
+    "material": "ASTM A276 GR SS410"
   },
   {
     "ref": "3031",
     "description": "LOCK NUT- IMPELLER (RH)",
     "qty": 2,
-    "material": null
+    "material": "ASTM A276 GR SS410"
   },
   {
     "ref": "3011",
@@ -147,78 +147,78 @@
     "ref": "2883",
     "description": "THRUST BLOCK",
     "qty": 1,
-    "material": "CI IS 210 GR FG260"
+    "material": "IS:1570, GR.40C8."
   },
   {
     "ref": "2882",
     "description": "THRUST BRG. HSG.",
     "qty": 1,
-    "material": "ASTM A743, GR.CA15."
+    "material": "CI IS 210 GR FG260"
   },
   {
     "ref": "2881",
     "description": "BRG.COVER CUM RATCHET PLATE",
-    "qty": 9,
-    "material": null
+    "qty": 1,
+    "material": "ASTM A743, GR.CA15."
   },
   {
     "ref": "2834",
     "description": "INT. BRG. SLEEVE",
-    "qty": 2,
+    "qty": 9,
     "material": "ASTM A276 GR SS410"
   },
   {
     "ref": "2832-2",
     "description": "PUMP BRG. SLEEVE (DIFFUSER TOP SIDE)",
-    "qty": 1,
-    "material": null
+    "qty": 2,
+    "material": "ASTM A276 GR SS410"
   },
   {
     "ref": "2832-1",
     "description": "PUMP BRG. SLEEVE (SUCTION BELL)",
-    "qty": 2,
-    "material": null
+    "qty": 1,
+    "material": "ASTM A276 GR SS410"
   },
   {
     "ref": "2832",
     "description": "PUMP BRG. SLEEVE (DIFFUSER BOT SIDE)",
-    "qty": 1,
-    "material": null
+    "qty": 2,
+    "material": "ASTM A276 GR SS410"
   },
   {
     "ref": "2830-1",
     "description": "PUMP BRG. BUSH (SUCTION BELL)",
-    "qty": 4,
+    "qty": 1,
     "material": "CUTLESS RUBBER+SS410 SHELL"
   },
   {
     "ref": "2830",
     "description": "PUMP BRG. BUSH (DIFFUSER)",
-    "qty": 1,
-    "material": "M.S. IS:2062, GR.E250 BR."
+    "qty": 4,
+    "material": "CUTLESS RUBBER+SS410 SHELL"
   },
   {
     "ref": "2810",
     "description": "OIL RETAINER BUSH.",
     "qty": 1,
-    "material": "CI IS 210 GR FG260"
+    "material": "M.S. IS:2062, GR.E250 BR."
   },
   {
     "ref": "2802-1",
     "description": "ST. BOX. BUSH CARRIER",
     "qty": 1,
-    "material": null
+    "material": "CI IS 210 GR FG260"
   },
   {
-    "ref": "2801-1",
+    "ref": "2802-1",
     "description": "BRG. BUSH (ST. BOX)",
-    "qty": 9,
-    "material": null
+    "qty": 1,
+    "material": "CI IS 210 GR FG260"
   },
   {
     "ref": "2801",
     "description": "INT. BEARING BUSH",
-    "qty": 1,
+    "qty": 9,
     "material": "CUTLESS RUBBER+SS410 SHELL"
   },
   {
@@ -243,7 +243,7 @@
     "ref": "2401",
     "description": "LOOSE STUFFING BOX",
     "qty": 1,
-    "material": null
+    "material": "GRAPHITED COTTON."
   },
   {
     "ref": "2318",
@@ -255,7 +255,7 @@
     "ref": "2311",
     "description": "GLAND.",
     "qty": 1,
-    "material": null
+    "material": "CI IS 210 GR FG260"
   },
   {
     "ref": "2106",
@@ -285,7 +285,7 @@
     "ref": "2050",
     "description": "SOLID MUFF COUPLING",
     "qty": 1,
-    "material": null
+    "material": "ASTM A276 GR SS410"
   },
   {
     "ref": "2008",
@@ -321,13 +321,13 @@
     "ref": "1805-2",
     "description": "INT. SHAFT (INT-SMALL)",
     "qty": 1,
-    "material": null
+    "material": "ASTM A276 GR SS410T"
   },
   {
     "ref": "1805-1",
     "description": "INT. SHAFT (SMALL)",
     "qty": 1,
-    "material": null
+    "material": "ASTM A276 GR SS410T"
   },
   {
     "ref": "1805",
@@ -339,13 +339,13 @@
     "ref": "1803",
     "description": "TOP SHAFT",
     "qty": 1,
-    "material": null
+    "material": "ASTM A276 GR SS410T"
   },
   {
     "ref": "1801",
     "description": "PUMP SHAFT",
     "qty": 1,
-    "material": null
+    "material": "ASTM A276 GR SS410T"
   },
   {
     "ref": "1708",
@@ -381,7 +381,7 @@
     "ref": "1161",
     "description": "R.M.PIPE (BOTTOM)",
     "qty": 1,
-    "material": null
+    "material": "M.S."
   },
   {
     "ref": "1151-1",
@@ -393,13 +393,13 @@
     "ref": "1151",
     "description": "R.M.PIPE (INT)",
     "qty": 7,
-    "material": null
+    "material": "M.S."
   },
   {
     "ref": "1041",
     "description": "DELIVERY BEND AND MOTOR STOOL",
     "qty": 1,
-    "material": null
+    "material": "M.S."
   },
   {
     "ref": "1030-1",

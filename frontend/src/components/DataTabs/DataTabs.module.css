@@ -74,6 +74,16 @@
 .subActive:hover {
   border-color: var(--color-primary);
 }
+.designText {
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  background: #f0f4ff;
+  border-left: 3px solid #4a6cf7;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #333;
+  line-height: 1.5;
+}
 
 @media (max-width: 768px) {
   .tab {

@@ -7,6 +7,7 @@ Every extractor (CS, BOM, SAP) inherits from BaseExtractor, which provides:
   - An abstract extract() method that subclasses must implement
 """
 
+import json
 import logging
 from abc import ABC, abstractmethod
 from pathlib import Path
@@ -25,3 +26,9 @@ class BaseExtractor(ABC):
     def extract(self) -> dict | list:
         """Run extraction and return structured data."""
         ...
+
+    def _save_json(self, data, output_path: Path):
+        """Save data to a JSON file. Creates parent directories if needed."""
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(output_path, "w") as f:
+            json.dump(data, f, indent=2)

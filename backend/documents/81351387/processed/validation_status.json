@@ -1,90 +1,29 @@
 {
   "identifier": "81351387",
-  "timestamp": "2026-04-16T07:06:33.201162+00:00",
+  "timestamp": "2026-04-22T12:33:53.303470+00:00",
   "confirmed_discrepancies": [
-    {
-      "canonical_name": "Bearing Bush",
-      "discrepancy_index": 0,
-      "reason": "CS material CUTLESS RUBBER+SS410 SHELL does not match BOM/SAP SS410."
-    },
     {
       "canonical_name": "Bearing Housing Sub-Assembly",
       "discrepancy_index": 0,
-      "reason": "CS material CA15 does not match BOM material HTS and SAP material FG260."
+      "reason": "CS and SAP specify CI FG260 while BOM specifies HTS."
     },
     {
-      "canonical_name": "Diffuser",
+      "canonical_name": "Loose Stuffing Box",
       "discrepancy_index": 0,
-      "reason": "CS quantity (1) does not match BOM quantity (2), expected multiple of stage count."
-    },
-    {
-      "canonical_name": "Impeller Wear Ring",
-      "discrepancy_index": 0,
-      "reason": "CS material includes CF8M/SS410H, BOM is SS410H, SAP is CF8M. Potential mix-up."
-    },
-    {
-      "canonical_name": "Intermediate Bearing Sleeve",
-      "discrepancy_index": 0,
-      "reason": "CS quantity (2) does not match BOM quantity (9), which is not a simple multiple of stages (2 stages)."
-    },
-    {
-      "canonical_name": "Intermediate Shaft",
-      "discrepancy_index": 0,
-      "reason": "BOM material SS410T differs from SAP material SS410 (T condition). However, CS lacks material data."
-    },
-    {
-      "canonical_name": "Logging Ring",
-      "discrepancy_index": 0,
-      "reason": "CS material CI IS 210 GR FG260 does not exactly match BOM material FG260. Potential for subtle difference in specification interpretation."
+      "reason": "CS specifies GRAPHITED COTTON while BOM specifies FG260."
     },
     {
       "canonical_name": "Muff Coupling",
       "discrepancy_index": 0,
-      "reason": "CS quantity (1) does not match BOM quantity (10). For multi-stage pumps, CS should show quantity per stage, BOM total. Expected quantity of 2 for 2 stages."
-    },
-    {
-      "canonical_name": "Neck Ring",
-      "discrepancy_index": 0,
-      "reason": "CS material includes CA15/SS410, BOM is SS410, SAP is CA15. Potential for mix-up."
-    },
-    {
-      "canonical_name": "Pump Shaft",
-      "discrepancy_index": 0,
-      "reason": "BOM material SS410T differs from SAP material SS410 (T condition). CS lacks material data."
-    },
-    {
-      "canonical_name": "RM Pipe (Intermediate)",
-      "discrepancy_index": 0,
-      "reason": "CS quantity (1) does not match BOM quantity (7), which is not a simple multiple of stages (2 stages)."
-    },
-    {
-      "canonical_name": "Sole Plate",
-      "discrepancy_index": 0,
-      "reason": "CS quantity (1) does not match BOM quantity (2). For a single pump, this should ideally match."
+      "reason": "CS and BOM specify SS410, while SAP specifies Forged Steel."
     },
     {
       "canonical_name": "Suction Bell Mouth",
       "discrepancy_index": 0,
-      "reason": "CS specifies CI IS 210 GR FG260, BOM specifies FG260 + COATING, SAP specifies FG260. The coating specification differs."
-    },
-    {
-      "canonical_name": "Top Shaft",
-      "discrepancy_index": 0,
-      "reason": "BOM material SS410T differs from SAP material SS410 (T condition). CS lacks material data."
+      "reason": "CS specifies CI FG260 while BOM specifies FG260 with coating."
     }
   ],
-  "dismissed_discrepancies": [
-    {
-      "canonical_name": "BRG.COVER CUM RATCHET PLATE",
-      "discrepancy_index": 0,
-      "mapped_to": "Bearing Bush"
-    },
-    {
-      "canonical_name": "Coupling Moc",
-      "discrepancy_index": 0,
-      "mapped_to": "Cooling Coil"
-    }
-  ],
-  "total_confirmed": 14,
-  "total_dismissed": 2
+  "dismissed_discrepancies": [],
+  "total_confirmed": 4,
+  "total_dismissed": 0
 }

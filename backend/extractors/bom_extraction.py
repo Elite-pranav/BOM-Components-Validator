@@ -2,93 +2,69 @@
 Excel BOM extractor.
 
 Reads PUMP BOM Excel spreadsheets (.XLSX) exported from SAP and extracts
-each line item into a structured dict with:
-  - Part identification (item number, component number, part type)
-  - Material and coating info parsed from the description column
-  - Quantity, unit of measure, and usage context
-  - Category derived from the Sort String column (Bowl, Shaft, ACC, etc.)
+every line item as a clean dict, preserving all columns exactly as they
+appear in the sheet.
 
-Output is saved as bom_excel.json in the processed folder.
+Design philosophy
+-----------------
+No categorisation, no part-type inference, no material parsing — those
+decisions belong to the downstream Gemini comparison step (Phase 2), which
+has full context across all three sources.
+
+The extractor's only responsibilities are:
+  1. Find the right .XLSX file
+  2. Read every data row (skip the header)
+  3. Normalise types (qty as a number, empty strings as None)
+  4. Save as bom_data.json
+
+Output shape
+------------
+A JSON array of objects, one per BOM line item:
+
+[
+  {
+    "item_number":       "0010",
+    "component_number":  "8263538",
+    "description":       "STRAINER 2 5638 4900 0501 SS304",
+    "quantity":          1,
+    "unit":              "PC",
+    "text1":             "G.A.DRG.NO.:813351387-40 GA.",
+    "text2":             "C.S.DRG.NO.:813351387-40 CS.",
+    "sort_string":       "PL BOWL"
+  },
+  ...
+]
+
+Column mapping (0-indexed from the sheet):
+  0  Item Number          -> item_number
+  1  Component number     -> component_number
+  2  Object description   -> description
+  3  Comp. Qty (CUn)      -> quantity
+  4  Base Unit of Measure -> unit
+  5  Item Text Line 1     -> text1
+  6  Item text line 2     -> text2
+  7  Sort String          -> sort_string
 """
 
-import json
-import re
 from pathlib import Path
 
 import openpyxl
 
 from backend.extractors.base import BaseExtractor
-from backend.materials import extract_material_code
 
-
-COL_ITEM_NUMBER = 0       
-COL_COMPONENT_NUM = 1      
-COL_DESCRIPTION = 2       
-COL_QUANTITY = 3           
-COL_UNIT = 4              
-COL_TEXT_1 = 5            
-COL_TEXT_2 = 6            
-COL_SORT_STRING = 7       
-
-PART_ABBREV = {
-    "STRAINER": "Strainer",
-    "SUC MTH": "Suction Bell Mouth",
-    "DIFF": "Diffuser",
-    "TAP CON": "Taper Connecting Piece",
-    "NECK RING": "Neck Ring",
-    "IMP WEAR RING": "Impeller Wear Ring",
-    "IMP N/CAP": "Impeller Nose Cap",
-    "IMP DIST SLV": "Impeller Distance Sleeve",
-    "IMP": "Impeller",
-    "BRG BUSH CARR": "Bearing Bush Carrier",
-    "BRG BUSH": "Bearing Bush",
-    "BRG HSG": "Bearing Housing Sub-Assembly",
-    "I BRG BUSH": "Intermediate Bearing Bush",
-    "INT BRG SLV": "Intermediate Bearing Sleeve",
-    "INT BRG CARR": "Intermediate Bearing Carrier",
-    "SHAFT INT": "Intermediate Shaft",
-    "SHAFT RH TOP": "Top Shaft",
-    "SHAFT RH": "Pump Shaft",
-    "P BRG SLV": "Pump Bearing Sleeve",
-    "DIST SLV": "Distance Sleeve",
-    "SAND COLL": "Sand Collar",
-    "GLD SLV": "Gland Sleeve",
-    "GLD SPLIT": "Split Gland",
-    "GLD PACK": "Gland Packing",
-    "LOCK NUT": "Lock Nut",
-    "SLV NUT": "Sleeve Nut",
-    "MUF COUP": "Muff Coupling",
-    "SPT COLL": "Split Collar",
-    "ADJ RING": "Adjusting Ring",
-    "WATER DEFL": "Water Deflector",
-    "SOLE PLT": "Sole Plate",
-    "DBMS": "Delivery Bend & Motor Stool",
-    "ALIGN PAD": "Alignment Pad",
-    "L STF BOX": "Loose Stuffing Box",
-    "ST BOX LOOSE": "Loose Stuffing Box",
-    "STF BOX": "Stuffing Box",
-    "LOG RING": "Logging Ring",
-    "ADPT PLT": "Adapter Plate",
-    "R.M.PIPE TAP": "RM Pipe (Taper/Bottom)",
-    "R.M.PIPE INT": "RM Pipe (Intermediate)",
-    "R.M.PIPE TOP": "RM Pipe (Top)",
-    "R.M.PIPE BOT": "RM Pipe (Bottom)",
-    "COOLING COIL": "Cooling Coil",
-    "RATCHET": "Ratchet",
-}
-
-SORT_CATEGORIES = {
-    "PL BOWL": "Bowl Assembly",
-    "PL SHAFT": "Shaft Assembly",
-    "PL RM PIPE": "Rising Main Pipe",
-    "PL ACC": "Accessories",
-    "PL DB/MS": "Delivery Bend / Motor Stool",
-}
-
+# Column indices (0-based)
+_COL_ITEM_NUMBER      = 0
+_COL_COMPONENT_NUMBER = 1
+_COL_DESCRIPTION      = 2
+_COL_QUANTITY         = 3
+_COL_UNIT             = 4
+_COL_TEXT1            = 5
+_COL_TEXT2            = 6
+_COL_SORT_STRING      = 7
 
 
 class BOMExtractor(BaseExtractor):
-    """Extracts BOM data from Excel (.XLSX) files."""
+    """Extracts all line items from a SAP-exported BOM Excel file."""
 
     def extract(self) -> list:
         xlsx_file = self._find_xlsx()
@@ -101,85 +77,79 @@ class BOMExtractor(BaseExtractor):
             self.logger.warning("No data rows found in BOM Excel")
             return []
 
-        parts = [self._parse_row(r) for r in rows]
-        self.logger.info(f"Extracted {len(parts)} line items from BOM Excel")
+        items = [self._parse_row(r) for r in rows]
+        self.logger.info(f"Extracted {len(items)} line items from BOM Excel")
 
-        self._save_json(parts, self.processed_folder / "bom.json")
-        return parts
+        self._save_json(items, self.processed_folder / "bom_data.json")
+        return items
+
+    # ── File discovery ─────────────────────────────────────────────────────
 
     def _find_xlsx(self) -> Path | None:
-        matches = list(self.raw_folder.glob("*BOM.XLSX"))
-        if not matches:
-            matches = list(self.raw_folder.glob("*BOM.xlsx"))
-        return matches[0] if matches else None
+        for pattern in ("*BOM.XLSX", "*BOM.xlsx"):
+            matches = list(self.raw_folder.glob(pattern))
+            if matches:
+                return matches[0]
+        return None
+
+    # ── Reading ────────────────────────────────────────────────────────────
 
     def _read_excel(self, xlsx_path: Path) -> list[list]:
-        """Read all data rows (skip header) from the first sheet."""
-        wb = openpyxl.load_workbook(str(xlsx_path), data_only=True, read_only=True)
+        """Read all data rows from the first sheet, skipping the header row."""
+        wb = openpyxl.load_workbook(
+            str(xlsx_path), data_only=True, read_only=True
+        )
         ws = wb[wb.sheetnames[0]]
 
         rows = []
         for i, row in enumerate(ws.iter_rows(values_only=True)):
-            if i == 0: 
-                continue
+            if i == 0:
+                continue  # skip header
             if all(v is None for v in row):
-                continue
+                continue  # skip fully empty rows
             rows.append(list(row))
 
         wb.close()
         return rows
 
+    # ── Row parsing ────────────────────────────────────────────────────────
+
     def _parse_row(self, row: list) -> dict:
-        """Parse a single Excel row into a structured dict."""
-        description = str(row[COL_DESCRIPTION] or "").strip()
-        text1 = str(row[COL_TEXT_1] or "").strip()
-        text2 = str(row[COL_TEXT_2] or "").strip()
-        sort_str = str(row[COL_SORT_STRING] or "").strip()
+        """
+        Convert a raw Excel row into a clean dict.
 
-        material = self._extract_material(description)
-        has_coating = "+COAT" in description.upper()
+        The only transformations applied are:
+          - All string values are stripped of surrounding whitespace
+          - Empty strings are normalised to None
+          - quantity is kept as a number (int or float as Excel stores it)
+          - Empty sort_string is stored as None (one row in this pump series
+            has no sort string: the Bearing Housing Sub-Assembly)
+        """
+        def _str(val) -> str | None:
+            if val is None:
+                return None
+            s = str(val).strip()
+            return s if s else None
 
-        part_type = self._identify_part_type(description)
-        category = SORT_CATEGORIES.get(sort_str, sort_str or None)
-
-        usage_parts = [t for t in (text1, text2) if t]
-        usage = "; ".join(usage_parts) if usage_parts else None
-
-        qty_raw = row[COL_QUANTITY]
-        qty = float(qty_raw) if qty_raw is not None else None
+        def _qty(val) -> int | float | None:
+            if val is None:
+                return None
+            # Excel stores quantities as int or float; preserve as-is
+            if isinstance(val, (int, float)):
+                return val
+            try:
+                f = float(str(val).strip())
+                return int(f) if f == int(f) else f
+            except ValueError:
+                return None
 
         return {
-            "item_number": str(row[COL_ITEM_NUMBER] or "").strip(),
-            "component_number": str(row[COL_COMPONENT_NUM] or "").strip(),
-            "description": description,
-            "part_type": part_type,
-            "quantity": qty,
-            "unit": str(row[COL_UNIT] or "").strip(),
-            "material": material,
-            "coating": has_coating,
-            "category": category,
-            "usage": usage,
+            "item_number":       _str(row[_COL_ITEM_NUMBER]),
+            "component_number":  _str(row[_COL_COMPONENT_NUMBER]),
+            "description":       _str(row[_COL_DESCRIPTION]),
+            "quantity":          _qty(row[_COL_QUANTITY]),
+            "unit":              _str(row[_COL_UNIT]),
+            "text1":             _str(row[_COL_TEXT1]),
+            "text2":             _str(row[_COL_TEXT2]),
+            "sort_string":       _str(row[_COL_SORT_STRING]),
         }
-
-    @staticmethod
-    def _identify_part_type(description: str) -> str | None:
-        """Match description to a known part type using abbreviation map.
-
-        Longer abbreviations are checked first so that e.g. "IMP WEAR RING"
-        matches before "IMP".
-        """
-        desc_upper = description.upper()
-        for abbrev in sorted(PART_ABBREV, key=len, reverse=True):
-            if desc_upper.startswith(abbrev.upper()):
-                return PART_ABBREV[abbrev]
-        return None
-
-    @staticmethod
-    def _extract_material(description: str) -> str | None:
-        """Extract material code from the tail of the description string."""
-        return extract_material_code(description)
-
-    def _save_json(self, data, output_path: Path):
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(output_path, "w") as f:
-            json.dump(data, f, indent=2)

@@ -1,78 +1,609 @@
 {
-  "Region": "India",
-  "Manufacturing Clearance": "YES",
-  "VT pump Common Name": "VMF 95A PUMP",
-  "No of Stages": "02",
-  "MOC category": "Non Standard Category",
-  "Replacement Of Existing": "No",
-  "Type of Sealing": "Gland Pack",
-  "Scope of Supply": "Bare Pump + Accessories",
-  "Bought Out Item": "Not Applicable",
-  "Late Delivery Clause": "APPLICABLE",
-  "GA/CS Required For": "Approval",
-  "Pump Dry Weight": "30,550.00 kg",
-  "Customer Template Available?": "NO",
-  "List of Accessories": "Coupling Guard",
-  "Suc Bell Mouth": "CI IS 210 GR FG260",
-  "Diffuser Moc": "GGG50 + COATING",
-  "Strainer": "ASTM A276 GR SS304",
-  "Impeller": "CA6NM + COATING",
-  "Imp Wear Ring": "ASTM A743 GR CF8M/SS410 HARDEN",
-  "Neck Ring": "ASTM A743 GR CA15/SS410",
-  "Shaft": "A276 GR SS410(T Condition)",
-  "Top Shaft": "A276 GR SS410(T Condition)",
-  "Int Shaft": "A276 GR SS410(T Condition)",
-  "Pump Brg Sleeve": "ASTM A276 GR SS410",
-  "Int Sleeve": "ASTM A276 GR SS410",
-  "Delivery Bend / Tee": "MS",
-  "Motor Stool": "Standard (MS)",
-  "Certification Applicable": "Not Applicable",
-  "Liquid Handled": "Raw Water",
-  "Dir Of Rot of Pump(From D.E)": "Clock Wise",
-  "Full Load Speed (RPM)": "740 RPM",
-  "QAP Approval": "Required",
-  "Coupling Type": "Standard (Pin Bush)Finish Bore",
-  "Coupling Make": "M & P Standard",
-  "Motor Make": "CGL",
-  "Flow (m3/h)": "8,400.00 m3/h",
-  "Shut off Head (m)": "152.00 m",
-  "Fluid Specific Gravity": "1.000",
-  "Bowl Efficiency (%)": "89.05 %",
-  "Motor Rating (kW)": "3,400.00 KW",
-  "Flange Drilling": "IS 1538 FF",
-  "Frame Size HT Motor": "VTPC1700",
-  "Coupling Moc": "Forged Steel",
-  "Performance Curve No.": "VMF 95A_50_8_A_R02",
-  "Inspection Applicable": "Yes",
-  "Power Loss": "2.93",
-  "Bowl Head (m)": "113.57 m",
-  "Muff Coupling": "ASTM A276 GR SS410",
-  "Shaft Tube requirement": "No",
-  "Lubrication System": "Self Lubrication",
-  "Location Of Delivery": "Above floor",
-  "Type Of Motor Shaft": "Solid Shaft",
-  "Minimum Submergence": "5.00 m",
-  "Design of VT pump": "Non Pull Out",
-  "Non Wetted Fasteners": "HTS (Standard)",
-  "Column Pipe": "MS",
-  "Gland Sleeve": "ASTM A276 GR SS410",
-  "Thrust Bearing Lubrication": "Antifriction Oil (ISO VG 220)",
-  "Type of Thrust Brg Cooling": "Water",
-  "Diff Moc Depending On Stg": "For All Stages",
-  "Sump Depth": "25,000.00 mm",
-  "Column Pipe Size": "1000 mm",
-  "Column Pipe Thickness": "10 mm",
-  "Brg Bush In Bell Mouth": "M&P Std",
-  "Impeller Trimming": "Impeller Trimming",
-  "Flange Drilling Face Type": "Flat Face",
-  "Wetted Fasteners": "ASTM A276 GR SS304",
-  "Intermediate Pipe Length": "M&P Standard",
-  "Base Frame Required In Tender": "No",
-  "CFD Required": "No",
-  "Type Of Strainer": "Bar Type",
-  "Bearing bush": "CUTLESS + SS410",
-  "Fire Fighting App Agency": "NOT APPLICABLE",
-  "Intermediate Pipe Applicable": "Yes",
-  "Bottom Pipe Applicable": "Yes",
-  "Bearing Bracket": "CI IS 210 GR FG260"
+  "entries": [
+    {
+      "key": "Region",
+      "value": "India"
+    },
+    {
+      "key": "Manufacturing Clearance",
+      "value": "YES"
+    },
+    {
+      "key": "Manufacturing Clearance Date",
+      "value": ""
+    },
+    {
+      "key": "VT pump Common Name",
+      "value": "VMF 95A PUMP"
+    },
+    {
+      "key": "Vertical Pump Type",
+      "value": "VMF 95A x 2 STG PUMP"
+    },
+    {
+      "key": "No of Stages",
+      "value": "02"
+    },
+    {
+      "key": "MOC category",
+      "value": "Non Standard Category"
+    },
+    {
+      "key": "Replacement Of Existing",
+      "value": "No"
+    },
+    {
+      "key": "Type of Sealing",
+      "value": "Gland Pack"
+    },
+    {
+      "key": "Scope of Supply",
+      "value": "Bare Pump + Accessories"
+    },
+    {
+      "key": "Bought Out Item",
+      "value": "Not Applicable"
+    },
+    {
+      "key": "Late Delivery Clause",
+      "value": "APPLICABLE"
+    },
+    {
+      "key": "LD applicable for Document",
+      "value": "No"
+    },
+    {
+      "key": "GA/CS Required For",
+      "value": "Approval"
+    },
+    {
+      "key": "Pump Dry Weight",
+      "value": "30,550.00 kg"
+    },
+    {
+      "key": "Customer Template Available?",
+      "value": "NO"
+    },
+    {
+      "key": "List of Accessories",
+      "value": "Coupling"
+    },
+    {
+      "key": "List of Accessories",
+      "value": "Coupling Guard"
+    },
+    {
+      "key": "Suc Bell Mouth",
+      "value": "CI IS 210 GR FG260"
+    },
+    {
+      "key": "Diffuser Moc",
+      "value": "GGG50 + COATING"
+    },
+    {
+      "key": "Strainer",
+      "value": "ASTM A276 GR SS304"
+    },
+    {
+      "key": "Impeller",
+      "value": "CA6NM + COATING"
+    },
+    {
+      "key": "Imp Wear Ring",
+      "value": "ASTM A743 GR CF8M/SS410 HARDEN"
+    },
+    {
+      "key": "Neck Ring",
+      "value": "ASTM A743 GR CA15/SS410"
+    },
+    {
+      "key": "Shaft",
+      "value": "A276 GR SS410(T Condition)"
+    },
+    {
+      "key": "Top Shaft",
+      "value": "A276 GR SS410(T Condition)"
+    },
+    {
+      "key": "Int Shaft",
+      "value": "A276 GR SS410(T Condition)"
+    },
+    {
+      "key": "Pump Brg Sleeve",
+      "value": "ASTM A276 GR SS410"
+    },
+    {
+      "key": "Int Sleeve",
+      "value": "ASTM A276 GR SS410"
+    },
+    {
+      "key": "Delivery Bend / Tee",
+      "value": "MS"
+    },
+    {
+      "key": "Motor Stool",
+      "value": "Standard (MS)"
+    },
+    {
+      "key": "Gland",
+      "value": "CI IS 210 GR FG260"
+    },
+    {
+      "key": "Certification Applicable",
+      "value": "Not Applicable"
+    },
+    {
+      "key": "Customer Tag Number",
+      "value": "PH2 IN ISP RESERVOIR"
+    },
+    {
+      "key": "Application",
+      "value": "WATER SUPPLY"
+    },
+    {
+      "key": "Liquid Handled",
+      "value": "Raw Water"
+    },
+    {
+      "key": "Liquid Turbidity in NTU",
+      "value": "50.00"
+    },
+    {
+      "key": "Dir Of Rot of Pump(From D.E)",
+      "value": "Clock Wise"
+    },
+    {
+      "key": "Type of Drive",
+      "value": "HT Motor"
+    },
+    {
+      "key": "Motor Pole",
+      "value": "8"
+    },
+    {
+      "key": "Dir Of Rot Of Motor (From D.E)",
+      "value": "Bi Directional"
+    },
+    {
+      "key": "Full Load Speed (RPM)",
+      "value": "740 RPM"
+    },
+    {
+      "key": "Inspection Agency",
+      "value": "DEPT / CLIENT / TPI"
+    },
+    {
+      "key": "QAP Approval",
+      "value": "Required"
+    },
+    {
+      "key": "Performance Test",
+      "value": "With Job Motor"
+    },
+    {
+      "key": "Packing Type",
+      "value": "Rubber wood crate"
+    },
+    {
+      "key": "Fumigation Required",
+      "value": "No"
+    },
+    {
+      "key": "Fumigation Certificate Reqd?",
+      "value": "No"
+    },
+    {
+      "key": "Cust. QAP for Shaft",
+      "value": "Material Test Certificate"
+    },
+    {
+      "key": "Cust. QAP for Shaft",
+      "value": "Ultrasonic Test"
+    },
+    {
+      "key": "Cust.QAP for Casing-In Process",
+      "value": "Hydro"
+    },
+    {
+      "key": "Cust. QAP for Impeller-In Proc",
+      "value": "Balancing with Grade 6.3"
+    },
+    {
+      "key": "Cust. QAP for Final Inspection",
+      "value": "Strip Test"
+    },
+    {
+      "key": "Cust. QAP for Final Inspection",
+      "value": "Dimension Check & Witness"
+    },
+    {
+      "key": "Cust. QAP for Final Inspection",
+      "value": "Performance Test and Witness"
+    },
+    {
+      "key": "Quality Assurance Plan",
+      "value": "Customized QAP"
+    },
+    {
+      "key": "Coupling Type",
+      "value": "Standard (Pin Bush)Finish Bore"
+    },
+    {
+      "key": "Coupling Make",
+      "value": "M & P Standard"
+    },
+    {
+      "key": "Order Against GA Drawing no",
+      "value": "81351387 40 GA"
+    },
+    {
+      "key": "Order Against CS Drawing no",
+      "value": "81351387 40 CS"
+    },
+    {
+      "key": "Motor Make",
+      "value": "CGL"
+    },
+    {
+      "key": "Design Instructions",
+      "value": "REFER DESIGN TEXT"
+    },
+    {
+      "key": "Flow (m3/h)",
+      "value": "8,400.00 m3/h"
+    },
+    {
+      "key": "Shut off Head (m)",
+      "value": "152.00 m"
+    },
+    {
+      "key": "Fluid Specific Gravity",
+      "value": "1.000"
+    },
+    {
+      "key": "Tolerance on Efficiency",
+      "value": "YES"
+    },
+    {
+      "key": "Nett Gen Head",
+      "value": "113.00 m"
+    },
+    {
+      "key": "Head Loss",
+      "value": "0.57 m"
+    },
+    {
+      "key": "Bowl Efficiency (%)",
+      "value": "89.05 %"
+    },
+    {
+      "key": "Pump BKW (kW)",
+      "value": "2,917.47 KW"
+    },
+    {
+      "key": "Motor Rating (kW)",
+      "value": "3,400.00 KW"
+    },
+    {
+      "key": "Flange Drilling",
+      "value": "IS 1538 FF"
+    },
+    {
+      "key": "Ambient Temp (\u00b0C)",
+      "value": "46.00 \u00b0C"
+    },
+    {
+      "key": "Hydro Test Pressure (bar)",
+      "value": "17.10 bar"
+    },
+    {
+      "key": "Painting Type",
+      "value": "DomesticStd(WILOGreen)QDEnamel"
+    },
+    {
+      "key": "Painting Inspection",
+      "value": "NO"
+    },
+    {
+      "key": "Coating Make",
+      "value": "Standard (Asian glass flake)"
+    },
+    {
+      "key": "Impeller Diameter (mm)",
+      "value": "\u00d8980 X 19.1\u00b0"
+    },
+    {
+      "key": "Frame Size HT Motor",
+      "value": "VTPC1700"
+    },
+    {
+      "key": "Coupling Moc",
+      "value": "Forged Steel"
+    },
+    {
+      "key": "Sales Group",
+      "value": "MP:Water Product"
+    },
+    {
+      "key": "Performance Curve No.",
+      "value": "VMF 95A_50_8_A_R02"
+    },
+    {
+      "key": "Inspection Applicable",
+      "value": "Yes"
+    },
+    {
+      "key": "Coating Reqd By Customer",
+      "value": "YES"
+    },
+    {
+      "key": "Power Loss",
+      "value": "2.93"
+    },
+    {
+      "key": "St Box Packing",
+      "value": "Standred (Graphited Cotton )"
+    },
+    {
+      "key": "Bowl Head (m)",
+      "value": "113.57 m"
+    },
+    {
+      "key": "Muff Coupling",
+      "value": "ASTM A276 GR SS410"
+    },
+    {
+      "key": "Shaft Tube requirement",
+      "value": "No"
+    },
+    {
+      "key": "Lubrication System",
+      "value": "Self Lubrication"
+    },
+    {
+      "key": "Location Of Delivery",
+      "value": "Above floor"
+    },
+    {
+      "key": "Type Of Motor Shaft",
+      "value": "Solid Shaft"
+    },
+    {
+      "key": "Minimum Submergence",
+      "value": "5.00 m"
+    },
+    {
+      "key": "Design of VT pump",
+      "value": "Non Pull Out"
+    },
+    {
+      "key": "Non Wetted Fasteners",
+      "value": "HTS (Standard)"
+    },
+    {
+      "key": "Column Pipe",
+      "value": "MS"
+    },
+    {
+      "key": "Gland Sleeve",
+      "value": "ASTM A276 GR SS410"
+    },
+    {
+      "key": "Thrust Bearing Lubrication",
+      "value": "Antifriction Oil (ISO VG 220)"
+    },
+    {
+      "key": "Type of Thrust Brg Cooling",
+      "value": "Water"
+    },
+    {
+      "key": "Diff Moc Depending On Stg",
+      "value": "For All Stages"
+    },
+    {
+      "key": "Sump Depth",
+      "value": "25,000.00 mm"
+    },
+    {
+      "key": "Column Pipe Size",
+      "value": "1000 mm"
+    },
+    {
+      "key": "Column Pipe Thickness",
+      "value": "10 mm"
+    },
+    {
+      "key": "Brg Bush In Bell Mouth",
+      "value": "M&P Std"
+    },
+    {
+      "key": "Logging Ring",
+      "value": "CI IS 210 GR FG260"
+    },
+    {
+      "key": "Impeller Trimming",
+      "value": "Impeller Trimming"
+    },
+    {
+      "key": "Flange Drilling Face Type",
+      "value": "Flat Face"
+    },
+    {
+      "key": "Wetted Fasteners",
+      "value": "ASTM A276 GR SS304"
+    },
+    {
+      "key": "Non Reverse Ratchet",
+      "value": "Yes"
+    },
+    {
+      "key": "Intermediate Pipe Length",
+      "value": "M&P Standard"
+    },
+    {
+      "key": "Minimum Submergence Test",
+      "value": "Yes"
+    },
+    {
+      "key": "Bearing Make",
+      "value": "M&P Standard"
+    },
+    {
+      "key": "Base Frame Required In Tender",
+      "value": "No"
+    },
+    {
+      "key": "CFD Required",
+      "value": "No"
+    },
+    {
+      "key": "Explosion is required",
+      "value": "YES"
+    },
+    {
+      "key": "Coating Thickness (\u00b5m)",
+      "value": "300 micron"
+    },
+    {
+      "key": "Type Of Strainer",
+      "value": "Bar Type"
+    },
+    {
+      "key": "Muff Coupling Type",
+      "value": "Solid"
+    },
+    {
+      "key": "Pump Bill Of Material Status",
+      "value": "All BOM release"
+    },
+    {
+      "key": "Pump BOM allocated",
+      "value": "AKSHAY JADHAV"
+    },
+    {
+      "key": "Bearing bush",
+      "value": "CUTLESS + SS410"
+    },
+    {
+      "key": "Provides Pump Suc Size",
+      "value": "0.00"
+    },
+    {
+      "key": "Provides Pump Del Size",
+      "value": "1,000.00"
+    },
+    {
+      "key": "Shaft Dia at Muff Coup (mm)",
+      "value": "125.00 mm"
+    },
+    {
+      "key": "Product group Name",
+      "value": "Vertical Turbine"
+    },
+    {
+      "key": "Sales Group",
+      "value": "Domestic"
+    },
+    {
+      "key": "Article Number 02",
+      "value": "8158628"
+    },
+    {
+      "key": "Scope of Supply",
+      "value": "Bare Pump + Accessories"
+    },
+    {
+      "key": "Product Category",
+      "value": "Not Applicable"
+    },
+    {
+      "key": "Nameplate article",
+      "value": "8072779"
+    },
+    {
+      "key": "Fire Fighting App Agency",
+      "value": "NOT APPLICABLE"
+    },
+    {
+      "key": "Performance Testing Standard",
+      "value": "IS 9137"
+    },
+    {
+      "key": "VT No of Stages",
+      "value": "2"
+    },
+    {
+      "key": "Shaft Dia at Impeller",
+      "value": "140.00"
+    },
+    {
+      "key": "Bell Mouth Bush OD",
+      "value": "140.00 mm"
+    },
+    {
+      "key": "Bell Mouth Bush Length",
+      "value": "184.00 mm"
+    },
+    {
+      "key": "Pump Shaft Extension",
+      "value": "400"
+    },
+    {
+      "key": "VT Sleeve OD at Brg. Bkt",
+      "value": "0 mm"
+    },
+    {
+      "key": "VT Diffuser Sleeve OD",
+      "value": "165 mm"
+    },
+    {
+      "key": "VT Bellmouth Bearing Bush ID",
+      "value": "115.00 mm"
+    },
+    {
+      "key": "evaluation compl.",
+      "value": "-"
+    },
+    {
+      "key": "sales document type",
+      "value": "Order"
+    },
+    {
+      "key": "E_VBAP_KWMENG",
+      "value": "4.000"
+    },
+    {
+      "key": "reference date of bill of mate",
+      "value": ""
+    },
+    {
+      "key": "Intermediate Pipe Applicable",
+      "value": "Yes"
+    },
+    {
+      "key": "Bottom Pipe Applicable",
+      "value": "Yes"
+    },
+    {
+      "key": "Bearing Bracket",
+      "value": "CI IS 210 GR FG260"
+    },
+    {
+      "key": "Type of Closure",
+      "value": "CACA"
+    },
+    {
+      "key": "Motor_Eng_GearBox GADAttached?",
+      "value": "YES"
+    },
+    {
+      "key": "Appvd_Submited_GA_CS_Attached?",
+      "value": "YES"
+    },
+    {
+      "key": "Appvd_Spe_Coup_Drg_Attached?",
+      "value": "NOT APPLICABLE"
+    }
+  ],
+  "design_text": "MOC of all stage Diffuser - SG IRON / GGG50 + Coating\n(Coating Option Not available in configurator)\nInt. Column Pipe Length 2500 mm (Option not available in configurator)"
 }

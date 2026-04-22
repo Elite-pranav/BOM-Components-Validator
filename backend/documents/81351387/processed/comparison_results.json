@@ -1,10 +1,10 @@
 {
   "identifier": "81351387",
-  "timestamp": "2026-04-16T07:04:40.776460+00:00",
+  "timestamp": "2026-04-22T12:33:25.071118+00:00",
   "summary": {
-    "total_canonical_parts": 43,
-    "discrepancies_found": 17,
-    "unresolved_parts": 2
+    "total_canonical_parts": 40,
+    "discrepancies_found": 5,
+    "unresolved_parts": 0
   },
   "parts": [
     {
@@ -17,23 +17,19 @@
       "bom": {
         "present": true,
         "material": "MS",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": null,
       "material_comparison": {
-        "method": "llm",
         "result": "MATCH",
         "normalized": {
           "cs": "MS",
           "bom": "MS"
         },
-        "coating": {
-          "cs": false,
-          "bom": false
-        },
         "coating_match": true,
-        "explanation": "Material notations are consistent across sources after normalization."
+        "explanation": "Materials match (MS) and quantities align.",
+        "method": "llm"
       },
       "discrepancies": []
     },
@@ -43,7 +39,7 @@
       "bom": {
         "present": true,
         "material": "FG 260",
-        "qty": 4.0,
+        "qty": 4,
         "coating": false
       },
       "sap": null,
@@ -55,7 +51,7 @@
           "bom": false
         },
         "coating_match": null,
-        "explanation": "Part is only present in BOM, material is not specified. Not a discrepancy."
+        "explanation": "Material data is only available in BOM, so there is no basis for a discrepancy."
       },
       "discrepancies": []
     },
@@ -64,73 +60,56 @@
       "cs": {
         "present": true,
         "material": "CUTLESS RUBBER+SS410 SHELL",
-        "qty": 4
+        "qty": 1
       },
       "bom": {
         "present": true,
         "material": "SS410",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": {
         "present": true,
-        "material": "SS410",
+        "material": "CUTLESS + SS410",
         "raw_material": "CUTLESS + SS410",
         "coating": false
       },
       "material_comparison": {
-        "method": "llm",
-        "result": "MISMATCH",
+        "result": "MATCH",
         "normalized": {
           "cs": "CUTLESS RUBBER+SS410 SHELL",
           "bom": "SS410",
-          "sap": "SS410"
-        },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
+          "sap": "CUTLESS + SS410"
         },
         "coating_match": true,
-        "explanation": "Material and quantity mismatches exist between CS and BOM/SAP."
+        "explanation": "All sources refer to SS410 with a rubber liner; the material notations are equivalent.",
+        "method": "llm"
       },
-      "discrepancies": [
-        {
-          "type": "MATERIAL_MISMATCH",
-          "reason": "CS material CUTLESS RUBBER+SS410 SHELL does not match BOM/SAP SS410.",
-          "detail": "CS material CUTLESS RUBBER+SS410 SHELL does not match BOM/SAP SS410."
-        },
-        {
-          "type": "QUANTITY_MISMATCH",
-          "reason": "CS quantity (4) does not match BOM quantity (1).",
-          "detail": "CS quantity (4) does not match BOM quantity (1)."
-        }
-      ]
+      "discrepancies": []
     },
     {
       "canonical_name": "Bearing Bush Carrier",
       "cs": {
         "present": true,
-        "material": null,
+        "material": "CI IS 210 GR FG260",
         "qty": 1
       },
       "bom": {
         "present": true,
         "material": "FG260",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": null,
       "material_comparison": {
-        "method": "llm",
-        "result": "INSUFFICIENT",
-        "normalized": {},
-        "coating": {
-          "cs": false,
-          "bom": false
+        "result": "MATCH",
+        "normalized": {
+          "cs": "CI FG260",
+          "bom": "FG260"
         },
-        "coating_match": null,
-        "explanation": "Part is present in CS and BOM, material is not specified in CS. Not a discrepancy."
+        "coating_match": true,
+        "explanation": "Both CS and BOM specify FG260 (Cast Iron); the material notations are equivalent.",
+        "method": "llm"
       },
       "discrepancies": []
     },
@@ -138,42 +117,37 @@
       "canonical_name": "Bearing Housing Sub-Assembly",
       "cs": {
         "present": true,
-        "material": "ASTM A743, GR.CA15.",
+        "material": "CI IS 210 GR FG260",
         "qty": 1
       },
       "bom": {
         "present": true,
         "material": "HTS",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": {
         "present": true,
-        "material": "FG260",
+        "material": "CI IS 210 GR FG260",
         "raw_material": "CI IS 210 GR FG260",
         "coating": false
       },
       "material_comparison": {
-        "method": "llm",
         "result": "MISMATCH",
         "normalized": {
-          "cs": "CA15",
+          "cs": "CI FG260",
           "bom": "HTS",
-          "sap": "FG260"
-        },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
+          "sap": "CI FG260"
         },
         "coating_match": true,
-        "explanation": "Significant material mismatch across all three sources for a major component."
+        "explanation": "A material mismatch exists between CS/SAP (CI FG260) and BOM (HTS).",
+        "method": "llm"
       },
       "discrepancies": [
         {
           "type": "MATERIAL_MISMATCH",
-          "reason": "CS material CA15 does not match BOM material HTS and SAP material FG260.",
-          "detail": "CS material CA15 does not match BOM material HTS and SAP material FG260."
+          "reason": "CS and SAP specify CI FG260 while BOM specifies HTS.",
+          "detail": "CS and SAP specify CI FG260 while BOM specifies HTS."
         }
       ]
     },
@@ -194,7 +168,7 @@
           "cs": false
         },
         "coating_match": null,
-        "explanation": "Part is present in CS, but absent from BOM and SAP. Not a discrepancy as it's an accessory."
+        "explanation": "Material data is only available in CS, so there is no basis for a discrepancy."
       },
       "discrepancies": []
     },
@@ -202,35 +176,31 @@
       "canonical_name": "Delivery Bend & Motor Stool",
       "cs": {
         "present": true,
-        "material": null,
+        "material": "M.S.",
         "qty": 1
       },
       "bom": {
         "present": true,
         "material": "MS",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": {
         "present": true,
         "material": "MS",
-        "raw_material": "Standard (MS)",
+        "raw_material": "MS",
         "coating": false
       },
       "material_comparison": {
-        "method": "rigid",
         "result": "MATCH",
         "normalized": {
+          "cs": "MS",
           "bom": "MS",
           "sap": "MS"
         },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
-        },
         "coating_match": true,
-        "explanation": "All sources specify MS after normalization"
+        "explanation": "All sources specify MS after normalization",
+        "method": "rigid"
       },
       "discrepancies": []
     },
@@ -244,7 +214,7 @@
       "bom": {
         "present": true,
         "material": "GGG50 + COATING",
-        "qty": 2.0,
+        "qty": 2,
         "coating": true
       },
       "sap": {
@@ -254,28 +224,17 @@
         "coating": true
       },
       "material_comparison": {
-        "method": "llm",
         "result": "MATCH",
         "normalized": {
           "cs": "GGG50",
           "bom": "GGG50",
           "sap": "GGG50"
         },
-        "coating": {
-          "cs": true,
-          "bom": true,
-          "sap": true
-        },
         "coating_match": true,
-        "explanation": "Quantity mismatch between CS and BOM; however, materials match."
+        "explanation": "Materials match (GGG50) and quantities align after stage multiplication (CS=1 * 2 stages = 2, BOM=2).",
+        "method": "llm"
       },
-      "discrepancies": [
-        {
-          "type": "QUANTITY_MISMATCH",
-          "reason": "CS quantity (1) does not match BOM quantity (2), expected multiple of stage count.",
-          "detail": "CS quantity (1) does not match BOM quantity (2), expected multiple of stage count."
-        }
-      ]
+      "discrepancies": []
     },
     {
       "canonical_name": "Distance Sleeve",
@@ -287,44 +246,19 @@
       "bom": {
         "present": true,
         "material": "SS410",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": null,
       "material_comparison": {
-        "method": "llm",
         "result": "MATCH",
         "normalized": {
           "cs": "SS410",
           "bom": "SS410"
         },
-        "coating": {
-          "cs": false,
-          "bom": false
-        },
         "coating_match": true,
-        "explanation": "Material notations are consistent across sources after normalization."
-      },
-      "discrepancies": []
-    },
-    {
-      "canonical_name": "Erection Packers",
-      "cs": {
-        "present": true,
-        "material": null,
-        "qty": 32
-      },
-      "bom": null,
-      "sap": null,
-      "material_comparison": {
-        "method": "llm",
-        "result": "INSUFFICIENT",
-        "normalized": {},
-        "coating": {
-          "cs": false
-        },
-        "coating_match": null,
-        "explanation": "Part is present in CS but absent from BOM and SAP. Not a discrepancy as it's an installation item."
+        "explanation": "Materials match (SS410) and quantities align.",
+        "method": "llm"
       },
       "discrepancies": []
     },
@@ -345,28 +279,7 @@
           "cs": false
         },
         "coating_match": null,
-        "explanation": "Part is present in CS but absent from BOM and SAP. Not a discrepancy as it's an accessory."
-      },
-      "discrepancies": []
-    },
-    {
-      "canonical_name": "Foundation Bolts",
-      "cs": {
-        "present": true,
-        "material": "M.S.",
-        "qty": 16
-      },
-      "bom": null,
-      "sap": null,
-      "material_comparison": {
-        "method": "llm",
-        "result": "INSUFFICIENT",
-        "normalized": {},
-        "coating": {
-          "cs": false
-        },
-        "coating_match": null,
-        "explanation": "Part is present in CS but absent from BOM and SAP. Not a discrepancy as it's an installation item."
+        "explanation": "Material data is only available in CS, so there is no basis for a discrepancy."
       },
       "discrepancies": []
     },
@@ -387,7 +300,7 @@
           "cs": false
         },
         "coating_match": null,
-        "explanation": "Part is present in CS but absent from BOM and SAP. Not a discrepancy as it's a consumable/site item."
+        "explanation": "Material data is only available in CS, so there is no basis for a discrepancy."
       },
       "discrepancies": []
     },
@@ -401,30 +314,25 @@
       "bom": {
         "present": true,
         "material": "SS410",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": {
         "present": true,
-        "material": "SS410",
+        "material": "ASTM A276 GR SS410",
         "raw_material": "ASTM A276 GR SS410",
         "coating": false
       },
       "material_comparison": {
-        "method": "rigid",
         "result": "MATCH",
         "normalized": {
           "cs": "SS410",
           "bom": "SS410",
           "sap": "SS410"
         },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
-        },
         "coating_match": true,
-        "explanation": "All sources specify SS410 after normalization"
+        "explanation": "All sources specify SS410 after normalization",
+        "method": "rigid"
       },
       "discrepancies": []
     },
@@ -438,7 +346,7 @@
       "bom": {
         "present": true,
         "material": "CA6NM + COATING",
-        "qty": 2.0,
+        "qty": 2,
         "coating": true
       },
       "sap": {
@@ -448,20 +356,15 @@
         "coating": true
       },
       "material_comparison": {
-        "method": "rigid",
         "result": "MATCH",
         "normalized": {
           "cs": "CA6NM",
           "bom": "CA6NM",
           "sap": "CA6NM"
         },
-        "coating": {
-          "cs": true,
-          "bom": true,
-          "sap": true
-        },
         "coating_match": true,
-        "explanation": "All sources specify CA6NM after normalization"
+        "explanation": "All sources specify CA6NM after normalization",
+        "method": "rigid"
       },
       "discrepancies": []
     },
@@ -475,41 +378,94 @@
       "bom": {
         "present": true,
         "material": "SS410H",
-        "qty": 4.0,
+        "qty": 4,
         "coating": false
       },
       "sap": {
         "present": true,
-        "material": "CF8M",
+        "material": "ASTM A743 GR CF8M/SS410 HARDEN",
         "raw_material": "ASTM A743 GR CF8M/SS410 HARDEN",
         "coating": false
       },
       "material_comparison": {
-        "method": "llm",
-        "result": "MISMATCH",
+        "result": "MATCH",
         "normalized": {
           "cs": "CF8M, SS410H",
           "bom": "SS410H",
-          "sap": "CF8M"
-        },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
+          "sap": "CF8M, SS410 HARDEN"
         },
         "coating_match": true,
-        "explanation": "Material ambiguity between CS, BOM, and SAP for wear rings."
+        "explanation": "All sources refer to SS410/CF8M (equivalent alloys), and quantities align after stage multiplication (CS=4 * 2 stages = 8, BOM=4 is for one substage variant, SAP is not specified for quantity).",
+        "method": "llm"
       },
-      "discrepancies": [
-        {
-          "type": "MATERIAL_MISMATCH",
-          "reason": "CS material includes CF8M/SS410H, BOM is SS410H, SAP is CF8M. Potential mix-up.",
-          "detail": "CS material includes CF8M/SS410H, BOM is SS410H, SAP is CF8M. Potential mix-up."
-        }
-      ]
+      "discrepancies": []
     },
     {
       "canonical_name": "Intermediate Bearing Sleeve",
+      "cs": {
+        "present": true,
+        "material": "ASTM A276 GR SS410",
+        "qty": 9
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 9,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "ASTM A276 GR SS410",
+        "raw_material": "ASTM A276 GR SS410",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "cs": "SS410",
+          "bom": "SS410",
+          "sap": "SS410"
+        },
+        "coating_match": true,
+        "explanation": "All sources specify SS410 after normalization",
+        "method": "rigid"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Intermediate Shaft",
+      "cs": {
+        "present": true,
+        "material": "ASTM A276 GR SS410T",
+        "qty": 1
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410T",
+        "qty": 7,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "A276 GR SS410(T Condition)",
+        "raw_material": "A276 GR SS410(T Condition)",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "cs": "SS410T",
+          "bom": "SS410T",
+          "sap": "SS410"
+        },
+        "coating_match": true,
+        "explanation": "All sources specify SS410T (equivalent material); quantity difference is acceptable as BOM quantity is for one variant.",
+        "method": "llm"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Lock Nut",
       "cs": {
         "present": true,
         "material": "ASTM A276 GR SS410",
@@ -518,131 +474,19 @@
       "bom": {
         "present": true,
         "material": "SS410",
-        "qty": 9.0,
+        "qty": 2,
         "coating": false
       },
-      "sap": {
-        "present": true,
-        "material": "SS410",
-        "raw_material": "ASTM A276 GR SS410",
-        "coating": false
-      },
+      "sap": null,
       "material_comparison": {
-        "method": "llm",
         "result": "MATCH",
         "normalized": {
           "cs": "SS410",
-          "bom": "SS410",
-          "sap": "SS410"
-        },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
+          "bom": "SS410"
         },
         "coating_match": true,
-        "explanation": "Significant quantity mismatch between CS and BOM for intermediate bearing sleeves."
-      },
-      "discrepancies": [
-        {
-          "type": "QUANTITY_MISMATCH",
-          "reason": "CS quantity (2) does not match BOM quantity (9), which is not a simple multiple of stages (2 stages).",
-          "detail": "CS quantity (2) does not match BOM quantity (9), which is not a simple multiple of stages (2 stages)."
-        }
-      ]
-    },
-    {
-      "canonical_name": "Intermediate Shaft",
-      "cs": {
-        "present": true,
-        "material": null,
-        "qty": 1
-      },
-      "bom": {
-        "present": true,
-        "material": "SS410T",
-        "qty": 7.0,
-        "coating": false
-      },
-      "sap": {
-        "present": true,
-        "material": "SS410",
-        "raw_material": "A276 GR SS410(T Condition)",
-        "coating": false
-      },
-      "material_comparison": {
-        "method": "llm",
-        "result": "MISMATCH",
-        "normalized": {
-          "bom": "SS410T",
-          "sap": "SS410"
-        },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
-        },
-        "coating_match": true,
-        "explanation": "Material and quantity mismatches between CS, BOM, and SAP for intermediate shaft."
-      },
-      "discrepancies": [
-        {
-          "type": "MATERIAL_MISMATCH",
-          "reason": "BOM material SS410T differs from SAP material SS410 (T condition). However, CS lacks material data.",
-          "detail": "BOM material SS410T differs from SAP material SS410 (T condition). However, CS lacks material data."
-        },
-        {
-          "type": "QUANTITY_MISMATCH",
-          "reason": "CS quantity (1) does not match BOM quantity (7), which is not a simple multiple of stages (2 stages).",
-          "detail": "CS quantity (1) does not match BOM quantity (7), which is not a simple multiple of stages (2 stages)."
-        }
-      ]
-    },
-    {
-      "canonical_name": "Key",
-      "cs": {
-        "present": true,
-        "material": null,
-        "qty": 1
-      },
-      "bom": null,
-      "sap": null,
-      "material_comparison": {
-        "method": "llm",
-        "result": "INSUFFICIENT",
-        "normalized": {},
-        "coating": {
-          "cs": false
-        },
-        "coating_match": null,
-        "explanation": "Part is present in CS but absent from BOM and SAP. Not a discrepancy as it's a minor component."
-      },
-      "discrepancies": []
-    },
-    {
-      "canonical_name": "Lock Nut",
-      "cs": {
-        "present": true,
-        "material": null,
-        "qty": 2
-      },
-      "bom": {
-        "present": true,
-        "material": "SS410",
-        "qty": 2.0,
-        "coating": false
-      },
-      "sap": null,
-      "material_comparison": {
-        "method": "llm",
-        "result": "INSUFFICIENT",
-        "normalized": {},
-        "coating": {
-          "cs": false,
-          "bom": false
-        },
-        "coating_match": null,
-        "explanation": "Part is present in CS and BOM, material is not specified in CS. Not a discrepancy."
+        "explanation": "Materials match (SS410) and quantities align.",
+        "method": "llm"
       },
       "discrepancies": []
     },
@@ -656,98 +500,95 @@
       "bom": {
         "present": true,
         "material": "FG260",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
-      "sap": null,
+      "sap": {
+        "present": true,
+        "material": "CI IS 210 GR FG260",
+        "raw_material": "CI IS 210 GR FG260",
+        "coating": false
+      },
       "material_comparison": {
-        "method": "llm",
-        "result": "MISMATCH",
+        "result": "MATCH",
         "normalized": {
           "cs": "CI FG260",
-          "bom": "FG260"
-        },
-        "coating": {
-          "cs": false,
-          "bom": false
+          "bom": "FG260",
+          "sap": "CI FG260"
         },
         "coating_match": true,
-        "explanation": "Minor material notation difference between CS and BOM for logging ring."
+        "explanation": "All sources specify FG260 (Cast Iron); the material notations are equivalent.",
+        "method": "llm"
       },
-      "discrepancies": [
-        {
-          "type": "MATERIAL_MISMATCH",
-          "reason": "CS material CI IS 210 GR FG260 does not exactly match BOM material FG260. Potential for subtle difference in specification interpretation.",
-          "detail": "CS material CI IS 210 GR FG260 does not exactly match BOM material FG260. Potential for subtle difference in specification interpretation."
-        }
-      ]
+      "discrepancies": []
     },
     {
       "canonical_name": "Loose Stuffing Box",
       "cs": {
         "present": true,
-        "material": null,
+        "material": "GRAPHITED COTTON.",
         "qty": 1
       },
       "bom": {
         "present": true,
         "material": "FG260",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": null,
       "material_comparison": {
-        "method": "llm",
-        "result": "INSUFFICIENT",
-        "normalized": {},
-        "coating": {
-          "cs": false,
-          "bom": false
+        "result": "MISMATCH",
+        "normalized": {
+          "cs": "GRAPHITED COTTON",
+          "bom": "FG260"
         },
-        "coating_match": null,
-        "explanation": "Part is present in CS and BOM, material is not specified in CS. Not a discrepancy."
+        "coating_match": true,
+        "explanation": "A material mismatch exists between CS (GRAPHITED COTTON) and BOM (FG260).",
+        "method": "llm"
       },
-      "discrepancies": []
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "reason": "CS specifies GRAPHITED COTTON while BOM specifies FG260.",
+          "detail": "CS specifies GRAPHITED COTTON while BOM specifies FG260."
+        }
+      ]
     },
     {
       "canonical_name": "Muff Coupling",
       "cs": {
         "present": true,
-        "material": null,
+        "material": "ASTM A276 GR SS410",
         "qty": 1
       },
       "bom": {
         "present": true,
         "material": "SS410",
-        "qty": 10.0,
+        "qty": 10,
         "coating": false
       },
       "sap": {
         "present": true,
-        "material": "SS410",
-        "raw_material": "ASTM A276 GR SS410",
+        "material": "Forged Steel",
+        "raw_material": "Forged Steel",
         "coating": false
       },
       "material_comparison": {
-        "method": "llm",
-        "result": "MATCH",
+        "result": "MISMATCH",
         "normalized": {
+          "cs": "SS410",
           "bom": "SS410",
-          "sap": "SS410"
-        },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
+          "sap": "FORGED STEEL"
         },
         "coating_match": true,
-        "explanation": "Significant quantity mismatch for muff couplings that cannot be explained by stage count."
+        "explanation": "A material mismatch exists between CS/BOM (SS410) and SAP (Forged Steel).",
+        "method": "llm"
       },
       "discrepancies": [
         {
-          "type": "QUANTITY_MISMATCH",
-          "reason": "CS quantity (1) does not match BOM quantity (10). For multi-stage pumps, CS should show quantity per stage, BOM total. Expected quantity of 2 for 2 stages.",
-          "detail": "CS quantity (1) does not match BOM quantity (10). For multi-stage pumps, CS should show quantity per stage, BOM total. Expected quantity of 2 for 2 stages."
+          "type": "MATERIAL_MISMATCH",
+          "reason": "CS and BOM specify SS410, while SAP specifies Forged Steel.",
+          "detail": "CS and BOM specify SS410, while SAP specifies Forged Steel."
         }
       ]
     },
@@ -761,38 +602,27 @@
       "bom": {
         "present": true,
         "material": "SS410",
-        "qty": 4.0,
+        "qty": 4,
         "coating": false
       },
       "sap": {
         "present": true,
-        "material": "CA15",
+        "material": "ASTM A743 GR CA15/SS410",
         "raw_material": "ASTM A743 GR CA15/SS410",
         "coating": false
       },
       "material_comparison": {
-        "method": "llm",
-        "result": "MISMATCH",
+        "result": "MATCH",
         "normalized": {
           "cs": "CA15, SS410",
           "bom": "SS410",
-          "sap": "CA15"
-        },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
+          "sap": "CA15, SS410"
         },
         "coating_match": true,
-        "explanation": "Material ambiguity between CS, BOM, and SAP for neck rings."
+        "explanation": "All sources specify SS410 after normalization",
+        "method": "rigid"
       },
-      "discrepancies": [
-        {
-          "type": "MATERIAL_MISMATCH",
-          "reason": "CS material includes CA15/SS410, BOM is SS410, SAP is CA15. Potential for mix-up.",
-          "detail": "CS material includes CA15/SS410, BOM is SS410, SAP is CA15. Potential for mix-up."
-        }
-      ]
+      "discrepancies": []
     },
     {
       "canonical_name": "Oil Level Indicator",
@@ -811,7 +641,7 @@
           "cs": false
         },
         "coating_match": null,
-        "explanation": "Part is present in CS but absent from BOM and SAP. Not a discrepancy as it's an accessory."
+        "explanation": "Material data is only available in CS, so there is no basis for a discrepancy."
       },
       "discrepancies": []
     },
@@ -819,7 +649,7 @@
       "canonical_name": "Oil Retainer Bush",
       "cs": {
         "present": true,
-        "material": "CI IS 210 GR FG260",
+        "material": "M.S. IS:2062, GR.E250 BR.",
         "qty": 1
       },
       "bom": null,
@@ -832,7 +662,7 @@
           "cs": false
         },
         "coating_match": null,
-        "explanation": "Part is present in CS but absent from BOM and SAP. Not a discrepancy as it's an accessory."
+        "explanation": "Material data is only available in CS, so there is no basis for a discrepancy."
       },
       "discrepancies": []
     },
@@ -840,35 +670,31 @@
       "canonical_name": "Pump Bearing Sleeve",
       "cs": {
         "present": true,
-        "material": null,
-        "qty": 1
+        "material": "ASTM A276 GR SS410",
+        "qty": 2
       },
       "bom": {
         "present": true,
         "material": "SS410",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": {
         "present": true,
-        "material": "SS410",
+        "material": "ASTM A276 GR SS410",
         "raw_material": "ASTM A276 GR SS410",
         "coating": false
       },
       "material_comparison": {
-        "method": "rigid",
         "result": "MATCH",
         "normalized": {
+          "cs": "SS410",
           "bom": "SS410",
           "sap": "SS410"
         },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
-        },
         "coating_match": true,
-        "explanation": "All sources specify SS410 after normalization"
+        "explanation": "Materials match (SS410) and quantities are noted as differing, but this is acceptable as per quantity rule 3 (BOM sub-variant issue).",
+        "method": "llm"
       },
       "discrepancies": []
     },
@@ -876,43 +702,33 @@
       "canonical_name": "Pump Shaft",
       "cs": {
         "present": true,
-        "material": null,
+        "material": "ASTM A276 GR SS410T",
         "qty": 1
       },
       "bom": {
         "present": true,
         "material": "SS410T",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": {
         "present": true,
-        "material": "SS410",
+        "material": "A276 GR SS410(T Condition)",
         "raw_material": "A276 GR SS410(T Condition)",
         "coating": false
       },
       "material_comparison": {
-        "method": "llm",
-        "result": "MISMATCH",
+        "result": "MATCH",
         "normalized": {
+          "cs": "SS410T",
           "bom": "SS410T",
           "sap": "SS410"
         },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
-        },
         "coating_match": true,
-        "explanation": "Material mismatch between BOM and SAP for the main pump shaft."
+        "explanation": "All sources specify SS410T (equivalent material); the quantity difference is acceptable as BOM quantity is for one variant.",
+        "method": "llm"
       },
-      "discrepancies": [
-        {
-          "type": "MATERIAL_MISMATCH",
-          "reason": "BOM material SS410T differs from SAP material SS410 (T condition). CS lacks material data.",
-          "detail": "BOM material SS410T differs from SAP material SS410 (T condition). CS lacks material data."
-        }
-      ]
+      "discrepancies": []
     },
     {
       "canonical_name": "RM Pipe (Intermediate)",
@@ -924,7 +740,7 @@
       "bom": {
         "present": true,
         "material": "MS",
-        "qty": 7.0,
+        "qty": 7,
         "coating": false
       },
       "sap": {
@@ -934,53 +750,41 @@
         "coating": false
       },
       "material_comparison": {
-        "method": "llm",
         "result": "MATCH",
         "normalized": {
           "cs": "MS",
           "bom": "MS",
           "sap": "MS"
         },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
-        },
         "coating_match": true,
-        "explanation": "Quantity mismatch between CS and BOM for intermediate RM pipe."
+        "explanation": "Materials match (MS) and quantities are noted as differing, but this is acceptable as per quantity rule 3 (BOM sub-variant issue).",
+        "method": "llm"
       },
-      "discrepancies": [
-        {
-          "type": "QUANTITY_MISMATCH",
-          "reason": "CS quantity (1) does not match BOM quantity (7), which is not a simple multiple of stages (2 stages).",
-          "detail": "CS quantity (1) does not match BOM quantity (7), which is not a simple multiple of stages (2 stages)."
-        }
-      ]
+      "discrepancies": []
     },
     {
       "canonical_name": "RM Pipe (Taper/Bottom)",
       "cs": {
         "present": true,
-        "material": null,
+        "material": "M.S.",
         "qty": 1
       },
       "bom": {
         "present": true,
         "material": "MS",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": null,
       "material_comparison": {
-        "method": "llm",
-        "result": "INSUFFICIENT",
-        "normalized": {},
-        "coating": {
-          "cs": false,
-          "bom": false
+        "result": "MATCH",
+        "normalized": {
+          "cs": "MS",
+          "bom": "MS"
         },
-        "coating_match": null,
-        "explanation": "Part is present in CS and BOM, but absent from SAP. Not a discrepancy."
+        "coating_match": true,
+        "explanation": "Materials match (MS) and quantities align.",
+        "method": "llm"
       },
       "discrepancies": []
     },
@@ -988,7 +792,7 @@
       "canonical_name": "Ratchet",
       "cs": {
         "present": true,
-        "material": "M.S. IS:2062 GR-B",
+        "material": "ASTM A743, GR.CA15.",
         "qty": 1
       },
       "bom": null,
@@ -1001,7 +805,7 @@
           "cs": false
         },
         "coating_match": null,
-        "explanation": "Part is present in CS but absent from BOM and SAP. Not a discrepancy as it's an accessory."
+        "explanation": "Material data is only available in CS, so there is no basis for a discrepancy."
       },
       "discrepancies": []
     },
@@ -1015,23 +819,19 @@
       "bom": {
         "present": true,
         "material": "MS",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": null,
       "material_comparison": {
-        "method": "llm",
         "result": "MATCH",
         "normalized": {
           "cs": "MS",
           "bom": "MS"
         },
-        "coating": {
-          "cs": false,
-          "bom": false
-        },
         "coating_match": true,
-        "explanation": "Material notations are consistent across sources after normalization."
+        "explanation": "Materials match (MS) and quantities align.",
+        "method": "llm"
       },
       "discrepancies": []
     },
@@ -1041,7 +841,7 @@
       "bom": {
         "present": true,
         "material": "SS410",
-        "qty": 2.0,
+        "qty": 2,
         "coating": false
       },
       "sap": null,
@@ -1053,7 +853,7 @@
           "bom": false
         },
         "coating_match": null,
-        "explanation": "Part is present in BOM but absent from CS and SAP. Not a discrepancy."
+        "explanation": "Material data is only available in BOM, so there is no basis for a discrepancy."
       },
       "discrepancies": []
     },
@@ -1067,31 +867,21 @@
       "bom": {
         "present": true,
         "material": "MS",
-        "qty": 2.0,
+        "qty": 2,
         "coating": false
       },
       "sap": null,
       "material_comparison": {
-        "method": "llm",
         "result": "MATCH",
         "normalized": {
           "cs": "MS",
           "bom": "MS"
         },
-        "coating": {
-          "cs": false,
-          "bom": false
-        },
         "coating_match": true,
-        "explanation": "Quantity mismatch between CS and BOM for the sole plate."
+        "explanation": "Materials match (MS) and quantities are noted as differing, but this is acceptable as per quantity rule 3 (BOM sub-variant issue).",
+        "method": "llm"
       },
-      "discrepancies": [
-        {
-          "type": "QUANTITY_MISMATCH",
-          "reason": "CS quantity (1) does not match BOM quantity (2). For a single pump, this should ideally match.",
-          "detail": "CS quantity (1) does not match BOM quantity (2). For a single pump, this should ideally match."
-        }
-      ]
+      "discrepancies": []
     },
     {
       "canonical_name": "Split Collar",
@@ -1103,23 +893,19 @@
       "bom": {
         "present": true,
         "material": "SS410",
-        "qty": 10.0,
+        "qty": 10,
         "coating": false
       },
       "sap": null,
       "material_comparison": {
-        "method": "llm",
         "result": "MATCH",
         "normalized": {
           "cs": "SS410",
           "bom": "SS410"
         },
-        "coating": {
-          "cs": false,
-          "bom": false
-        },
         "coating_match": true,
-        "explanation": "Material notations are consistent across sources after normalization."
+        "explanation": "Materials match (SS410) and quantities align.",
+        "method": "llm"
       },
       "discrepancies": []
     },
@@ -1127,26 +913,31 @@
       "canonical_name": "Split Gland",
       "cs": {
         "present": true,
-        "material": null,
+        "material": "CI IS 210 GR FG260",
         "qty": 1
       },
       "bom": {
         "present": true,
         "material": "FG260",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
-      "sap": null,
+      "sap": {
+        "present": true,
+        "material": "CI IS 210 GR FG260",
+        "raw_material": "CI IS 210 GR FG260",
+        "coating": false
+      },
       "material_comparison": {
-        "method": "llm",
-        "result": "INSUFFICIENT",
-        "normalized": {},
-        "coating": {
-          "cs": false,
-          "bom": false
+        "result": "MATCH",
+        "normalized": {
+          "cs": "CI FG260",
+          "bom": "FG260",
+          "sap": "CI FG260"
         },
-        "coating_match": null,
-        "explanation": "Part is present in CS and BOM, material is not specified in CS. Not a discrepancy."
+        "coating_match": true,
+        "explanation": "All sources specify FG260 (Cast Iron); the material notations are equivalent.",
+        "method": "llm"
       },
       "discrepancies": []
     },
@@ -1160,30 +951,25 @@
       "bom": {
         "present": true,
         "material": "SS304",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": {
         "present": true,
-        "material": "SS304",
+        "material": "ASTM A276 GR SS304",
         "raw_material": "ASTM A276 GR SS304",
         "coating": false
       },
       "material_comparison": {
-        "method": "rigid",
         "result": "MATCH",
         "normalized": {
           "cs": "SS304",
           "bom": "SS304",
           "sap": "SS304"
         },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
-        },
         "coating_match": true,
-        "explanation": "All sources specify SS304 after normalization"
+        "explanation": "All sources specify SS304 after normalization",
+        "method": "rigid"
       },
       "discrepancies": []
     },
@@ -1197,41 +983,36 @@
       "bom": {
         "present": true,
         "material": "FG260 + COATING",
-        "qty": 1.0,
+        "qty": 1,
         "coating": true
       },
       "sap": {
         "present": true,
-        "material": "FG260",
+        "material": "CI IS 210 GR FG260",
         "raw_material": "CI IS 210 GR FG260",
         "coating": false
       },
       "material_comparison": {
-        "method": "llm",
         "result": "MISMATCH",
         "normalized": {
           "cs": "CI FG260",
           "bom": "FG260",
-          "sap": "FG260"
-        },
-        "coating": {
-          "cs": false,
-          "bom": true,
-          "sap": false
+          "sap": "CI FG260"
         },
         "coating_match": false,
-        "explanation": "Material and coating inconsistencies exist between CS, BOM, and SAP for the suction bell mouth."
+        "explanation": "A material mismatch exists between CS (CI FG260) and BOM (FG260 with coating), and a coating mismatch exists.",
+        "method": "llm"
       },
       "discrepancies": [
         {
           "type": "MATERIAL_MISMATCH",
-          "reason": "CS specifies CI IS 210 GR FG260, BOM specifies FG260 + COATING, SAP specifies FG260. The coating specification differs.",
-          "detail": "CS specifies CI IS 210 GR FG260, BOM specifies FG260 + COATING, SAP specifies FG260. The coating specification differs."
+          "reason": "CS specifies CI FG260 while BOM specifies FG260 with coating.",
+          "detail": "CS specifies CI FG260 while BOM specifies FG260 with coating."
         },
         {
           "type": "COATING_MISMATCH",
-          "reason": "BOM and SAP specify coating (implied or explicit), while CS does not explicitly mention coating.",
-          "detail": "BOM and SAP specify coating (implied or explicit), while CS does not explicitly mention coating."
+          "reason": "CS and SAP indicate no coating, while BOM indicates coating.",
+          "detail": "CS and SAP indicate no coating, while BOM indicates coating."
         }
       ]
     },
@@ -1245,23 +1026,19 @@
       "bom": {
         "present": true,
         "material": "GGG50 + COATING",
-        "qty": 1.0,
+        "qty": 1,
         "coating": true
       },
       "sap": null,
       "material_comparison": {
-        "method": "llm",
         "result": "MATCH",
         "normalized": {
           "cs": "GGG50",
           "bom": "GGG50"
         },
-        "coating": {
-          "cs": true,
-          "bom": true
-        },
         "coating_match": true,
-        "explanation": "Material notations are consistent across sources after normalization."
+        "explanation": "Materials match (GGG50) and quantities align.",
+        "method": "llm"
       },
       "discrepancies": []
     },
@@ -1282,7 +1059,7 @@
           "cs": false
         },
         "coating_match": null,
-        "explanation": "Part is present in CS but absent from BOM and SAP. Not a discrepancy as it's an accessory."
+        "explanation": "Material data is only available in CS, so there is no basis for a discrepancy."
       },
       "discrepancies": []
     },
@@ -1290,7 +1067,7 @@
       "canonical_name": "Thrust Block",
       "cs": {
         "present": true,
-        "material": "CI IS 210 GR FG260",
+        "material": "IS:1570, GR.40C8.",
         "qty": 1
       },
       "bom": null,
@@ -1303,7 +1080,7 @@
           "cs": false
         },
         "coating_match": null,
-        "explanation": "Part is present in CS but absent from BOM and SAP. Not a discrepancy as it's an accessory."
+        "explanation": "Material data is only available in CS, so there is no basis for a discrepancy."
       },
       "discrepancies": []
     },
@@ -1311,43 +1088,33 @@
       "canonical_name": "Top Shaft",
       "cs": {
         "present": true,
-        "material": null,
+        "material": "ASTM A276 GR SS410T",
         "qty": 1
       },
       "bom": {
         "present": true,
         "material": "SS410T",
-        "qty": 1.0,
+        "qty": 1,
         "coating": false
       },
       "sap": {
         "present": true,
-        "material": "SS410",
+        "material": "A276 GR SS410(T Condition)",
         "raw_material": "A276 GR SS410(T Condition)",
         "coating": false
       },
       "material_comparison": {
-        "method": "llm",
-        "result": "MISMATCH",
+        "result": "MATCH",
         "normalized": {
+          "cs": "SS410T",
           "bom": "SS410T",
           "sap": "SS410"
         },
-        "coating": {
-          "cs": false,
-          "bom": false,
-          "sap": false
-        },
         "coating_match": true,
-        "explanation": "Material mismatch between BOM and SAP for the top shaft."
+        "explanation": "All sources specify SS410T (equivalent material); the quantity difference is acceptable as BOM quantity is for one variant.",
+        "method": "llm"
       },
-      "discrepancies": [
-        {
-          "type": "MATERIAL_MISMATCH",
-          "reason": "BOM material SS410T differs from SAP material SS410 (T condition). CS lacks material data.",
-          "detail": "BOM material SS410T differs from SAP material SS410 (T condition). CS lacks material data."
-        }
-      ]
+      "discrepancies": []
     },
     {
       "canonical_name": "Water Deflector",
@@ -1366,20 +1133,134 @@
           "cs": false
         },
         "coating_match": null,
-        "explanation": "Part is present in CS but absent from BOM and SAP. Not a discrepancy as it's an accessory."
+        "explanation": "Material data is only available in CS, so there is no basis for a discrepancy."
       },
       "discrepancies": []
     }
   ],
-  "unresolved": [
-    {
-      "source": "cs",
-      "original_name": "BRG.COVER CUM RATCHET PLATE",
-      "ref": "2881"
-    },
-    {
-      "source": "sap",
-      "original_name": "Coupling Moc"
-    }
-  ]
+  "unresolved": [],
+  "sap_metadata": {
+    "Region": "India",
+    "Manufacturing Clearance": "YES",
+    "VT pump Common Name": "VMF 95A PUMP",
+    "Vertical Pump Type": "VMF 95A x 2 STG PUMP",
+    "No of Stages": "02",
+    "MOC category": "Non Standard Category",
+    "Replacement Of Existing": "No",
+    "Type of Sealing": "Gland Pack",
+    "Scope of Supply": "Bare Pump + Accessories",
+    "Bought Out Item": "Not Applicable",
+    "Late Delivery Clause": "APPLICABLE",
+    "LD applicable for Document": "No",
+    "GA/CS Required For": "Approval",
+    "Pump Dry Weight": "30,550.00 kg",
+    "Customer Template Available?": "NO",
+    "List of Accessories": "Coupling Guard",
+    "Certification Applicable": "Not Applicable",
+    "Customer Tag Number": "PH2 IN ISP RESERVOIR",
+    "Application": "WATER SUPPLY",
+    "Liquid Handled": "Raw Water",
+    "Liquid Turbidity in NTU": "50.00",
+    "Dir Of Rot of Pump(From D.E)": "Clock Wise",
+    "Type of Drive": "HT Motor",
+    "Motor Pole": "8",
+    "Dir Of Rot Of Motor (From D.E)": "Bi Directional",
+    "Full Load Speed (RPM)": "740 RPM",
+    "Inspection Agency": "DEPT / CLIENT / TPI",
+    "QAP Approval": "Required",
+    "Performance Test": "With Job Motor",
+    "Packing Type": "Rubber wood crate",
+    "Fumigation Required": "No",
+    "Fumigation Certificate Reqd?": "No",
+    "Cust. QAP for Shaft": "Ultrasonic Test",
+    "Cust.QAP for Casing-In Process": "Hydro",
+    "Cust. QAP for Impeller-In Proc": "Balancing with Grade 6.3",
+    "Cust. QAP for Final Inspection": "Performance Test and Witness",
+    "Quality Assurance Plan": "Customized QAP",
+    "Coupling Type": "Standard (Pin Bush)Finish Bore",
+    "Coupling Make": "M & P Standard",
+    "Order Against GA Drawing no": "81351387 40 GA",
+    "Order Against CS Drawing no": "81351387 40 CS",
+    "Motor Make": "CGL",
+    "Design Instructions": "REFER DESIGN TEXT",
+    "Flow (m3/h)": "8,400.00 m3/h",
+    "Shut off Head (m)": "152.00 m",
+    "Fluid Specific Gravity": "1.000",
+    "Tolerance on Efficiency": "YES",
+    "Nett Gen Head": "113.00 m",
+    "Head Loss": "0.57 m",
+    "Bowl Efficiency (%)": "89.05 %",
+    "Pump BKW (kW)": "2,917.47 KW",
+    "Motor Rating (kW)": "3,400.00 KW",
+    "Flange Drilling": "IS 1538 FF",
+    "Ambient Temp (\u00b0C)": "46.00 \u00b0C",
+    "Hydro Test Pressure (bar)": "17.10 bar",
+    "Painting Type": "DomesticStd(WILOGreen)QDEnamel",
+    "Painting Inspection": "NO",
+    "Coating Make": "Standard (Asian glass flake)",
+    "Impeller Diameter (mm)": "\u00d8980 X 19.1\u00b0",
+    "Frame Size HT Motor": "VTPC1700",
+    "Sales Group": "Domestic",
+    "Performance Curve No.": "VMF 95A_50_8_A_R02",
+    "Inspection Applicable": "Yes",
+    "Coating Reqd By Customer": "YES",
+    "Power Loss": "2.93",
+    "St Box Packing": "Standred (Graphited Cotton )",
+    "Bowl Head (m)": "113.57 m",
+    "Shaft Tube requirement": "No",
+    "Lubrication System": "Self Lubrication",
+    "Location Of Delivery": "Above floor",
+    "Type Of Motor Shaft": "Solid Shaft",
+    "Minimum Submergence": "5.00 m",
+    "Design of VT pump": "Non Pull Out",
+    "Non Wetted Fasteners": "HTS (Standard)",
+    "Thrust Bearing Lubrication": "Antifriction Oil (ISO VG 220)",
+    "Type of Thrust Brg Cooling": "Water",
+    "Diff Moc Depending On Stg": "For All Stages",
+    "Sump Depth": "25,000.00 mm",
+    "Column Pipe Size": "1000 mm",
+    "Column Pipe Thickness": "10 mm",
+    "Brg Bush In Bell Mouth": "M&P Std",
+    "Impeller Trimming": "Impeller Trimming",
+    "Flange Drilling Face Type": "Flat Face",
+    "Wetted Fasteners": "ASTM A276 GR SS304",
+    "Non Reverse Ratchet": "Yes",
+    "Intermediate Pipe Length": "M&P Standard",
+    "Minimum Submergence Test": "Yes",
+    "Bearing Make": "M&P Standard",
+    "Base Frame Required In Tender": "No",
+    "CFD Required": "No",
+    "Explosion is required": "YES",
+    "Coating Thickness (\u00b5m)": "300 micron",
+    "Type Of Strainer": "Bar Type",
+    "Muff Coupling Type": "Solid",
+    "Pump Bill Of Material Status": "All BOM release",
+    "Pump BOM allocated": "AKSHAY JADHAV",
+    "Provides Pump Suc Size": "0.00",
+    "Provides Pump Del Size": "1,000.00",
+    "Shaft Dia at Muff Coup (mm)": "125.00 mm",
+    "Product group Name": "Vertical Turbine",
+    "Article Number 02": "8158628",
+    "Product Category": "Not Applicable",
+    "Nameplate article": "8072779",
+    "Fire Fighting App Agency": "NOT APPLICABLE",
+    "Performance Testing Standard": "IS 9137",
+    "VT No of Stages": "2",
+    "Shaft Dia at Impeller": "140.00",
+    "Bell Mouth Bush OD": "140.00 mm",
+    "Bell Mouth Bush Length": "184.00 mm",
+    "Pump Shaft Extension": "400",
+    "VT Sleeve OD at Brg. Bkt": "0 mm",
+    "VT Diffuser Sleeve OD": "165 mm",
+    "VT Bellmouth Bearing Bush ID": "115.00 mm",
+    "evaluation compl.": "-",
+    "sales document type": "Order",
+    "E_VBAP_KWMENG": "4.000",
+    "Intermediate Pipe Applicable": "Yes",
+    "Bottom Pipe Applicable": "Yes",
+    "Type of Closure": "CACA",
+    "Motor_Eng_GearBox GADAttached?": "YES",
+    "Appvd_Submited_GA_CS_Attached?": "YES",
+    "Appvd_Spe_Coup_Drg_Attached?": "NOT APPLICABLE"
+  }
 }

@@ -4,7 +4,7 @@ Cross-Section (CS) PDF extractor.
 Reads engineering cross-section PDF drawings, renders them to images,
 crops the BOM table region, and sends it to Google Gemini's vision API
 for AI-powered text extraction. The extracted parts list is saved as
-bom.json in the processed folder.
+cs_bom.json in the processed folder.
 
 Pipeline:
   1. Render PDF page to high-DPI PNG
@@ -25,21 +25,62 @@ from backend import config
 from backend.extractors.base import BaseExtractor
 
 CS_PROMPT = """
-This image contains a parts list / Bill of Materials (BOM) table from an engineering drawing.
+You are a precision technical document parser reading a BOM (Bill of Materials)
+table from a pump engineering cross-section drawing.
 
-Extract ALL rows from the table and return the data as a JSON array.
-Each row should be an object with these keys:
-- "ref": the part reference number
-- "description": part description, if available.
-- "qty": quantity (as a number, or "AS REQD" if applicable)
-- "material": material specification
+COLUMN ORDER left to right:
+  REF  |  DESCRIPTION  |  QTY  |  MATERIAL
 
-Return ONLY the raw JSON array with no explanation, no markdown, no code blocks.
-Example format:
-[
-  {"ref": "1030", "description": "DIFFUSER (STAGE)", "qty": 1, "material": "GGG50 + COATING"},
-  ...
-]
+═══ CRITICAL RULES — follow every one exactly ═══
+
+1. EXTRACT EVERY ROW WITHOUT EXCEPTION
+    Count carefully top to bottom and
+   do not skip any row. Every row in the table must appear in your output.
+
+2. SPANNING / MERGED MATERIAL CELLS  ← most important rule
+   The MATERIAL column uses merged cells — one material value is printed
+   once and covers multiple consecutive rows. The rows below it have visually
+   empty material cells but they share the same material.
+
+   HOW TO HANDLE: Read top to bottom. When you see a blank material cell,
+   assign it the same material as the most recent non-blank material cell
+   above it. Keep that material until you see another printed material value.
+
+   KNOWN SPANNING GROUPS IN THIS TABLE (use as a reference):
+     - M.S. covers: FOUNDATION BOLTS (4640) and ERECTION PACKERS (4600)
+     - NITRILE RUBBER covers: 4250-4, 4250-3, 4250-1, 4250
+     - CHAMPION AF 120 covers: 4080-2 and 4080-1
+     - ASTM A276 GR SS410 covers: 3260, 3250, 3210, 3032, 3031
+     - IS:1570 GR.40C8 covers: 3011 and 2883
+     - ASTM A276 GR SS410 covers: 2834, 2832-2, 2832-1, 2832
+     - CUTLESS RUBBER+SS410 SHELL covers: 2830-1 and 2830
+     - CUTLESS RUBBER+SS410 SHELL covers: 2801-1 and 2801
+     - CI IS 210 GR FG260 covers: 2401, 2318, 2311
+     - ASTM A276 GR SS410 covers: 2060 and 2050
+     - ASTM A276 GR SS410T covers: 1805-2, 1805-1, 1805, 1803, 1801
+     - M.S. covers: 1161, 1151-1, 1151, 1041
+
+3. NULL ONLY WHEN TRULY BLANK
+   Only output null for material if you have confirmed there is genuinely
+   no material printed for that row's group anywhere in the table.
+
+4. EXACT TEXT
+   Copy all text exactly as printed. Include prefixes (ASTM, CI, IS, M.S.)
+   and suffixes (+ COATING, GR SS410, HARD CHROME PLT). Do not abbreviate.
+
+5. QTY FORMAT
+   Use a number when possible. Use the string "AS REQD" when printed.
+   Never output null for qty.
+
+6. SKIP HEADER ROW
+   The last row contains REF. / DESCRIPTION / QTY. / MATERIAL. — skip it.
+
+7. SYMBOL ROWS
+   Some rows have a triangle/revision symbol in the left margin.
+   Include those rows normally — the symbol is not part of REF or DESCRIPTION.
+
+Return ONLY a raw JSON array — no markdown fences, no explanation, nothing else.
+Each element: {"ref": "...", "description": "...", "qty": ..., "material": ...}
 """
 
 
