@@ -1,0 +1,380 @@
+[
+  {
+    "ref": "1030",
+    "description": "DIFFUSER (STAGE)",
+    "qty": 4,
+    "material": "WCB + COATING"
+  },
+  {
+    "ref": "1030-1",
+    "description": "DIFFUSER (DELY)",
+    "qty": 1,
+    "material": "WCB + COATING"
+  },
+  {
+    "ref": "1041",
+    "description": "DELIVERY BEND & MOTORSTOOL",
+    "qty": 1,
+    "material": "MS"
+  },
+  {
+    "ref": "1150",
+    "description": "RISING MAIN PIPE (TOP)",
+    "qty": 5,
+    "material": "MS"
+  },
+  {
+    "ref": "1151",
+    "description": "RISING MAIN PIPE (BOT)",
+    "qty": 1,
+    "material": "MS"
+  },
+  {
+    "ref": "1152",
+    "description": "RISING MAIN PIPE (TOP)",
+    "qty": 8,
+    "material": "ASTM A743 GR CF8M/SS410"
+  },
+  {
+    "ref": "1650",
+    "description": "IMPELLER NOSE CAP",
+    "qty": 4,
+    "material": "CF8M + COATING"
+  },
+  {
+    "ref": "1800",
+    "description": "PUMP SHAFT",
+    "qty": 8,
+    "material": "CF8M"
+  },
+  {
+    "ref": "1804",
+    "description": "TOP SHAFT",
+    "qty": 1,
+    "material": null
+  },
+  {
+    "ref": "1805",
+    "description": "INTERMEDIATE SHAFT-1",
+    "qty": 1,
+    "material": "A 276 GR SS410(T Condition)"
+  },
+  {
+    "ref": "1805-1",
+    "description": "INTERMEDIATE SHAFT-1",
+    "qty": 5,
+    "material": null
+  },
+  {
+    "ref": "1822",
+    "description": "ADJUSTING RING",
+    "qty": 1,
+    "material": "MS IS 2062 GR B"
+  },
+  {
+    "ref": "2001",
+    "description": "RATCHET BUSH",
+    "qty": 1,
+    "material": null
+  },
+  {
+    "ref": "2004",
+    "description": "RATCHET PIN",
+    "qty": 8,
+    "material": "EN 24, NICKEL PLATED."
+  },
+  {
+    "ref": "2007",
+    "description": "RATCHET HOLDER PLATE",
+    "qty": 8,
+    "material": "SS 410, HARD CHROME PLATED."
+  },
+  {
+    "ref": "2050",
+    "description": "SOLID COUPLING",
+    "qty": 1,
+    "material": "ASTM A216, GR.WCB"
+  },
+  {
+    "ref": "2060",
+    "description": "SPLIT COLLAR",
+    "qty": 7,
+    "material": null
+  },
+  {
+    "ref": "2061",
+    "description": "SAND COLLAR",
+    "qty": 1,
+    "material": "ASTM A276 GR SS410"
+  },
+  {
+    "ref": "2106",
+    "description": "GLAND SLEEVE",
+    "qty": 1,
+    "material": "NITRILE RUBBER"
+  },
+  {
+    "ref": "2111",
+    "description": "GLAND BUSH",
+    "qty": 1,
+    "material": "CI IS 210 GR FG260"
+  },
+  {
+    "ref": "2118",
+    "description": "GLAND SLEEVE",
+    "qty": 1,
+    "material": null
+  },
+  {
+    "ref": "2311",
+    "description": "GLAND",
+    "qty": 3,
+    "material": "GRAPHITED COTTON"
+  },
+  {
+    "ref": "2401",
+    "description": "LOOSE STUFFING BOX",
+    "qty": 1,
+    "material": null
+  },
+  {
+    "ref": "2402",
+    "description": "GLAND PACKING",
+    "qty": 1,
+    "material": "GRAPHITED COTTON"
+  },
+  {
+    "ref": "2410",
+    "description": "GLAND PACKING ROLLER THRUST BRG",
+    "qty": 1,
+    "material": "29428"
+  },
+  {
+    "ref": "2602",
+    "description": "SPHERICAL ROLLER THRUST BRG",
+    "qty": 1,
+    "material": "COPPER"
+  },
+  {
+    "ref": "2732",
+    "description": "COOLING COIL",
+    "qty": 6,
+    "material": "CUTLESS + SS410"
+  },
+  {
+    "ref": "2801",
+    "description": "INT. BRG. BUSH.",
+    "qty": 1,
+    "material": "CUTLESS + SS410"
+  },
+  {
+    "ref": "2801-1",
+    "description": "INT. BRG. BUSH (LOOSE STUFFING BOX)",
+    "qty": 1,
+    "material": "CUTLESS + SS410"
+  },
+  {
+    "ref": "2802",
+    "description": "BUSH CARRIER (LOOSE STUFFING BOX)",
+    "qty": 3,
+    "material": "CI IS 210 GR FG260"
+  },
+  {
+    "ref": "2810",
+    "description": "OIL RETAINER BUSH",
+    "qty": 1,
+    "material": "MS IS 2062 GR B"
+  },
+  {
+    "ref": "2830",
+    "description": "PUMP BRG BUSH (DIFFUSER)",
+    "qty": 1,
+    "material": "ASTM A276 GR SS410"
+  },
+  {
+    "ref": "2830-1",
+    "description": "PUMP BRG BUSH (BELL MOUTH)",
+    "qty": 1,
+    "material": null
+  },
+  {
+    "ref": "2832",
+    "description": "PUMP BRG SLEEVE (DIFFUSER)",
+    "qty": 4,
+    "material": null
+  },
+  {
+    "ref": "2832-1",
+    "description": "PUMP BRG SLEEVE (BELL MOUTH)",
+    "qty": 1,
+    "material": "ASTM A743, GR.CF8M, SS415"
+  },
+  {
+    "ref": "2834",
+    "description": "INTERMEDIATE BRG SLEEVE",
+    "qty": 1,
+    "material": "CI IS 210 GR FG260"
+  },
+  {
+    "ref": "2881",
+    "description": "BRG COVER WITH RATCHET PLATE",
+    "qty": 1,
+    "material": "IS:1570, GR.40C8"
+  },
+  {
+    "ref": "2882",
+    "description": "THRUST HOUSING",
+    "qty": 2,
+    "material": "SS410"
+  },
+  {
+    "ref": "2883",
+    "description": "THRUST BLOCK",
+    "qty": 2,
+    "material": "SS410"
+  },
+  {
+    "ref": "3031",
+    "description": "IMPELLER LOCK NUT (R.H.)",
+    "qty": 1,
+    "material": "IS:1570, GR.40C8"
+  },
+  {
+    "ref": "3032",
+    "description": "IMPELLER LOCK NUT (L.H.)",
+    "qty": 4,
+    "material": null
+  },
+  {
+    "ref": "3011",
+    "description": "THRUST BRG LOCK NUT",
+    "qty": 1,
+    "material": null
+  },
+  {
+    "ref": "3210",
+    "description": "KEY (IMPELLER)",
+    "qty": 14,
+    "material": "ASTM A276 GR SS410"
+  },
+  {
+    "ref": "3250",
+    "description": "KEY (FLEXIBLE COUPLING)",
+    "qty": 1,
+    "material": null
+  },
+  {
+    "ref": "3260",
+    "description": "KEY (SOLID MUFF COUPLING)",
+    "qty": 1,
+    "material": null
+  },
+  {
+    "ref": "3280",
+    "description": "KEY (THRUST BLOCK)",
+    "qty": 1,
+    "material": null
+  },
+  {
+    "ref": "3280-1",
+    "description": "KEY (RATCHET HOLDER PLATE)",
+    "qty": 1,
+    "material": null
+  },
+  {
+    "ref": "4080-1",
+    "description": "GASKET (OIL RET. BUSH & BRG HSG.)",
+    "qty": 1,
+    "material": "CHAMPION AF120,"
+  },
+  {
+    "ref": "4080-2",
+    "description": "GASKET (BRG. HSG. & BRG. COVER)",
+    "qty": 1,
+    "material": null
+  },
+  {
+    "ref": "4250",
+    "description": "O'RING (DIFFUSER & R.M. PIPE BOT)",
+    "qty": 3,
+    "material": "NITRILE RUBBER"
+  },
+  {
+    "ref": "4250-1",
+    "description": "O'RING (DIFFUSER & R.M. PIPE TOP)",
+    "qty": 1,
+    "material": null
+  },
+  {
+    "ref": "4250-2",
+    "description": "O'RING (R.M. PIPES)",
+    "qty": 7,
+    "material": null
+  },
+  {
+    "ref": "4250-3",
+    "description": "O'RING (LOOSE STUFFING BOX)",
+    "qty": 1,
+    "material": "MS IS 2062 GR B"
+  },
+  {
+    "ref": "4600",
+    "description": "ERECTION PACKERS",
+    "qty": 16,
+    "material": null
+  },
+  {
+    "ref": "4640",
+    "description": "FOUNDATION BOLTS",
+    "qty": 8,
+    "material": "MS"
+  },
+  {
+    "ref": "4690",
+    "description": "FLEXIBLE COUPLING (M.H)",
+    "qty": 1,
+    "material": "FORGED STEEL"
+  },
+  {
+    "ref": "4700",
+    "description": "OIL LEVEL INDICATOR",
+    "qty": 1,
+    "material": "MFG STD"
+  },
+  {
+    "ref": "4830",
+    "description": "FLEXIBLE COUPLING (P.H)",
+    "qty": 1,
+    "material": "FORGED STEEL"
+  },
+  {
+    "ref": "4890",
+    "description": "SOLE PLATE",
+    "qty": 1,
+    "material": "MS IS 2062 GR B"
+  },
+  {
+    "ref": "4900",
+    "description": "SUCTION STRAINER",
+    "qty": 1,
+    "material": "ASTM A276 GR SS304"
+  },
+  {
+    "ref": "4910",
+    "description": "SUCTION BELL MOUTH",
+    "qty": 1,
+    "material": "FG260 + COATING"
+  },
+  {
+    "ref": "NON WETTED FASTENERS",
+    "description": "AS REQD",
+    "qty": null,
+    "material": "ASTM A276 GR SS304"
+  },
+  {
+    "ref": "WETTED FASTENERS",
+    "description": "1",
+    "qty": null,
+    "material": "FG260 + COATING"
+  }
+]

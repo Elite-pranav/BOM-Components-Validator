@@ -76,7 +76,8 @@
       "WEAR RING",
       "WEAR RING.",
       "CASING WEAR RING",
-      "BOWL WEAR RING"
+      "BOWL WEAR RING",
+      "Neck Ring"
     ]
   },
   "Impeller": {
@@ -164,7 +165,9 @@
       "SHAFT (INTERMEDIATE)",
       "INT. SHAFT (SMALL)",
       "INT. SHAFT (INT-SMALL)",
-      "INTERMEDIATE SHAFT."
+      "INTERMEDIATE SHAFT.",
+      "Intermediate Shaft",
+      "INTERMEDIATE SHAFT-1"
     ]
   },
   "Pump Bearing Sleeve": {
@@ -193,7 +196,8 @@
       "INTERMEDIATE BRG SLEEVE.",
       "INTERMEDIATE BRG. SLEEVE",
       "INT BRG. SLEEVE",
-      "INT BRG SLEEVE."
+      "INT BRG SLEEVE.",
+      "INTERMEDIATE BRG SLEEVE"
     ]
   },
   "Bearing Bush": {
@@ -218,7 +222,11 @@
       "BEARING BUSH. (INTERMEDIATE).",
       "BEARING BUSH. (INTERMEDIATE)",
       "BEARING BUSH (INTERMEDIATE)",
-      "BEARING BUSH."
+      "BEARING BUSH.",
+      "INT. BRG. BUSH",
+      "INT. BRG. BUSH, (LOOSE STUFFING BOX)",
+      "PUMP BRG BUSH (DIFFUSER)",
+      "PUMP BRG BUSH (BELL MOUTH)"
     ]
   },
   "Bearing Bush Carrier": {
@@ -231,7 +239,8 @@
       "INT BRG CARR",
       "INTERMEDIATE BEARING CARRIER",
       "BEARING BUSH. CARRIER",
-      "BEARING BUSH CARRIER."
+      "BEARING BUSH CARRIER.",
+      "BUSH CARRIER (LOOSE STUFFING BOX)"
     ]
   },
   "Bearing Housing Sub-Assembly": {
@@ -246,7 +255,8 @@
       "BRG HOUSING.",
       "BRG. HOUSING",
       "BRG HOUSING",
-      "BEARING HOUSING."
+      "BEARING HOUSING.",
+      "THRUST HOUSING"
     ]
   },
   "Distance Sleeve": {
@@ -283,7 +293,8 @@
       "SPLIT GLAND",
       "GLAND.",
       "GLAND",
-      "SPLIT GLAND."
+      "SPLIT GLAND.",
+      "Split Gland"
     ]
   },
   "Gland Packing": {
@@ -310,7 +321,10 @@
       "THRUST BRG. LOCK NUT. (R.H.)",
       "THRUST BRG LOCK NUT (R.H.)",
       "THRUST BRG. LOCK NUT (RH)",
-      "THRUST BRG LOCK NUT RH"
+      "THRUST BRG LOCK NUT RH",
+      "IMPELLER LOCK NUT (R.H.)",
+      "IMPELLER LOCK NUT (L.H.)",
+      "THRUST BRG LOCK NUT"
     ]
   },
   "Sleeve Nut": {
@@ -327,7 +341,8 @@
       "MUFF COUPLING",
       "SOLID MUFF COUPLING",
       "MUFF COUP",
-      "SOLID MUFF COUPLING."
+      "SOLID MUFF COUPLING.",
+      "SOLID COUPLING"
     ]
   },
   "Split Collar": {
@@ -387,7 +402,8 @@
     "type": "accessory",
     "aliases": [
       "ALIGN PAD",
-      "ALIGNMENT PAD"
+      "ALIGNMENT PAD",
+      "Gland Sleeve"
     ]
   },
   "Loose Stuffing Box": {
@@ -400,7 +416,8 @@
       "STF BOX",
       "STUFFING BOX",
       "LOOSE STUFFING BOX.",
-      "STUFFING BOX."
+      "STUFFING BOX.",
+      "O'RING (LOOSE STUFFING BOX)"
     ]
   },
   "Logging Ring": {
@@ -408,14 +425,16 @@
     "aliases": [
       "LOG RING",
       "LOGGING RING",
-      "LOGGING RING."
+      "LOGGING RING.",
+      "LEAK OFF BUSH"
     ]
   },
   "Adapter Plate": {
     "type": "structural",
     "aliases": [
       "ADPT PLT",
-      "ADAPTER PLATE"
+      "ADAPTER PLATE",
+      "O'RING (R.M. PIPES)"
     ]
   },
   "RM Pipe (Taper/Bottom)": {
@@ -442,7 +461,8 @@
       "COLUMN PIPE",
       "RISING MAIN PIPE. (INTERMEDIATE).",
       "RISING MAIN PIPE (INTERMEDIATE).",
-      "RISING MAIN PIPE. (INTERMEDIATE)"
+      "RISING MAIN PIPE. (INTERMEDIATE)",
+      "RISING MAIN PIPE (INT)"
     ]
   },
   "RM Pipe (Top)": {
@@ -541,7 +561,9 @@
   "Abutment Ring": {
     "type": "structural",
     "aliases": [
-      "ABUTMENT RING"
+      "ABUTMENT RING",
+      "O'RING (DIFFUSER & R.M. PIPE BOT)",
+      "O'RING (DIFFUSER & R.M. PIPE)"
     ]
   },
   "Wear Plate": {

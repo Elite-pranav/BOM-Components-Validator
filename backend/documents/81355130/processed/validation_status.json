@@ -1,0 +1,145 @@
+{
+  "identifier": "81355130",
+  "timestamp": "2026-04-23T06:46:55.388926+00:00",
+  "confirmed_discrepancies": [
+    {
+      "canonical_name": "Loose Stuffing Box",
+      "discrepancy_index": 0,
+      "reason": "CS specifies SS410 and BOM specifies FG260, indicating a material mismatch with no SAP data."
+    },
+    {
+      "canonical_name": "Ratchet",
+      "discrepancy_index": 0,
+      "reason": "CS extraction suspect: 'NITRILE RUBBER' looks like a consumable material assigned to structural part 'Ratchet'. Likely a PDF row-span extraction error. CS material excluded from comparison."
+    },
+    {
+      "canonical_name": "Thrust Block",
+      "discrepancy_index": 0,
+      "reason": "CS extraction suspect: 'NITRILE RUBBER' looks like a consumable material assigned to structural part 'Thrust Block'. Likely a PDF row-span extraction error. CS material excluded from comparison."
+    },
+    {
+      "canonical_name": "Sand Collar",
+      "discrepancy_index": 0,
+      "reason": "CS specifies SS410 (via CUTLESS + SS410) and BOM specifies MS, indicating a material mismatch with no SAP data."
+    },
+    {
+      "canonical_name": "Water Deflector",
+      "discrepancy_index": 0,
+      "reason": "CS specifies FG260 and BOM specifies NITRILE_RUBBER, indicating a material mismatch with no SAP data."
+    }
+  ],
+  "dismissed_discrepancies": [
+    {
+      "canonical_name": "Gland Sleeve",
+      "discrepancy_index": 0,
+      "mapped_to": "Alignment Pad"
+    },
+    {
+      "canonical_name": "Intermediate Shaft",
+      "discrepancy_index": 0,
+      "mapped_to": "Intermediate Shaft"
+    },
+    {
+      "canonical_name": "Neck Ring",
+      "discrepancy_index": 0,
+      "mapped_to": "Neck Ring"
+    },
+    {
+      "canonical_name": "Split Gland",
+      "discrepancy_index": 0,
+      "mapped_to": "Split Gland"
+    },
+    {
+      "canonical_name": "RISING MAIN PIPE (INT)",
+      "discrepancy_index": 0,
+      "mapped_to": "RM Pipe (Intermediate)"
+    },
+    {
+      "canonical_name": "INTERMEDIATE SHAFT-1",
+      "discrepancy_index": 0,
+      "mapped_to": "Intermediate Shaft"
+    },
+    {
+      "canonical_name": "SOLID COUPLING",
+      "discrepancy_index": 0,
+      "mapped_to": "Muff Coupling"
+    },
+    {
+      "canonical_name": "LEAK OFF BUSH",
+      "discrepancy_index": 0,
+      "mapped_to": "Logging Ring"
+    },
+    {
+      "canonical_name": "INT. BRG. BUSH",
+      "discrepancy_index": 0,
+      "mapped_to": "Bearing Bush"
+    },
+    {
+      "canonical_name": "INT. BRG. BUSH, (LOOSE STUFFING BOX)",
+      "discrepancy_index": 0,
+      "mapped_to": "Bearing Bush"
+    },
+    {
+      "canonical_name": "BUSH CARRIER (LOOSE STUFFING BOX)",
+      "discrepancy_index": 0,
+      "mapped_to": "Bearing Bush Carrier"
+    },
+    {
+      "canonical_name": "PUMP BRG BUSH (DIFFUSER)",
+      "discrepancy_index": 0,
+      "mapped_to": "Bearing Bush"
+    },
+    {
+      "canonical_name": "PUMP BRG BUSH (BELL MOUTH)",
+      "discrepancy_index": 0,
+      "mapped_to": "Bearing Bush"
+    },
+    {
+      "canonical_name": "INTERMEDIATE BRG SLEEVE",
+      "discrepancy_index": 0,
+      "mapped_to": "Intermediate Bearing Sleeve"
+    },
+    {
+      "canonical_name": "THRUST HOUSING",
+      "discrepancy_index": 0,
+      "mapped_to": "Bearing Housing Sub-Assembly"
+    },
+    {
+      "canonical_name": "IMPELLER LOCK NUT (R.H.)",
+      "discrepancy_index": 0,
+      "mapped_to": "Lock Nut"
+    },
+    {
+      "canonical_name": "IMPELLER LOCK NUT (L.H.)",
+      "discrepancy_index": 0,
+      "mapped_to": "Lock Nut"
+    },
+    {
+      "canonical_name": "THRUST BRG LOCK NUT",
+      "discrepancy_index": 0,
+      "mapped_to": "Lock Nut"
+    },
+    {
+      "canonical_name": "O'RING (DIFFUSER & R.M. PIPE BOT)",
+      "discrepancy_index": 0,
+      "mapped_to": "Abutment Ring"
+    },
+    {
+      "canonical_name": "O'RING (DIFFUSER & R.M. PIPE)",
+      "discrepancy_index": 0,
+      "mapped_to": "Abutment Ring"
+    },
+    {
+      "canonical_name": "O'RING (R.M. PIPES)",
+      "discrepancy_index": 0,
+      "mapped_to": "Adapter Plate"
+    },
+    {
+      "canonical_name": "O'RING (LOOSE STUFFING BOX)",
+      "discrepancy_index": 0,
+      "mapped_to": "Loose Stuffing Box"
+    }
+  ],
+  "total_confirmed": 5,
+  "total_dismissed": 22
+}

@@ -8,9 +8,10 @@ cs_bom.json in the processed folder.
 
 Pipeline:
   1. Render PDF page to high-DPI PNG
-  2. Crop and rotate the table region (bottom-right of the drawing)
+  2. Crop and rotate the table region (top strip of the rendered portrait page)
   3. Send cropped image to Gemini with a structured prompt
   4. Parse the JSON response into a list of part dicts
+  5. Clean whitespace from extracted strings
 """
 
 import json
@@ -25,67 +26,48 @@ from backend import config
 from backend.extractors.base import BaseExtractor
 
 CS_PROMPT = """
-You are a precision technical document parser reading a BOM (Bill of Materials)
-table from a pump engineering cross-section drawing.
+You are a precision table reader. Extract every row from this table image.
 
-COLUMN ORDER left to right:
-  REF  |  DESCRIPTION  |  QTY  |  MATERIAL
+The table has these columns, left to right:
 
-═══ CRITICAL RULES — follow every one exactly ═══
+  REF  |  DESCRIPTION  |  QTY  |  MATERIAL/SPECIFICATION
 
-1. EXTRACT EVERY ROW WITHOUT EXCEPTION
-    Count carefully top to bottom and
-   do not skip any row. Every row in the table must appear in your output.
+RULES:
 
-2. SPANNING / MERGED MATERIAL CELLS  ← most important rule
-   The MATERIAL column uses merged cells — one material value is printed
-   once and covers multiple consecutive rows. The rows below it have visually
-   empty material cells but they share the same material.
+1. Extract EVERY row, top to bottom. Do not skip any.
 
-   HOW TO HANDLE: Read top to bottom. When you see a blank material cell,
-   assign it the same material as the most recent non-blank material cell
-   above it. Keep that material until you see another printed material value.
+2. Read ONLY what is printed in each cell.
+   - If a cell is visually empty or blank, output null.
+   - Do NOT fill blank cells with values from other rows.
+   - Do NOT assume blank cells inherit from above or below.
+   - Each row is independent.
 
-   KNOWN SPANNING GROUPS IN THIS TABLE (use as a reference):
-     - M.S. covers: FOUNDATION BOLTS (4640) and ERECTION PACKERS (4600)
-     - NITRILE RUBBER covers: 4250-4, 4250-3, 4250-1, 4250
-     - CHAMPION AF 120 covers: 4080-2 and 4080-1
-     - ASTM A276 GR SS410 covers: 3260, 3250, 3210, 3032, 3031
-     - IS:1570 GR.40C8 covers: 3011 and 2883
-     - ASTM A276 GR SS410 covers: 2834, 2832-2, 2832-1, 2832
-     - CUTLESS RUBBER+SS410 SHELL covers: 2830-1 and 2830
-     - CUTLESS RUBBER+SS410 SHELL covers: 2801-1 and 2801
-     - CI IS 210 GR FG260 covers: 2401, 2318, 2311
-     - ASTM A276 GR SS410 covers: 2060 and 2050
-     - ASTM A276 GR SS410T covers: 1805-2, 1805-1, 1805, 1803, 1801
-     - M.S. covers: 1161, 1151-1, 1151, 1041
+3. Copy all text exactly as printed — preserve prefixes (ASTM, CI, IS, M.S.),
+   suffixes (+ COATING, GR SS410), and punctuation.
 
-3. NULL ONLY WHEN TRULY BLANK
-   Only output null for material if you have confirmed there is genuinely
-   no material printed for that row's group anywhere in the table.
+4. QTY: output a number, or the string "AS REQD" if that is what is printed.
 
-4. EXACT TEXT
-   Copy all text exactly as printed. Include prefixes (ASTM, CI, IS, M.S.)
-   and suffixes (+ COATING, GR SS410, HARD CHROME PLT). Do not abbreviate.
+5. Skip the header row (the row containing REF. / DESCRIPTION / QTY. / MATERIAL.).
 
-5. QTY FORMAT
-   Use a number when possible. Use the string "AS REQD" when printed.
-   Never output null for qty.
-
-6. SKIP HEADER ROW
-   The last row contains REF. / DESCRIPTION / QTY. / MATERIAL. — skip it.
-
-7. SYMBOL ROWS
-   Some rows have a triangle/revision symbol in the left margin.
-   Include those rows normally — the symbol is not part of REF or DESCRIPTION.
-
-Return ONLY a raw JSON array — no markdown fences, no explanation, nothing else.
+Return ONLY a raw JSON array. No markdown, no commentary.
 Each element: {"ref": "...", "description": "...", "qty": ..., "material": ...}
 """
 
 
 class CSExtractor(BaseExtractor):
     """Extracts BOM from Cross-Section (CS) PDF drawings."""
+
+    # ── Table crop boundaries (as fractions of the rendered page) ──
+    # The BOM table sits as a horizontal strip across the top of the
+    # portrait-rendered page. These values were measured from a
+    # 4132x5848 px render at config.PDF_RENDER_DPI.
+    #
+    #   y (height): 1.8 % -> 27.5 %   (covers all 4 column bands)
+    #   x (width):  0.2 % -> 96.0 %   (covers every data row left to right)
+    CROP_Y_START = 0.018
+    CROP_Y_END = 0.275
+    CROP_X_START = 0.002
+    CROP_X_END = 0.960
 
     def extract(self) -> list:
         cs_pdf = self._find_cs_pdf()
@@ -98,6 +80,7 @@ class CSExtractor(BaseExtractor):
         bom_data = self._extract_with_ai(cropped)
 
         if bom_data is not None:
+            bom_data = self._clean_bom(bom_data)
             self._save_json(bom_data, self.processed_folder / "cs_bom.json")
             self.logger.info(f"Extracted {len(bom_data)} parts from CS drawing")
             return bom_data
@@ -121,11 +104,24 @@ class CSExtractor(BaseExtractor):
     def _crop_table(self, image_path: Path) -> Path:
         img = cv2.imread(str(image_path))
         h, w, _ = img.shape
-        table = img[int(h * 0.70):int(h * 1.00), int(w * 0.13):int(w * 0.96)]
+
+        # Crop the BOM table strip from the top of the portrait-rendered page.
+        # The table contains 4 horizontal bands (MATERIAL, QTY, DESCRIPTION, REF)
+        # running across the full width of the drawing.
+        y1 = int(h * self.CROP_Y_START)
+        y2 = int(h * self.CROP_Y_END)
+        x1 = int(w * self.CROP_X_START)
+        x2 = int(w * self.CROP_X_END)
+
+        table = img[y1:y2, x1:x2]
         rotated = cv2.rotate(table, cv2.ROTATE_90_COUNTERCLOCKWISE)
+
         output = self.processed_folder / "rendered_cs_table.png"
         cv2.imwrite(str(output), rotated)
-        self.logger.info(f"Cropped and rotated table to {output}")
+        self.logger.info(
+            f"Cropped table region y=[{y1}:{y2}], x=[{x1}:{x2}] "
+            f"from {w}x{h} image and rotated to {output}"
+        )
         return output
 
     def _extract_with_ai(self, image_path: Path) -> list | None:
@@ -151,6 +147,14 @@ class CSExtractor(BaseExtractor):
             self.logger.error(f"JSON parsing failed: {e}")
             self.logger.debug(f"Raw response: {raw}")
             return None
+
+    def _clean_bom(self, bom_data: list) -> list:
+        """Strip trailing whitespace and newlines from all string fields."""
+        for row in bom_data:
+            for key in ("ref", "description", "material"):
+                if isinstance(row.get(key), str):
+                    row[key] = row[key].strip()
+        return bom_data
 
     def _save_json(self, data, output_path: Path):
         output_path.parent.mkdir(parents=True, exist_ok=True)
