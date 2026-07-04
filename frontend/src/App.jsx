@@ -5,6 +5,7 @@ import UploadSection from "./components/UploadSection/UploadSection";
 import ProgressIndicator from "./components/ProgressIndicator/ProgressIndicator";
 import ResultsSection from "./components/ResultsSection/ResultsSection";
 import ValidationSection from "./components/ValidationSection/ValidationSection";
+import NomenclatureManager from "./components/NomenclatureManager/NomenclatureManager";
 import { uploadDocuments, triggerExtraction, runComparison } from "./api/client";
 import styles from "./App.module.css";
 
@@ -16,6 +17,7 @@ export default function App() {
   const [results, setResults] = useState(null);
   const [comparison, setComparison] = useState(null);
   const [error, setError] = useState(null);
+  const [showNomenclature, setShowNomenclature] = useState(false);
 
   function handleFileChange(type, file) {
     setFiles((prev) => ({ ...prev, [type]: file }));
@@ -65,7 +67,10 @@ export default function App() {
 
   return (
     <div className={styles.app}>
-      <Header />
+      <Header onOpenNomenclature={() => setShowNomenclature(true)} />
+      {showNomenclature && (
+        <NomenclatureManager onClose={() => setShowNomenclature(false)} />
+      )}
       <main className={styles.main}>
         {error && (
           <div className={styles.error}>

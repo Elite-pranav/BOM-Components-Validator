@@ -1,15 +1,10 @@
 import { useState } from "react";
-import { FiCheck, FiX, FiAlertTriangle, FiChevronDown } from "react-icons/fi";
+import { FiCheck, FiX, FiMinus, FiAlertTriangle } from "react-icons/fi";
 import styles from "./DiscrepancyCard.module.css";
 
 const SOURCE_LABELS = { cs: "CS Drawing", bom: "Excel BOM", sap: "SAP Data" };
 
-export default function DiscrepancyCard({
-  part,
-  canonicalNames,
-  onDecision,
-  decision,
-}) {
+export default function DiscrepancyCard({ part, canonicalNames, onDecision, decision }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -17,49 +12,46 @@ export default function DiscrepancyCard({
     n.toLowerCase().includes(search.toLowerCase())
   );
 
+  function handleAgree() {
+    onDecision({ canonical_name: part.canonical_name, discrepancy_index: 0, action: "agree" });
+    setShowDropdown(false);
+  }
+
+  function handleIgnore() {
+    onDecision({ canonical_name: part.canonical_name, action: "ignore" });
+    setShowDropdown(false);
+  }
+
   function handleDisagree() {
-    setShowDropdown(true);
+    setShowDropdown((v) => !v);
   }
 
   function handleMapTo(canonical) {
     onDecision({
-      canonical_name: part.canonical_name,
-      action: "disagree",
+      canonical_name:  part.canonical_name,
+      action:          "disagree",
       mapped_canonical: canonical,
-      original_name: part.canonical_name,
+      original_name:   part.canonical_name,
     });
     setShowDropdown(false);
   }
 
-  function handleAgree(discIndex) {
-    onDecision({
-      canonical_name: part.canonical_name,
-      discrepancy_index: discIndex,
-      action: "agree",
-    });
-  }
-
-  const isDecided = !!decision;
+  const cardClass = [
+    styles.card,
+    decision?.action === "agree"    ? styles.agreed    : "",
+    decision?.action === "disagree" ? styles.dismissed : "",
+    decision?.action === "ignore"   ? styles.ignored   : "",
+  ].filter(Boolean).join(" ");
 
   return (
-    <div
-      className={`${styles.card} ${
-        decision?.action === "agree"
-          ? styles.agreed
-          : decision?.action === "disagree"
-            ? styles.dismissed
-            : ""
-      }`}
-    >
+    <div className={cardClass}>
       <div className={styles.header}>
         <h4 className={styles.partName}>{part.canonical_name}</h4>
         <div className={styles.presence}>
           {["cs", "bom", "sap"].map((src) => (
             <span
               key={src}
-              className={`${styles.badge} ${
-                part[src]?.present ? styles.present : styles.missing
-              }`}
+              className={`${styles.badge} ${part[src]?.present ? styles.present : styles.missing}`}
               title={SOURCE_LABELS[src]}
             >
               {src.toUpperCase()}
@@ -68,7 +60,7 @@ export default function DiscrepancyCard({
         </div>
       </div>
 
-      {/* Material comparison */}
+      {/* Material rows */}
       <div className={styles.materials}>
         {["cs", "bom", "sap"].map((src) => (
           <div key={src} className={styles.matRow}>
@@ -80,7 +72,7 @@ export default function DiscrepancyCard({
         ))}
       </div>
 
-      {/* Material comparison explanation */}
+      {/* AI/rigid explanation */}
       {part.material_comparison?.explanation && (
         <div className={styles.explanation}>
           <span className={styles.explMethod}>
@@ -100,50 +92,49 @@ export default function DiscrepancyCard({
       ))}
 
       {/* Action buttons */}
-      {!isDecided && (
+      {!decision && (
         <div className={styles.actions}>
-          <button
-            className={styles.agreeBtn}
-            onClick={() => handleAgree(0)}
-          >
-            <FiCheck /> Agree (Confirm Error)
+          <button className={styles.agreeBtn} onClick={handleAgree} title="Confirm this is a real error">
+            <FiCheck /> Agree
           </button>
-          <button className={styles.disagreeBtn} onClick={handleDisagree}>
-            <FiX /> Disagree (Same Part)
+          <button className={styles.disagreeBtn} onClick={handleDisagree} title="Flag as false positive — map to correct part">
+            <FiX /> Disagree
+          </button>
+          <button className={styles.ignoreBtn} onClick={handleIgnore} title="Acknowledge but skip — will be noted in the report">
+            <FiMinus /> Ignore
           </button>
         </div>
       )}
 
-      {/* Decision status */}
-      {isDecided && (
-        <div className={styles.decisionStatus}>
-          {decision.action === "agree"
-            ? "Confirmed as error"
-            : `Mapped to: ${decision.mapped_canonical}`}
+      {/* Decision status + undo */}
+      {decision && (
+        <div className={styles.decisionRow}>
+          <span className={styles.decisionStatus}>
+            {decision.action === "agree"    && "✓ Confirmed as error"}
+            {decision.action === "disagree" && `↔ Mapped to: ${decision.mapped_canonical}`}
+            {decision.action === "ignore"   && "– Ignored (will appear in report)"}
+          </span>
+          <button className={styles.undoBtn} onClick={() => onDecision(null)}>
+            Undo
+          </button>
         </div>
       )}
 
-      {/* Dropdown for mapping */}
+      {/* Disagree dropdown */}
       {showDropdown && (
         <div className={styles.dropdown}>
-          <p className={styles.dropdownLabel}>
-            Select the correct canonical name:
-          </p>
+          <p className={styles.dropdownLabel}>Select the correct canonical name:</p>
           <input
             className={styles.searchInput}
             type="text"
-            placeholder="Search parts..."
+            placeholder="Search parts…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             autoFocus
           />
           <div className={styles.dropdownList}>
             {filteredNames.map((name) => (
-              <button
-                key={name}
-                className={styles.dropdownItem}
-                onClick={() => handleMapTo(name)}
-              >
+              <button key={name} className={styles.dropdownItem} onClick={() => handleMapTo(name)}>
                 {name}
               </button>
             ))}

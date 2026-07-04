@@ -66,9 +66,82 @@ export async function submitValidation(identifier, decisions) {
   return res.json();
 }
 
-export async function getNomenclature() {
+// ── Nomenclature CRUD ─────────────────────────────────────────────────────────
+
+export async function fetchNomenclature() {
   const res = await fetch(`${BASE}/nomenclature`);
   if (!res.ok) throw new Error("Failed to fetch nomenclature");
+  return res.json();
+}
+
+/** @deprecated use fetchNomenclature */
+export const getNomenclature = fetchNomenclature;
+
+export async function addNomenclaturePart(canonical, type, aliases = []) {
+  const res = await fetch(`${BASE}/nomenclature`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ canonical, type, aliases }),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || "Failed to add part");
+  }
+  return res.json();
+}
+
+export async function deleteNomenclaturePart(canonical) {
+  const res = await fetch(`${BASE}/nomenclature/${encodeURIComponent(canonical)}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || "Failed to delete part");
+  }
+  return res.json();
+}
+
+export async function addNomenclatureAlias(canonical, alias) {
+  const res = await fetch(
+    `${BASE}/nomenclature/${encodeURIComponent(canonical)}/aliases`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ alias }),
+    }
+  );
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || "Failed to add alias");
+  }
+  return res.json();
+}
+
+export async function removeNomenclatureAlias(canonical, alias) {
+  const res = await fetch(
+    `${BASE}/nomenclature/${encodeURIComponent(canonical)}/aliases/${encodeURIComponent(alias)}`,
+    { method: "DELETE" }
+  );
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || "Failed to remove alias");
+  }
+  return res.json();
+}
+
+export async function updateNomenclatureType(canonical, type) {
+  const res = await fetch(
+    `${BASE}/nomenclature/${encodeURIComponent(canonical)}/type`,
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type }),
+    }
+  );
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || "Failed to update type");
+  }
   return res.json();
 }
 

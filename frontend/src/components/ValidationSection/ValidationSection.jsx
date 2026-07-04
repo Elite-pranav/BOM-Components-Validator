@@ -1,34 +1,44 @@
 import { useState, useEffect } from "react";
 import DiscrepancyCard from "../DiscrepancyCard/DiscrepancyCard";
 import UnresolvedCard from "../UnresolvedCard/UnresolvedCard";
-import { getNomenclature, submitValidation, getReportUrl } from "../../api/client";
+import { fetchNomenclature, submitValidation, getReportUrl } from "../../api/client";
 import { FiSend, FiDownload, FiArrowLeft } from "react-icons/fi";
 import styles from "./ValidationSection.module.css";
 
 export default function ValidationSection({ comparison, identifier, onBack }) {
   const [canonicalNames, setCanonicalNames] = useState([]);
-  const [decisions, setDecisions] = useState({});
+  const [decisions, setDecisions] = useState({});         // canonical_name → decision object | null
   const [unresolvedMappings, setUnresolvedMappings] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
-  const partsWithIssues = (comparison.parts || []).filter(
-    (p) => p.discrepancies.length > 0
-  );
+  const partsWithIssues = (comparison.parts || []).filter((p) => p.discrepancies.length > 0);
   const unresolved = comparison.unresolved || [];
 
   useEffect(() => {
-    getNomenclature()
-      .then((data) => setCanonicalNames(data.canonical_names || []))
+    fetchNomenclature()
+      .then((data) => setCanonicalNames((data.parts || []).map((p) => p.canonical)))
       .catch(() => {});
   }, []);
 
   function handleDecision(decision) {
+    if (decision === null) {
+      // undo — this shouldn't happen at the top level, DiscrepancyCard passes null on undo
+      return;
+    }
     setDecisions((prev) => ({
       ...prev,
       [decision.canonical_name]: decision,
     }));
+  }
+
+  function handleUndo(canonicalName) {
+    setDecisions((prev) => {
+      const next = { ...prev };
+      delete next[canonicalName];
+      return next;
+    });
   }
 
   function handleUnresolvedResolve(originalName, canonical) {
@@ -39,19 +49,27 @@ export default function ValidationSection({ comparison, identifier, onBack }) {
     setSubmitting(true);
     setError(null);
 
-    // Build decisions list from both discrepancy decisions and unresolved mappings
+    // Collect all explicit decisions (agree / disagree / ignore)
     const allDecisions = [
-      ...Object.values(decisions),
+      ...Object.values(decisions).filter(Boolean),
       ...Object.entries(unresolvedMappings).map(([original, canonical]) => ({
-        canonical_name: original,
-        action: "disagree",
+        canonical_name:   original,
+        action:           "disagree",
         mapped_canonical: canonical,
-        original_name: original,
+        original_name:    original,
       })),
     ];
 
+    // Parts that have a discrepancy but no decision → unresolved
+    const unresolvedDiscrepancies = partsWithIssues
+      .filter((p) => !decisions[p.canonical_name])
+      .map((p) => ({
+        canonical_name: p.canonical_name,
+        action:         "unresolved",
+      }));
+
     try {
-      await submitValidation(identifier, allDecisions);
+      await submitValidation(identifier, [...allDecisions, ...unresolvedDiscrepancies]);
       setSubmitted(true);
     } catch (err) {
       setError(err.message);
@@ -60,8 +78,13 @@ export default function ValidationSection({ comparison, identifier, onBack }) {
     }
   }
 
-  const totalDecided = Object.keys(decisions).length + Object.keys(unresolvedMappings).length;
-  const totalItems = partsWithIssues.length + unresolved.length;
+  // Counts
+  const nAgreed     = Object.values(decisions).filter((d) => d?.action === "agree").length;
+  const nDismissed  = Object.values(decisions).filter((d) => d?.action === "disagree").length;
+  const nIgnored    = Object.values(decisions).filter((d) => d?.action === "ignore").length;
+  const nDecided    = nAgreed + nDismissed + nIgnored + Object.keys(unresolvedMappings).length;
+  const nTotal      = partsWithIssues.length + unresolved.length;
+  const nPending    = nTotal - nDecided;
 
   return (
     <div className={styles.container}>
@@ -78,6 +101,21 @@ export default function ValidationSection({ comparison, identifier, onBack }) {
 
       {error && <div className={styles.error}>{error}</div>}
 
+      {/* Progress summary */}
+      {nTotal > 0 && (
+        <div className={styles.progressBar}>
+          <div className={styles.progressStats}>
+            {nAgreed > 0    && <span className={styles.statConfirmed}>{nAgreed} confirmed</span>}
+            {nDismissed > 0 && <span className={styles.statDismissed}>{nDismissed} dismissed</span>}
+            {nIgnored > 0   && <span className={styles.statIgnored}>{nIgnored} ignored</span>}
+            {nPending > 0   && <span className={styles.statPending}>{nPending} pending</span>}
+          </div>
+          <div className={styles.progressTrack}>
+            <div className={styles.progressFill} style={{ width: `${(nDecided / nTotal) * 100}%` }} />
+          </div>
+        </div>
+      )}
+
       {/* Discrepancy cards */}
       {partsWithIssues.length > 0 && (
         <div className={styles.section}>
@@ -88,7 +126,13 @@ export default function ValidationSection({ comparison, identifier, onBack }) {
                 key={part.canonical_name}
                 part={part}
                 canonicalNames={canonicalNames}
-                onDecision={handleDecision}
+                onDecision={(d) => {
+                  if (d === null) {
+                    handleUndo(part.canonical_name);
+                  } else {
+                    handleDecision(d);
+                  }
+                }}
                 decision={decisions[part.canonical_name]}
               />
             ))}
@@ -126,17 +170,19 @@ export default function ValidationSection({ comparison, identifier, onBack }) {
 
       {/* Action bar */}
       <div className={styles.actionBar}>
-        <span className={styles.progress}>
-          {totalDecided} / {totalItems} reviewed
-        </span>
+        <div className={styles.submitNote}>
+          {nPending > 0
+            ? `${nPending} item${nPending !== 1 ? "s" : ""} not reviewed — will be marked unresolved in the report.`
+            : "All items reviewed."}
+        </div>
         <div className={styles.actionBtns}>
           {!submitted ? (
             <button
               className={styles.submitBtn}
               onClick={handleSubmit}
-              disabled={submitting || totalDecided === 0}
+              disabled={submitting}
             >
-              <FiSend /> {submitting ? "Submitting..." : "Submit Validation"}
+              <FiSend /> {submitting ? "Submitting…" : "Submit Validation"}
             </button>
           ) : (
             <a

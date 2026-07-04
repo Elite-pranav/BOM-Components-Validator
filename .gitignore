@@ -1,9 +1,18 @@
 venv/
+.venv/
 __pycache__/
 *.pyc
 .env
+backend/.env
 *.png
 .claude/
+*.DS_Store
+
+# Notebooks (exploratory, not production code)
+*.ipynb
+
+# Stakeholder reference files (not source-controlled)
+backend/Nomenclature_aliases_Updated.xlsx
 
 # Frontend
 frontend/node_modules/

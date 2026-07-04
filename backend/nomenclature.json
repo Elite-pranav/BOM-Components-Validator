@@ -40,14 +40,12 @@
       "DIFF.(DELY)",
       "CASING",
       "CASING.",
-      "BOWL CASING"
-    ]
-  },
-  "Delivery Diffuser": {
-    "type": "wetted_structural",
-    "aliases": [
+      "BOWL CASING",
+      "STG DIFF",
       "DEL DIFF",
-      "DELIVERY DIFFUSER"
+      "DELIVERY DIFFUSER",
+      "CSG",
+      "DIFF LH"
     ]
   },
   "Taper Connecting Piece": {
@@ -77,7 +75,8 @@
       "WEAR RING.",
       "CASING WEAR RING",
       "BOWL WEAR RING",
-      "Neck Ring"
+      "Neck Ring",
+      "CSG W/RING SUC"
     ]
   },
   "Impeller": {
@@ -91,13 +90,11 @@
       "IMP C/T",
       "IMP O/T",
       "IMP SUC",
-      "IMP STAGG",
       "IMP DEL",
       "IMPELLER RH",
       "IMPELLER LH",
       "IMPELLER SEMI OPEN",
       "IMPELLER SUCTION",
-      "IMPELLER STAGERED",
       "IMPELLER DELIVERY",
       "IMPELLER."
     ]
@@ -109,7 +106,9 @@
       "IMPELLER WEAR RING",
       "Imp Wear Ring",
       "IMP RING",
-      "IMPELLER RING"
+      "IMPELLER RING",
+      "IMP RING BACK",
+      "IMP RING SUC"
     ]
   },
   "Impeller Nose Cap": {
@@ -240,7 +239,8 @@
       "INTERMEDIATE BEARING CARRIER",
       "BEARING BUSH. CARRIER",
       "BEARING BUSH CARRIER.",
-      "BUSH CARRIER (LOOSE STUFFING BOX)"
+      "INTERMEDIATE BEARING BUSH CARRIER",
+      "PUMP BEARING BUSH CARRIER"
     ]
   },
   "Bearing Housing Sub-Assembly": {
@@ -248,7 +248,6 @@
     "aliases": [
       "BRG HSG",
       "BEARING HOUSING",
-      "Bearing Bracket",
       "THRUST BRG. HSG.",
       "BRG HSG S/A",
       "BRG. HOUSING.",
@@ -283,7 +282,8 @@
       "GLD SLV",
       "GLAND SLEEVE",
       "Gland Sleeve",
-      "GLAND SLEEVE."
+      "GLAND SLEEVE.",
+      "SLEEVE FOR GLAND"
     ]
   },
   "Split Gland": {
@@ -294,7 +294,8 @@
       "GLAND.",
       "GLAND",
       "SPLIT GLAND.",
-      "Split Gland"
+      "Split Gland",
+      "GLAND (SPLIT)"
     ]
   },
   "Gland Packing": {
@@ -324,7 +325,9 @@
       "THRUST BRG LOCK NUT RH",
       "IMPELLER LOCK NUT (R.H.)",
       "IMPELLER LOCK NUT (L.H.)",
-      "THRUST BRG LOCK NUT"
+      "THRUST BRG LOCK NUT",
+      "LOCK NUT LH",
+      "LOCK NUT RH"
     ]
   },
   "Sleeve Nut": {
@@ -340,7 +343,6 @@
       "MUF COUP",
       "MUFF COUPLING",
       "SOLID MUFF COUPLING",
-      "MUFF COUP",
       "SOLID MUFF COUPLING.",
       "SOLID COUPLING"
     ]
@@ -387,15 +389,11 @@
       "Delivery Bend / Tee",
       "Motor Stool",
       "MOTOR STOOL",
-      "DISCHARGE HEAD",
       "DELY. BEND CUM MOTOR STOOL",
       "DELY BEND CUM MOTOR STOOL",
       "DEL. BEND CUM MOTOR STOOL",
       "DELIVERY BEND CUM MOTOR STOOL.",
-      "PUMP BASE",
-      "PUMP BASE.",
-      "PUMP STOOL",
-      "MOTOR BASE"
+      "DEL TEE"
     ]
   },
   "Alignment Pad": {
@@ -417,7 +415,8 @@
       "STUFFING BOX",
       "LOOSE STUFFING BOX.",
       "STUFFING BOX.",
-      "O'RING (LOOSE STUFFING BOX)"
+      "O'RING (LOOSE STUFFING BOX)",
+      "STUFFING BOX (LOOSE)"
     ]
   },
   "Logging Ring": {
@@ -426,7 +425,8 @@
       "LOG RING",
       "LOGGING RING",
       "LOGGING RING.",
-      "LEAK OFF BUSH"
+      "LEAK OFF BUSH",
+      "LANTERN RING (SOLID) / LOGGING RING"
     ]
   },
   "Adapter Plate": {
@@ -497,7 +497,10 @@
       "BRG COVER WITH RATCHET",
       "RATCHET HOLDER PLATE.",
       "RATCHET PIN.",
-      "RATCHET BUSH."
+      "RATCHET BUSH.",
+      "RATCHET PLATE (NON REVERSE RATCHET)",
+      "RATCHET HOLDING PLATE",
+      "RATCHET LOCKING PLATE"
     ]
   },
   "Thrust Block": {
@@ -654,7 +657,67 @@
       "KEY (THRUST BLOCK)",
       "KEY (SOLID MUFF COUPLING)",
       "KEY (FLEXIBLE COUPLING)",
-      "KEY (IMPELLER)"
+      "KEY (IMPELLER)",
+      "KEY FOR SUCTION IMPELLER",
+      "KEY FOR STAGE IMPELLER",
+      "KEY FOR COUPLING",
+      "KEY FOR SOLID MUFF COUPLING",
+      "KEY FOR THRUST BLOCK"
     ]
+  },
+  "SHAFT TUBE (BOTTOM)": {
+    "type": "wetted_structural",
+    "aliases": []
+  },
+  "SHAFT TUBE (INTERMEDIATE)": {
+    "type": "wetted_structural",
+    "aliases": []
+  },
+  "SHAFT TUBE (TOP)": {
+    "type": "wetted_structural",
+    "aliases": []
+  },
+  "THROTTLE BUSH": {
+    "type": "wetted_structural",
+    "aliases": [
+      "THROTTLE BUSH (LOWER)",
+      "THROTTLE BUSH (UPPER)",
+      "THROTTLE BUSH CARRIER",
+      "THROTTLE BUSH CARRIER (LOWER)",
+      "THROTTLE BUSH CARRIER (UPPER)"
+    ]
+  },
+  "INTERMEDIATE BEARING SLEEVE CARRIER": {
+    "type": "structural",
+    "aliases": []
+  },
+  "SUFFING BOX WITH LANTERN RING": {
+    "type": "wetted_structural",
+    "aliases": []
+  },
+  "INTERMEDIATE BEARING BRACKET": {
+    "type": "structural",
+    "aliases": [
+      "INT BRG BKT"
+    ]
+  },
+  "CONE SLEEVE": {
+    "type": "structural",
+    "aliases": [
+      "LOCK SLEEVE",
+      "LOCKING SLEEVE"
+    ]
+  },
+  "SLEEVE THROTTLE": {
+    "type": "structural",
+    "aliases": []
+  },
+  "STUFFING BOX BUSH": {
+    "type": "wetted_structural",
+    "aliases": []
+  },
+  "STUFFING BOX COVER": {
+    "type": "structural",
+    "aliases": []
   }
 }

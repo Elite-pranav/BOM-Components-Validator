@@ -130,6 +130,16 @@ def generate_report(identifier: str, processed_dir: Path) -> Path:
     if dismissed_list:
         elements += _build_dismissed_appendix(dismissed_list, styles)
 
+    # ── Ignored Appendix ──────────────────────────────────────────────────
+    ignored_list = validation.get("ignored_discrepancies", [])
+    if ignored_list:
+        elements += _build_ignored_appendix(ignored_list, parts, styles)
+
+    # ── Unresolved Appendix ───────────────────────────────────────────────
+    unresolved_list = validation.get("unresolved_discrepancies", [])
+    if unresolved_list:
+        elements += _build_unresolved_appendix(unresolved_list, parts, styles)
+
     doc.build(elements)
     logger.info(f"Report generated: {output_path}")
     return output_path
@@ -483,8 +493,10 @@ def _build_summary(
     n_warnings: int,
     styles,
 ) -> list:
-    val_confirmed = validation.get("total_confirmed", 0)
-    val_dismissed = validation.get("total_dismissed", 0)
+    val_confirmed  = validation.get("total_confirmed",  0)
+    val_dismissed  = validation.get("total_dismissed",  0)
+    val_ignored    = validation.get("total_ignored",    0)
+    val_unresolved = validation.get("total_unresolved", 0)
 
     lines = [
         f"Total parts compared: <b>{summary.get('total_canonical_parts', 0)}</b>",
@@ -493,6 +505,8 @@ def _build_summary(
         f"Unresolved (not in nomenclature): <b>{summary.get('unresolved_parts', 0)}</b>",
         f"User confirmed errors: <b>{val_confirmed}</b>",
         f"User dismissed (false positives): <b>{val_dismissed}</b>",
+        f"User ignored: <b>{val_ignored}</b>",
+        f"Left unreviewed: <b>{val_unresolved}</b>",
     ]
 
     return [
@@ -646,14 +660,108 @@ def _build_dismissed_appendix(dismissed_list: list, styles) -> list:
             f"<b>{name}</b> — remapped to: {mapped}" if mapped
             else f"<b>{name}</b> — dismissed by user"
         )
-    note_style = ParagraphStyle(
-        "DismissNote", parent=styles["Normal"],
-        fontSize=8, leading=12,
-    )
+    note_style = ParagraphStyle("DismissNote", parent=styles["Normal"], fontSize=8, leading=12)
     return [
         Paragraph("Appendix B — Dismissed (False Positives)", styles["Heading2"]),
         Spacer(1, 3 * mm),
         Paragraph("<br/>".join(lines), note_style),
+        Spacer(1, 6 * mm),
+    ]
+
+
+def _build_ignored_appendix(ignored_list: list, parts: list, styles) -> list:
+    """Discrepancies the user explicitly chose to ignore."""
+    cell_style = ParagraphStyle("IgnCell", parent=styles["Normal"], fontSize=7, leading=10)
+    heading_style = ParagraphStyle(
+        "IgnHeading", parent=styles["Heading2"], textColor=colors.HexColor("#64748B")
+    )
+    rows = [["Part Name", "Discrepancy"]]
+    for item in ignored_list:
+        name = item.get("canonical_name", "")
+        disc_idx = item.get("discrepancy_index", 0)
+        reason = ""
+        part_data = next((p for p in parts if p["canonical_name"] == name), None)
+        if part_data:
+            discs = [d for d in part_data.get("discrepancies", [])
+                     if d.get("type") != "CS_EXTRACTION_WARNING"]
+            if disc_idx < len(discs):
+                reason = discs[disc_idx].get("reason", "")
+        rows.append([name, reason or "—"])
+
+    table = Table(
+        [[Paragraph(str(c), cell_style) for c in row] for row in rows],
+        colWidths=[55 * mm, 115 * mm], repeatRows=1,
+    )
+    table.setStyle(TableStyle([
+        ("BACKGROUND",    (0, 0), (-1, 0), colors.HexColor("#64748B")),
+        ("TEXTCOLOR",     (0, 0), (-1, 0), colors.white),
+        ("FONTSIZE",      (0, 0), (-1, -1), 7),
+        ("FONTNAME",      (0, 0), (-1, 0), "Helvetica-Bold"),
+        ("GRID",          (0, 0), (-1, -1), 0.5, _C_BORDER),
+        ("ROWBACKGROUNDS",(0, 1), (-1, -1), [colors.HexColor("#F8FAFC"), colors.white]),
+        ("VALIGN",        (0, 0), (-1, -1), "TOP"),
+        ("TOPPADDING",    (0, 0), (-1, -1), 3),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+        ("LEFTPADDING",   (0, 0), (-1, -1), 4),
+    ]))
+    return [
+        Paragraph("Appendix C — Ignored Discrepancies", heading_style),
+        Spacer(1, 3 * mm),
+        table,
+        Spacer(1, 6 * mm),
+    ]
+
+
+def _build_unresolved_appendix(unresolved_list: list, parts: list, styles) -> list:
+    """Discrepancies the user left without a decision."""
+    cell_style = ParagraphStyle("UnresCell", parent=styles["Normal"], fontSize=7, leading=10)
+    heading_style = ParagraphStyle(
+        "UnresHeading", parent=styles["Heading2"], textColor=colors.HexColor("#B45309")
+    )
+    note_style = ParagraphStyle(
+        "UnresNote", parent=styles["Normal"], fontSize=8, textColor=_C_SUBTLE,
+        spaceAfter=3 * mm, leading=11,
+    )
+    rows = [["Part Name", "Discrepancy", "Materials"]]
+    for item in unresolved_list:
+        name = item.get("canonical_name", "")
+        part_data = next((p for p in parts if p["canonical_name"] == name), None)
+        if not part_data:
+            rows.append([name, "—", "—"])
+            continue
+        discs = [d for d in part_data.get("discrepancies", [])
+                 if d.get("type") != "CS_EXTRACTION_WARNING"]
+        reason = discs[0].get("reason", "—") if discs else "—"
+        mats = " | ".join(
+            f"{s.upper()}: {_shorten_material(_get_material(part_data.get(s)))}"
+            for s in ("cs", "bom", "sap") if part_data.get(s)
+        )
+        rows.append([name, reason, mats or "—"])
+
+    table = Table(
+        [[Paragraph(str(c), cell_style) for c in row] for row in rows],
+        colWidths=[45 * mm, 75 * mm, 50 * mm], repeatRows=1,
+    )
+    table.setStyle(TableStyle([
+        ("BACKGROUND",    (0, 0), (-1, 0), colors.HexColor("#B45309")),
+        ("TEXTCOLOR",     (0, 0), (-1, 0), colors.white),
+        ("FONTSIZE",      (0, 0), (-1, -1), 7),
+        ("FONTNAME",      (0, 0), (-1, 0), "Helvetica-Bold"),
+        ("GRID",          (0, 0), (-1, -1), 0.5, _C_BORDER),
+        ("ROWBACKGROUNDS",(0, 1), (-1, -1), [colors.HexColor("#FFFBEB"), colors.white]),
+        ("VALIGN",        (0, 0), (-1, -1), "TOP"),
+        ("TOPPADDING",    (0, 0), (-1, -1), 3),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+        ("LEFTPADDING",   (0, 0), (-1, -1), 4),
+    ]))
+    return [
+        Paragraph("Appendix D — Unreviewed Discrepancies", heading_style),
+        Paragraph(
+            "These discrepancies were not reviewed during validation. "
+            "They require manual attention before sign-off.",
+            note_style,
+        ),
+        table,
         Spacer(1, 6 * mm),
     ]
 

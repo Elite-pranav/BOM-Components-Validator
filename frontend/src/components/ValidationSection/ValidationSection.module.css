@@ -100,10 +100,48 @@
   font-size: 1rem;
 }
 
+/* Progress bar */
+.progressBar {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+}
+
+.progressStats {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.statConfirmed { color: var(--color-error); }
+.statDismissed { color: var(--color-success); }
+.statIgnored   { color: #64748b; }
+.statPending   { color: var(--color-text-muted); }
+
+.progressTrack {
+  height: 5px;
+  background: var(--color-border-light);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-success));
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* Action bar */
 .actionBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   padding: 1.125rem 1.5rem;
   background: var(--color-surface);
   border-radius: var(--radius-lg);
@@ -111,13 +149,15 @@
   border: 1px solid var(--color-border);
   position: sticky;
   bottom: 1rem;
+  flex-wrap: wrap;
 }
 
-.progress {
-  font-size: 0.825rem;
+.submitNote {
+  font-size: 0.8rem;
   color: var(--color-text-muted);
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
+  font-style: italic;
+  flex: 1;
+  min-width: 0;
 }
 
 .actionBtns {
