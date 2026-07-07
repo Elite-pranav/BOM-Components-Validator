@@ -1,0 +1,1402 @@
+[
+  {
+    "item_number": "0010",
+    "component_number": "8215404",
+    "description": "STRAINER 2 7468 4900 0501 SS304",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "G.A.DRG.NO.:81360161-30 GA.",
+    "text2": "C.S.DRG.NO.:81360161-30 CS.",
+    "sort_string": null
+  },
+  {
+    "item_number": "0020",
+    "component_number": "8288252",
+    "description": "SUC MTH 1000547082 FG260 +COAT",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0030",
+    "component_number": "8288253",
+    "description": "STD DIFF 1000547187 FG260 +COAT",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "DIFFUSER STAGE.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0040",
+    "component_number": "8288254",
+    "description": "DEL DIFF 1000547438 FG260 +COAT",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "DIFFUSER DELY.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0050",
+    "component_number": "8288569",
+    "description": "NECK RING 1000547323 R3 SS410",
+    "quantity": 4,
+    "unit": "PC",
+    "text1": "FOR SUCT BELLMOUTH & DIFFUSER.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0060",
+    "component_number": "3055190603",
+    "description": "S-SOC SET SCR M6X12 A2-21H ISO4029",
+    "quantity": 12,
+    "unit": "PC",
+    "text1": "FOR NECK RING.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0070",
+    "component_number": "8288059",
+    "description": "IMP RH 1000547190 CA6NM COATING",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0080",
+    "component_number": "8236217",
+    "description": "IMP RING 1000547325 CA6NM",
+    "quantity": 4,
+    "unit": "PC",
+    "text1": "FOR IMPELLER.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0090",
+    "component_number": "3055190603",
+    "description": "S-SOC SET SCR M6X12 A2-21H ISO4029",
+    "quantity": 12,
+    "unit": "PC",
+    "text1": "FOR IMP/IMP WEAR RING.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0100",
+    "component_number": "8271903",
+    "description": "BRG BUSH 1 7462 2830 0502 CUT RUB +SS410",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR SUCT BELLMOUTH.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0110",
+    "component_number": "8288497",
+    "description": "BRG BUSH 1 7468 2830 0501 CUTLESS+ SS410",
+    "quantity": 4,
+    "unit": "PC",
+    "text1": "FOR DIFFUSER.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0120",
+    "component_number": "3362740600",
+    "description": "S-CORD 6MM DIA NITRILE HD 80 \u00b1 5 A",
+    "quantity": 6,
+    "unit": "M",
+    "text1": "940 I.DIA -2 NO. PER PUMP.",
+    "text2": "FOR SUCT BELLMOUTH & DIFFUSER.",
+    "sort_string": null
+  },
+  {
+    "item_number": "0130",
+    "component_number": "3350740641",
+    "description": "O RING 635 IDx6 CS NITRILE HD 80\u00b15A",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR DELY DIFFUSER.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0140",
+    "component_number": "8236497",
+    "description": "PUMP SHAFT 1000555348 SS410",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0150",
+    "component_number": "8190962",
+    "description": "P BRG SLV 1 5613 2832 001 SS410",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR SUCT BELLMOUTH.",
+    "text2": "FOR PUMP SHAFT.",
+    "sort_string": null
+  },
+  {
+    "item_number": "0160",
+    "component_number": "8288495",
+    "description": "P BRG SLV 1 7468 2832 0502 SS410",
+    "quantity": 3,
+    "unit": "PC",
+    "text1": "FOR DIFFUSER.",
+    "text2": "FOR PUMP SHAFT.",
+    "sort_string": null
+  },
+  {
+    "item_number": "0170",
+    "component_number": "8288496",
+    "description": "P BRG SLV 1 7468 2832 0503 SS410",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR DELY DIFFUSER(TOP).",
+    "text2": "FOR PUMP SHAFT.",
+    "sort_string": null
+  },
+  {
+    "item_number": "0180",
+    "component_number": "8288060",
+    "description": "SLV 1000555352 SS410",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR PUMP SHAFT-IMP DISTANCE SLV.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0190",
+    "component_number": "8013507",
+    "description": "BER KEY 32X18X240 SS410",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR IMPELLER/PUMP SHAFT.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0200",
+    "component_number": "8246977",
+    "description": "BER KEY 32X18X290 SS410",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR IMPELLER/PUMP SHAFT.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0210",
+    "component_number": "8236229",
+    "description": "LOCK NUT RH 1000547683 SS410",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR PUMP SHAFT.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0220",
+    "component_number": "8206380",
+    "description": "SLV NUT LH 1 7461 3031 0501 SS410",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR PUMP SHAFT.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0230",
+    "component_number": "8208248",
+    "description": "SAND COLL 1 6336 2061 0501 MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR PUMP SHAFT.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0240",
+    "component_number": "3055190810",
+    "description": "SOC SET SCR M8X30 A2-21H ISO4029",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR PUMP SHAFT.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0260",
+    "component_number": "3301192004",
+    "description": "S-STUD AM20X55 A2-50 IS1862",
+    "quantity": 12,
+    "unit": "PC",
+    "text1": "FOR STRAINER/SUCT BELLMOUTH.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0270",
+    "component_number": "3140192000",
+    "description": "S-HEX NUT M20 A2-50 ISO4032",
+    "quantity": 12,
+    "unit": "PC",
+    "text1": "FOR STRAINER/SUCT BELLMOUTH.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0280",
+    "component_number": "3176192000",
+    "description": "S-PL WASHER M20 A2 ISO7089",
+    "quantity": 12,
+    "unit": "PC",
+    "text1": "FOR STRAINER/SUCT BELLMOUTH.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0290",
+    "component_number": "3301192007",
+    "description": "S-STUD AM20X60 A2-50 IS1862",
+    "quantity": 40,
+    "unit": "PC",
+    "text1": "FOR SUCT BELLMOUTH/DIFFUSER.",
+    "text2": "FOR DIFFUSER STG/DIFFUSER DELY.",
+    "sort_string": null
+  },
+  {
+    "item_number": "0300",
+    "component_number": "3140192000",
+    "description": "S-HEX NUT M20 A2-50 ISO4032",
+    "quantity": 40,
+    "unit": "PC",
+    "text1": "FOR SUCT BELLMOUTH/DIFFUSER.",
+    "text2": "FOR DIFFUSER STG/DIFFUSER DELY.",
+    "sort_string": null
+  },
+  {
+    "item_number": "0310",
+    "component_number": "3176192000",
+    "description": "S-PL WASHER M20 A2 ISO7089",
+    "quantity": 40,
+    "unit": "PC",
+    "text1": "FOR SUCT BELLMOUTH/DIFFUSER.",
+    "text2": "FOR DIFFUSER STG/DIFFUSER DELY.",
+    "sort_string": null
+  },
+  {
+    "item_number": "0510",
+    "component_number": "8288198",
+    "description": "R.M.PIPE TAP 3 7468 1161 0504 MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0520",
+    "component_number": "8182038",
+    "description": "R.M.PIPE INT 3 5614 1151 0501 MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "2000 MM",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0525",
+    "component_number": "8218254",
+    "description": "R.M.PIPE INT 3 7470 1151 0504 MS",
+    "quantity": 1,
+    "unit": null,
+    "text1": "1500 MM",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0530",
+    "component_number": "8192496",
+    "description": "BRG BUSH 1 5616 2801 001 SS410+CUTRUB",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR R.M.PIPES.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0540",
+    "component_number": "3362740600",
+    "description": "S-CORD 6MM DIA NITRILE HD 80 \u00b1 5 A",
+    "quantity": 6.7,
+    "unit": "M",
+    "text1": "1050 I.DIA.-2 NOS.-FOR 1 PUMP.",
+    "text2": "FOR R.M.PIPES.",
+    "sort_string": null
+  },
+  {
+    "item_number": "0550",
+    "component_number": "8179837",
+    "description": "INT SHAFT 2 5625 1805 0502 SS410",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "2000 MM",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0555",
+    "component_number": "8183433",
+    "description": "INT SHAFT 2 5660 1805 0501 SS410",
+    "quantity": 1,
+    "unit": null,
+    "text1": "1500 MM",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0560",
+    "component_number": "7972487154",
+    "description": "INT BRG SLV 1 5549 2834 001 R1 SS410",
+    "quantity": 3,
+    "unit": "PC",
+    "text1": "FOR INT SHAFT.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0570",
+    "component_number": "3321233204",
+    "description": "S-BER KEY 32X18X200 SS410",
+    "quantity": 8,
+    "unit": "PC",
+    "text1": "FOR MUFF COUPLING.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0580",
+    "component_number": "7448130154",
+    "description": "MUF COUP 2MP/P-4977/18 R1 SS410",
+    "quantity": 4,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0590",
+    "component_number": "7448138154",
+    "description": "SPT COLL 2MP/P-4977/18 R2 SS410",
+    "quantity": 4,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0600",
+    "component_number": "3055191603",
+    "description": "M-SOC SET SCR M16X20 A2-21H ISO4029",
+    "quantity": 8,
+    "unit": "PC",
+    "text1": "FOR MUFF COUPLING.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0610",
+    "component_number": "3114192408",
+    "description": "S-HEX HD SCR M24X100 A2-50 ISO4017",
+    "quantity": 16,
+    "unit": "PC",
+    "text1": "FOR DIFFUSER/R.M.PIPE TAPER.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0620",
+    "component_number": "3140192400",
+    "description": "S-HEX NUT M24 A2-50 ISO4032",
+    "quantity": 16,
+    "unit": "PC",
+    "text1": "FOR DIFFUSER/R.M.PIPE TAPER.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0630",
+    "component_number": "3176192400",
+    "description": "S-PL WASHER M24 A2 ISO7089",
+    "quantity": 16,
+    "unit": "PC",
+    "text1": "FOR DIFFUSER/R.M.PIPE TAPER.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0640",
+    "component_number": "3114192410",
+    "description": "HEX HD SCR M24X130 A2-50 ISO4017",
+    "quantity": 36,
+    "unit": "PC",
+    "text1": "FOR R.M.PIPES.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0650",
+    "component_number": "3140192400",
+    "description": "S-HEX NUT M24 A2-50 ISO4032",
+    "quantity": 36,
+    "unit": "PC",
+    "text1": "FOR R.M.PIPES.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0660",
+    "component_number": "3176192400",
+    "description": "S-PL WASHER M24 A2 ISO7089",
+    "quantity": 36,
+    "unit": "PC",
+    "text1": "FOR R.M.PIPES.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0670",
+    "component_number": "3301192458",
+    "description": "M-STUD AM24X80 A2-50 IS1862",
+    "quantity": 36,
+    "unit": "PC",
+    "text1": "FOR R.M.PIPE/D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0680",
+    "component_number": "3140192400",
+    "description": "S-HEX NUT M24 A2-50 ISO4032",
+    "quantity": 36,
+    "unit": "PC",
+    "text1": "FOR R.M.PIPE/D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0690",
+    "component_number": "3176192400",
+    "description": "S-PL WASHER M24 A2 ISO7089",
+    "quantity": 36,
+    "unit": "PC",
+    "text1": "FOR R.M.PIPE/D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0700",
+    "component_number": "8288347",
+    "description": "SHAFT RH TOP 2 7468 1803 0504 SS410",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0710",
+    "component_number": "8175333",
+    "description": "GLD SLV 1 7440 2106 001 SS410",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR TOP SHAFT.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0720",
+    "component_number": "3055191004",
+    "description": "S-SOC SET SCR M10X16 A2-21H ISO4029",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR GLAND SLEEVE/TOP SHAFT.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0730",
+    "component_number": "8150130",
+    "description": "S-WATER DEFL 111516PR32 NITRILE(HD70-75)",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR TOP SHAFT.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0740",
+    "component_number": "7441746106",
+    "description": "ADJ RING 1MP/P-4130 R17 MS (120 DIA)",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR FLEX COUPLING.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0750",
+    "component_number": "8263460",
+    "description": "BES KEY 32x18x215 SS410",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR FLEX COUPLING/TOP SHAFT.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "0990",
+    "component_number": "8282072",
+    "description": "BRG HSG S/A 29438E / 130MM / CW / SS304",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "THRUST BRG ASSEMBLY.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1040",
+    "component_number": "8212730",
+    "description": "SOLE PLT 1 5614 4890 0508 R1 MS",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1050",
+    "component_number": "8212731",
+    "description": "SOLE PLT 1 5614 4890 0508 R2 MS",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1060",
+    "component_number": "8288614",
+    "description": "DBMS 3 7468 1041 0505 MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1070",
+    "component_number": "3463010080",
+    "description": "S-HEX PLUG 1/2 BSP 1MP/P-3122 R3 MS",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1080",
+    "component_number": "3463010160",
+    "description": "S-HEX PLUG 1 BSP 1MP/P-3122 R5 MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1090",
+    "component_number": "3301193611",
+    "description": "STUD AM36X100 A2-50 IS1862",
+    "quantity": 20,
+    "unit": "PC",
+    "text1": "FOR SOLE PLATE/D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1100",
+    "component_number": "3140193600",
+    "description": "HEX NUT M36 A2-50 ISO4032",
+    "quantity": 20,
+    "unit": "PC",
+    "text1": "FOR SOLE PLATE/D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1110",
+    "component_number": "3176193600",
+    "description": "PL WASHER M36 A2 ISO7089",
+    "quantity": 20,
+    "unit": "PC",
+    "text1": "FOR SOLE PLATE/D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1120",
+    "component_number": "3301192408",
+    "description": "S-STUD AM24X70 A2-50 IS1862",
+    "quantity": 12,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL/MOTOR.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1130",
+    "component_number": "3140192400",
+    "description": "S-HEX NUT M24 A2-50 ISO4032",
+    "quantity": 12,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL/MOTOR.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1140",
+    "component_number": "3176192400",
+    "description": "S-PL WASHER M24 A2 ISO7089",
+    "quantity": 12,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL/MOTOR.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1150",
+    "component_number": "8163101",
+    "description": "L STF BOX 2 5613 2401 001 FG260",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1160",
+    "component_number": "3350740614",
+    "description": "S-O RING 270 IDx6 CS NITRILE HD 80\u00b15A",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR LOOSE ST BOX.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1170",
+    "component_number": "3463410083",
+    "description": "S-HEX PLUG 1/2 BSP 1MP/P-3122 R3 HTS",
+    "quantity": 3,
+    "unit": "PC",
+    "text1": "FOR LOOSE ST BOX.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1180",
+    "component_number": "7438372500",
+    "description": "BRG BUSH CARR 1MP/P-2155 R1 FG260",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR LOOSE ST BOX.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1190",
+    "component_number": "8191310",
+    "description": "BRG BUSH 1 5568 2801 002 SS410 CUTL RUB",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR ST BOX CARRIER.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1200",
+    "component_number": "3114191204",
+    "description": "S-HEX HD SCR M12X30 A2-50 DIN933",
+    "quantity": 4,
+    "unit": "PC",
+    "text1": "FOR LOOSE ST BOX/ST BOX CARRIER.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1210",
+    "component_number": "3188431200",
+    "description": "S-SC SPRING WASHER M12 SP STEEL DIN7980A",
+    "quantity": 4,
+    "unit": "PC",
+    "text1": "FOR LOOSE ST BOX/ST BOX CARRIER.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1220",
+    "component_number": "3301191204",
+    "description": "S-STUD AM12X45 A2-50 IS1862",
+    "quantity": 6,
+    "unit": "PC",
+    "text1": "FOR LOOSE ST BOX/D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1230",
+    "component_number": "3140191200",
+    "description": "S-HEX NUT M12 A2-50 DIN934",
+    "quantity": 6,
+    "unit": "PC",
+    "text1": "FOR LOOSE ST BOX/D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1240",
+    "component_number": "3176191200",
+    "description": "S-PL WASHER M12 A2 ISO7089",
+    "quantity": 6,
+    "unit": "PC",
+    "text1": "FOR LOOSE ST BOX/D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1250",
+    "component_number": "7438400500",
+    "description": "GLD SPLIT 2MP/P-1437 R1 FG260",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1260",
+    "component_number": "3210211004",
+    "description": "DOWEL PIN 10MMx25 SS316",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR GLAND.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1270",
+    "component_number": "3301193009",
+    "description": "S-STUD AM30X100 A2-50 IS1862",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR GLAND/LOOSE ST BOX.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1280",
+    "component_number": "3140193000",
+    "description": "S-HEX NUT M30 A2-50 ISO4032",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR GLAND/LOOSE ST BOX.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1290",
+    "component_number": "3176193000",
+    "description": "S-PL WASHER M30 A2 ISO7089",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR GLAND/LOOSE ST BOX.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1300",
+    "component_number": "8269481",
+    "description": "GLAND PACKING 25MMSQ GRAPHITED COTTON",
+    "quantity": 320,
+    "unit": "CM",
+    "text1": "X 3200 MM LG.-FOR 1 PUMP.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1310",
+    "component_number": "7438306500",
+    "description": "LOG RING 2MP/P-1795 R1 FG260",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1320",
+    "component_number": "8232248",
+    "description": "COUP FLEX PB 500 P120(32) M200(45) FS",
+    "quantity": 1,
+    "unit": "SET",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1510",
+    "component_number": "8072779",
+    "description": "S-NAME PLATE 1 1453 5600 005 SS304",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1520",
+    "component_number": "3701191001",
+    "description": "S-INDICATOR ARROW STRGT 1MP/P-246 SS304",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": null,
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1530",
+    "component_number": "3262010401",
+    "description": "S-RD HD NPK U RIVET 4X5/16IN ALUM",
+    "quantity": 8,
+    "unit": "PC",
+    "text1": "FOR NAMEPLATE.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1540",
+    "component_number": "8190042",
+    "description": "GUARD 1 5407 4580 027 MS",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1550",
+    "component_number": "8190208",
+    "description": "GUARD 1 5407 4580 028 MS",
+    "quantity": 4,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1560",
+    "component_number": "8190836",
+    "description": "S-Self Tap Scr ST 4.8X19-DIN7504K-MSGALV",
+    "quantity": 24,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL/GUARD.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1570",
+    "component_number": "8150427",
+    "description": "FDBOLT+NUT+WASH M39x750 AX-1059/1 R35 MS",
+    "quantity": 16,
+    "unit": "PC",
+    "text1": "FOR SOLE PLATE.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1580",
+    "component_number": "8012408",
+    "description": "TAP WEDGE PACK 2MP/P-4628 R10 MS",
+    "quantity": 32,
+    "unit": "PC",
+    "text1": "FOR PUMP ERECTION.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1590",
+    "component_number": "8269308",
+    "description": "ALIGN PAD 1 5431 5600 0503 FG 260",
+    "quantity": 4,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1600",
+    "component_number": "8169782",
+    "description": "HEX HD SCR M30X100 A2-50 ISO4017",
+    "quantity": 4,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1605",
+    "component_number": "3046191604",
+    "description": "SOC HD CAP SCR M16X45 A2-50 ISO4762",
+    "quantity": 8,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1610",
+    "component_number": "7545521407",
+    "description": "M-PIPE 1 NBX500L BET 1 BSPX25L CL B MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR GLAND DRAIN CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1620",
+    "component_number": "8012474",
+    "description": "S-PIPE 1 NBX250L BET 1 BSPX25L CL B MS",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR AIR VENT CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1630",
+    "component_number": "3445010160",
+    "description": "S-EQUAL ELBOW 1 BSP (F) 90 DEG MS",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR AIR VENT CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1640",
+    "component_number": "3484010160",
+    "description": "S-HEX NIPPLE 1 BSP (M) MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR AIR VENT CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1650",
+    "component_number": "3157411600",
+    "description": "S-HEX LOCK NUT 1 BSP HTS BL",
+    "quantity": 4,
+    "unit": "PC",
+    "text1": "FOR AIR VENT CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1660",
+    "component_number": "3403610160",
+    "description": "S-GATE VALVE 1 BSP (F) GM",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR AIR VENT CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1670",
+    "component_number": "7545521228",
+    "description": "S-PIPE 1/2 NBX450L BET 1/2 BSPX25 CLB MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR LEAK OFF CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1680",
+    "component_number": "7545521233",
+    "description": "PIPE 1/2 NBX1070LBET1/2 BSPX30 CLB MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR LEAK OFF CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1690",
+    "component_number": "3404610080",
+    "description": "S-ANGLE WHEEL VALVE 1/2 BSP (F) GM",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR LEAK OFF CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1700",
+    "component_number": "3157410800",
+    "description": "S-HEX LOCK NUT 1/2 BSP HTS BL",
+    "quantity": 3,
+    "unit": "PC",
+    "text1": "FOR LEAK OFF CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1710",
+    "component_number": "7545521222",
+    "description": "PIPE 1/2 NBX650LBET1/2 BSPX25L CLB MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG LUB OIL INLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1720",
+    "component_number": "3445010080",
+    "description": "S-EQUAL ELBOW 1/2 BSP (F) 90 DEG MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG LUB OIL INLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1730",
+    "component_number": "3468030080",
+    "description": "S-OIL FILLER PLUG 1/2 BSP MS CRPL",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG LUB OIL INLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1740",
+    "component_number": "3157410800",
+    "description": "S-HEX LOCK NUT 1/2 BSP HTS BL",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR BRG LUB OIL INLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1750",
+    "component_number": "7545521221",
+    "description": "S-PIPE 1/2 NBX150L BET 1/2 BSPX25 CLB MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG LUB OIL OUTLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1760",
+    "component_number": "7545521215",
+    "description": "PIPE 1/2 NBX760LBET1/2 BSPX25L CLB MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG LUB OIL OUTLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1770",
+    "component_number": "3445010080",
+    "description": "S-EQUAL ELBOW 1/2 BSP (F) 90 DEG MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG LUB OIL OUTLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1780",
+    "component_number": "3403610082",
+    "description": "S-GATE VALVE 1/2 BSP (F) GM",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG LUB OIL OUTLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1790",
+    "component_number": "3157410800",
+    "description": "S-HEX LOCK NUT 1/2 BSP HTS BL",
+    "quantity": 4,
+    "unit": "PC",
+    "text1": "FOR BRG LUB OIL OUTLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1800",
+    "component_number": "8190573",
+    "description": "ADPT 1MP/P-3051 R3 SS304",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER INLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1810",
+    "component_number": "3404610080",
+    "description": "S-ANGLE WHEEL VALVE 1/2 BSP (F) GM",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER INLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1820",
+    "component_number": "3445010095",
+    "description": "EQUAL ELBOW 1/2 NB 90 DEG SOC WELD MS",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER INLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1830",
+    "component_number": "8018034",
+    "description": "FLG PIPE 1MP-98/56 (R17X & 17Y) MS",
+    "quantity": 3,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER INLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1840",
+    "component_number": "8231721",
+    "description": "FLG PIPE 1MP-98/56 R20 MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER INLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1850",
+    "component_number": "8149367",
+    "description": "FLG PIPE 1MP-98/47 R9 MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER INLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1860",
+    "component_number": "8163568",
+    "description": "FLG PIPE 1MP-98/47 R20 MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER INLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1870",
+    "component_number": "1501010082",
+    "description": "PIPE 1/2 NB CLASS B MS",
+    "quantity": 1,
+    "unit": "M",
+    "text1": "FOR BRG COOLING WATER INLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1880",
+    "component_number": "8033542",
+    "description": "HEX HD SCR M12X50 A2-50 DIN933",
+    "quantity": 12,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER INLET CONN.",
+    "text2": "FOR FLANGE JOINTS.",
+    "sort_string": null
+  },
+  {
+    "item_number": "1890",
+    "component_number": "3140191200",
+    "description": "S-HEX NUT M12 A2-50 DIN934",
+    "quantity": 12,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER INLET CONN.",
+    "text2": "FOR FLANGE JOINTS.",
+    "sort_string": null
+  },
+  {
+    "item_number": "1900",
+    "component_number": "3176191200",
+    "description": "S-PL WASHER M12 A2 ISO7089",
+    "quantity": 12,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER INLET CONN.",
+    "text2": "FOR FLANGE JOINTS.",
+    "sort_string": null
+  },
+  {
+    "item_number": "1910",
+    "component_number": "8189449",
+    "description": "FLG GAS AF120 3T 1/2 NB ANSI 150 RF",
+    "quantity": 3,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER INLET CONN.",
+    "text2": "FOR FLANGE JOINTS.",
+    "sort_string": null
+  },
+  {
+    "item_number": "1920",
+    "component_number": "3404610080",
+    "description": "S-ANGLE WHEEL VALVE 1/2 BSP (F) GM",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER OUTLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1930",
+    "component_number": "3445010095",
+    "description": "EQUAL ELBOW 1/2 NB 90 DEG SOC WELD MS",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER OUTLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1940",
+    "component_number": "8018034",
+    "description": "FLG PIPE 1MP-98/56 (R17X & 17Y) MS",
+    "quantity": 3,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER OUTLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1950",
+    "component_number": "8149367",
+    "description": "FLG PIPE 1MP-98/47 R9 MS",
+    "quantity": 1,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER OUTLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1960",
+    "component_number": "1501010082",
+    "description": "PIPE 1/2 NB CLASS B MS",
+    "quantity": 0.35,
+    "unit": "M",
+    "text1": "FOR BRG COOLING WATER OUTLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1970",
+    "component_number": "1501010082",
+    "description": "PIPE 1/2 NB CLASS B MS",
+    "quantity": 0.9,
+    "unit": "M",
+    "text1": "FOR BRG COOLING WATER OUTLET CONN.",
+    "text2": null,
+    "sort_string": null
+  },
+  {
+    "item_number": "1980",
+    "component_number": "8033542",
+    "description": "HEX HD SCR M12X50 A2-50 DIN933",
+    "quantity": 8,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER OUTLET CONN.",
+    "text2": "FOR FLANGE JOINTS.",
+    "sort_string": null
+  },
+  {
+    "item_number": "1990",
+    "component_number": "3140191200",
+    "description": "S-HEX NUT M12 A2-50 DIN934",
+    "quantity": 8,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER OUTLET CONN.",
+    "text2": "FOR FLANGE JOINTS.",
+    "sort_string": null
+  },
+  {
+    "item_number": "2000",
+    "component_number": "3176191200",
+    "description": "S-PL WASHER M12 A2 ISO7089",
+    "quantity": 8,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER OUTLET CONN.",
+    "text2": "FOR FLANGE JOINTS.",
+    "sort_string": null
+  },
+  {
+    "item_number": "2010",
+    "component_number": "8189449",
+    "description": "FLG GAS AF120 3T 1/2 NB ANSI 150 RF",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR BRG COOLING WATER OUTLET CONN.",
+    "text2": "FOR FLANGE JOINTS.",
+    "sort_string": null
+  },
+  {
+    "item_number": "2020",
+    "component_number": "8219081",
+    "description": "WILO LOGO STICKER SIZE 310 X 140 MM",
+    "quantity": 2,
+    "unit": "PC",
+    "text1": "FOR D BEND & M STOOL.",
+    "text2": null,
+    "sort_string": null
+  }
+]

@@ -40,12 +40,30 @@
   letter-spacing: -0.01em;
 }
 
+.brand {
+  flex: 1;
+}
+
 .subtitle {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.55);
   font-weight: 400;
   margin-top: 1px;
 }
+
+.nomBtn {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.nomBtn:hover { background: rgba(255, 255, 255, 0.22); }
 
 @media (max-width: 768px) {
   .inner {

@@ -1,61 +1,50 @@
 """
-Part comparison engine for the BOM Components Validator.
+Part comparison engine for the BOM Components Validator — rebuilt.
 
-Architecture — two-pass design:
+Two stages instead of the old rigid+Gemini tangle:
 
-  Pass 1 (Rigid): Deterministic, rule-based.
-    - Uses semantic family equivalence from materials.py (SS410T = SS410, CA15 = SS410).
-    - Applies the authority model: SAP > CS > BOM for material truth.
-    - Applies coating resolution: if SAP metadata says coating required, BOM
-      coating flag is expected and never causes a mismatch.
-    - Applies CS sanity check: if CS assigns a consumable material to a
-      structural part, that CS value is excluded from comparison and a
-      WARNING is added instead.
-    - Absence rules: SAP absent = always OK. BOM absent = OK for non-major parts.
-    - Quantity comparison is intentionally skipped: BOM sub-variants make
-      quantity comparison unreliable at this stage.
-    - Goal: clear ~90% of parts deterministically, with consistent results
-      on every run for the same input data.
+  STAGE 1 — Deterministic (unchanged philosophy, kept lean)
+    Name-match parts across CS / BOM / SAP via the nomenclature resolver, then
+    compare materials with materials.py (family equivalence + coating + the
+    SAP > CS > BOM authority model). A part is CLEARED here — no LLM — only when
+    it is fully consistent: materials agree (or nothing to compare) AND there is
+    no presence concern given each document's purpose. Target: ~90% cleared,
+    identical on every run.
 
-  Pass 2 (LLM): Only genuine alloy family conflicts.
-    - Only parts where two or more sources have material data AND their
-      resolved families are genuinely different reach this pass.
-    - Estimated: 2-5 parts per pump (vs ~15 in previous version).
-    - Uses Gemini free tier — small batch, well within rate limits.
+  STAGE 2 + 3 — One rich GPT-5.5 call (only the leftovers)
+    Everything Stage 1 could not clear — material mismatches, presence
+    asymmetries, and the unresolved (name-unmatched) items from all three
+    sources — goes to a single, exhaustive GPT-5.5 call that:
+      • reconciles unmatched names that refer to the SAME physical part
+        (proposals only; they become permanent aliases only when a human
+         agrees, via apply_validation);
+      • judges PRESENCE discrepancies using document PURPOSE, not naive diffing:
+          - BOM is the superset — anything real should be in BOM.
+          - CS ⊆ BOM — CS holds integral assembled parts; a CS part absent
+            from BOM is a flag.
+          - SAP carries only its fixed keyed characteristics — absence outside
+            that set is NEVER a flag.
+          - "integral" = wetted/structural path (from nomenclature 'type').
+      • judges MATERIAL discrepancies with authority SAP > CS > BOM.
+    It is GROUNDED: it only judges extractor-provided values; it never invents
+    a material. If the API is unavailable, a conservative deterministic fallback
+    flags unresolved mismatches for manual review (never silently clears).
 
-Authority model:
-  SAP  — authoritative for material of ~20 key wetted parts.
-          Absence from SAP is always expected and never flagged.
-  CS   — authoritative for part identity and presence of structural parts.
-          Material is ground truth when SAP is absent.
-          CS material is excluded if it looks like a consumable on a structural part
-          (extraction error indicator).
-  BOM  — authoritative for quantities and sub-variants.
-          Material is abbreviated and secondary; used for confirmation only.
-          Absence from BOM is OK for non-major parts.
-
-Report guidance stored per part:
-  When a mismatch is found, the "authority" field indicates which document
-  holds the correct value, enabling the report to say e.g.:
-  "BOM appears incorrect — CS and SAP both say CI FG260."
+The output contract (comparison_results.json), the unresolved list, and the
+apply_validation alias-learning flow are unchanged.
 """
 
 import json
 import logging
 import re
-import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-import google.generativeai as genai
-
 from backend import config
 from backend.materials import (
-    get_material_family,
     is_consumable_material,
     is_coating_brand,
     load_part_type_sets,
-    normalize_for_rigid_comparison,
     rigid_materials_match,
     MAJOR_WETTED_PARTS,
     STRUCTURAL_PART_NAMES,
@@ -65,8 +54,25 @@ logger = logging.getLogger(__name__)
 
 NOMENCLATURE_PATH = config.BACKEND_DIR / "nomenclature.json"
 
-# ── BOM description: part prefix abbreviations (longest first) ──────────────
+# ── SAP domain knowledge ────────────────────────────────────────────────────
+# SAP is a customer sales/design note. Its material characteristics are a FIXED
+# vocabulary of function-named keys. A canonical part is "expected in SAP" only
+# if it resolves from one of these keys; absence of anything else from SAP is
+# never a discrepancy. (Resolved to canonical names at runtime via nomenclature.)
+SAP_MATERIAL_KEYS = [
+    "Suc Bell Mouth", "Diffuser Moc", "Strainer", "Impeller", "Imp Wear Ring",
+    "Neck Ring", "Shaft", "Top Shaft", "Int Shaft", "Pump Brg Sleeve",
+    "Int Sleeve", "Delivery Bend / Tee", "Motor Stool", "Gland", "Gland Sleeve",
+    "Muff Coupling", "Column Pipe", "Logging Ring", "Bearing bush",
+    "St Box Packing", "Coupling Moc", "Non Wetted Fasteners", "Wetted Fasteners",
+]
+# SAP values that are placeholders, not real materials — treated as "not specified".
+SAP_PLACEHOLDER_VALUES = {
+    "NOT APPLICABLE", "NA", "N/A", "M&P STANDARD", "M&P STD", "M&P",
+    "STANDARD", "NONE", "-", "",
+}
 
+# ── BOM description: part prefix abbreviations (longest first) ───────────────
 _BOM_PART_PREFIXES = sorted([
     'STRAINER', 'SUC MTH', 'DIFF', 'TAP CON PC', 'TAP CON',
     'NECK RING', 'IMP WEAR RING', 'IMP N/CAP', 'IMP DIST SLV', 'IMP',
@@ -81,90 +87,84 @@ _BOM_PART_PREFIXES = sorted([
 ], key=len, reverse=True)
 
 
-# ── LLM Prompt ────────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════
+# LLM prompt (Stages 2+3) — one exhaustive call
+# ═══════════════════════════════════════════════════════════════════════════
 
-LLM_EVALUATION_PROMPT = """\
-You are a senior pump engineering specialist and metallurgist reviewing \
-material data for a vertical turbine pump.
+LLM_SYSTEM = """You are a senior vertical-turbine-pump engineer and metallurgist auditing \
+part data across three DIFFERENT documents for ONE pump. The documents exist for different \
+purposes and are NOT expected to be identical. Your job is to flag only GENUINE discrepancies.
 
-═══════════════════════════════════════════════════════════
-PUMP CONTEXT
-═══════════════════════════════════════════════════════════
-Pump model : {pump_name}
-Stages     : {stages}
+DOCUMENT PURPOSES (this governs presence judgments):
+- BOM  : the manufacturing bill of materials. The SUPERSET — every real part, large or
+         small, should appear here. Missing-from-BOM is the strongest signal.
+- CS   : the cross-section engineering drawing. Holds the pump's INTEGRAL assembled parts
+         (wetted/structural path). Rule: CS ⊆ BOM. A CS part absent from BOM is a flag.
+- SAP  : a customer sales/design note. Carries ONLY a fixed set of keyed characteristic
+         materials (the ~20 "sap_expected" parts). It is NOT a parts list. A part being
+         absent from SAP is NEVER a discrepancy unless that part is one SAP is expected to
+         carry (sap_expected=true).
 
-These parts have ALREADY passed a deterministic normalization check and \
-still show a genuine family conflict. Your job is to determine if the \
-conflict is a real engineering discrepancy or a known acceptable variant.
+TWO DISCREPANCY TYPES:
+1. MATERIAL_MISMATCH — the same part appears in 2+ docs but the base ALLOY FAMILIES
+   genuinely differ (after the equivalences below). Authority for material truth:
+   SAP > CS > BOM. Identify which document holds the wrong value.
+2. MISSING — a part is absent from a document whose PURPOSE says it should be there
+   (integral part missing from CS or BOM; a part in CS missing from BOM). Never flag an
+   absence that is natural to a document's purpose.
 
-Documents:
-  CS  — Cross-Section engineering drawing (material ground truth for wetted parts)
-  BOM — Bill of Materials SAP export (material is abbreviated, secondary reference)
-  SAP — SAP Configurator (authoritative for ~20 key wetted parts; absent for others)
+MATERIAL EQUIVALENCE (already applied deterministically — do NOT re-flag these):
+  SS410 = SS410T = SS410H = CA15 ;  CF8M = CF3M = SS316 ;
+  MS = M.S. = WCB = IS:2062/E250 ;  FG260 = CI IS 210 GR FG260 = CI ;
+  CUTLESS RUBBER + SS410 = SS410 (composite: shell alloy governs).
+  Coating (+ COATING) is NOT a material difference when coating_required=true.
+  "Forged Steel" in SAP for a coupling/shaft is a known generic configurator entry — treat
+  as compatible with SS410, NOT a mismatch.
+Only flag when the BASE ALLOY FAMILIES are truly different (e.g. SS410 vs HTS, FG260 vs MS,
+CA6NM vs GGG50, CF8M vs SS410 where not a documented dual-spec).
 
-═══════════════════════════════════════════════════════════
-AUTHORITY RULE
-═══════════════════════════════════════════════════════════
-When sources disagree, apply this priority:
-  1. If SAP and CS agree → they are correct. BOM is wrong. Flag BOM.
-  2. If SAP and BOM agree but CS differs → SAP+BOM are correct. Flag CS.
-  3. If only CS and BOM disagree (SAP absent) → flag for manual review.
-  4. "Forged Steel" in SAP for Muff Coupling or shaft components is a known
-     SAP configurator generic entry — it does NOT conflict with SS410 in CS/BOM.
-     Clear this as a false positive.
+NAME RECONCILIATION:
+  Some leftover names did not match by dictionary. Using pump-domain knowledge, decide which
+  refer to the SAME physical part across documents despite different naming (e.g. CS
+  "DELIVERY BEND & MOTOR STOOL" ≈ BOM "DBMS" ≈ SAP "Delivery Bend / Tee" + "Motor Stool").
+  Propose these as reconciliations. They are PROPOSALS for human confirmation, not facts.
 
-═══════════════════════════════════════════════════════════
-MATERIAL EQUIVALENCE (already applied — only genuine conflicts reach you)
-═══════════════════════════════════════════════════════════
-The following are already cleared before this prompt:
-  SS410T = SS410, SS410H = SS410, CA15 = SS410
-  CF8M = SS316, CF3M = SS316
-  MS = M.S. = M.S. IS:2062 = M.S. IS:2062 GR-B = WCB
-  FG260 = CI IS 210 GR FG260 = CI FG260
-  CUTLESS RUBBER + SS410 = SS410 (composite: shell material is SS410)
+GROUNDING RULES (critical):
+  - Judge ONLY the materials/values given to you. NEVER invent a material.
+  - correct_material must be one of the values actually present for that part, or null.
+  - Default bias is CLEAR. Flag only genuine engineering problems.
+"""
 
-Only flag if the BASE ALLOY FAMILIES are genuinely different:
-  SS410 vs HTS  → FLAG
-  FG260 vs MS   → FLAG
-  CA6NM vs GGG50 → FLAG
-  SS410 vs Forged Steel in SAP for couplings → CLEAR (known SAP generic entry)
-
-═══════════════════════════════════════════════════════════
-PARTS TO EVALUATE
-═══════════════════════════════════════════════════════════
-
-{parts_text}
-
-═══════════════════════════════════════════════════════════
-RESPONSE FORMAT
-═══════════════════════════════════════════════════════════
-Return ONLY a raw JSON array. No markdown, no code fences, no explanation outside JSON.
-
-For every part:
-{{
-  "part": "<canonical part name — exactly as given>",
-  "status": "CLEAR" or "FLAGGED",
-  "authority": "CS" | "SAP" | "BOM" | "CS+SAP" | "SAP+BOM" | "MANUAL_REVIEW",
-  "correct_material": "<the material that should be used, or null if unclear>",
-  "discrepancies": [
-    {{
-      "type": "MATERIAL_MISMATCH | COATING_MISMATCH | MISSING",
-      "source_in_error": "CS" | "BOM" | "SAP" | "UNKNOWN",
-      "reason": "<one concise sentence: what is wrong and which document is incorrect>"
-    }}
+LLM_INSTRUCTIONS = """Return ONLY a JSON object (no prose, no code fences) with this shape:
+{
+  "verdicts": [
+    {
+      "part": "<canonical part name, exactly as given>",
+      "status": "CLEAR" | "FLAGGED",
+      "authority": "CS" | "SAP" | "BOM" | "CS+SAP" | "SAP+BOM" | "CS+BOM" | "MANUAL_REVIEW",
+      "correct_material": "<a value present for this part, or null>",
+      "discrepancies": [
+        {"type": "MATERIAL_MISMATCH" | "MISSING",
+         "source_in_error": "CS" | "BOM" | "SAP" | "UNKNOWN",
+         "reason": "<one concise sentence naming what is wrong and in which document>"}
+      ],
+      "explanation": "<one sentence: why CLEAR, or the real problem>"
+    }
   ],
-  "explanation": "<one sentence: why CLEAR or what the real problem is>"
-}}
-
-Rules:
-  - "discrepancies" must be [] when status is CLEAR
-  - "authority" must always be populated
-  - Default bias is CLEAR — only flag genuine engineering problems
-  - For FLAGGED parts, "source_in_error" must identify which document has the wrong value
+  "reconciliations": [
+    {"canonical": "<existing canonical name or best label>",
+     "same_as": [{"source": "cs|bom|sap", "name": "<unresolved name>"}],
+     "confidence": "high" | "medium" | "low",
+     "reason": "<why these are the same physical part>"}
+  ]
+}
+Rules: discrepancies=[] when status=CLEAR. Every evaluated part needs a verdict.
 """
 
 
-# ── Nomenclature ─────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════
+# Nomenclature
+# ═══════════════════════════════════════════════════════════════════════════
 
 class Nomenclature:
     def __init__(self, path: Path | None = None):
@@ -185,7 +185,7 @@ class Nomenclature:
             f.write(content)
         tmp.replace(self.path)
 
-    def _build_reverse_map(self) -> dict[str, str]:
+    def _build_reverse_map(self) -> dict:
         rev = {}
         for canonical, info in self.data.items():
             rev[canonical.upper()] = canonical
@@ -193,7 +193,7 @@ class Nomenclature:
                 rev[alias.upper()] = canonical
         return rev
 
-    def resolve(self, name: str) -> str | None:
+    def resolve(self, name: str):
         if not name:
             return None
         return self._reverse.get(name.strip().upper())
@@ -201,26 +201,24 @@ class Nomenclature:
     def add_alias(self, canonical: str, new_alias: str):
         if canonical not in self.data:
             self.data[canonical] = {"aliases": []}
-        aliases = self.data[canonical]["aliases"]
+        aliases = self.data[canonical].setdefault("aliases", [])
         if new_alias not in aliases:
             aliases.append(new_alias)
             self._reverse[new_alias.upper()] = canonical
             self._save()
-            logger.info(f"Added alias '{new_alias}' → '{canonical}'")
+            logger.info(f"Added alias '{new_alias}' -> '{canonical}'")
 
-    def get_all_canonical(self) -> list[str]:
+    def get_all_canonical(self) -> list:
         return sorted(self.data.keys())
 
 
-# ── Main Entry Point ──────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════
+# Main entry point
+# ═══════════════════════════════════════════════════════════════════════════
 
 def compare(identifier: str, processed_dir: Path) -> dict:
-    """Compare parts across CS, BOM, and SAP using two-pass logic."""
+    """Compare parts across CS, BOM, SAP: deterministic Stage 1 + one GPT-5.5 call."""
     nomenclature = Nomenclature()
-
-    # Load part type sets from nomenclature (wetted_structural, structural, etc.)
-    # This must happen before any comparison so MAJOR_WETTED_PARTS and
-    # STRUCTURAL_PART_NAMES are populated for this pump's nomenclature file.
     load_part_type_sets(nomenclature.path)
 
     cs_data  = _load_json(processed_dir / "cs_bom.json",   default=[])
@@ -231,64 +229,48 @@ def compare(identifier: str, processed_dir: Path) -> dict:
     bom_parts, bom_unresolved = _normalize_bom(bom_data, nomenclature)
     sap_parts, sap_unresolved, sap_metadata = _normalize_sap(sap_data, nomenclature)
 
-    # Resolve coating requirement from SAP metadata once, pass to all comparisons
     coating_required = _resolve_coating_requirement(sap_metadata)
-    stages = _parse_stages(sap_metadata.get("No of Stages", "1"))
+
+    # canonical part names SAP is EXPECTED to carry (resolve SAP's fixed keys)
+    sap_expected = {
+        c for c in (nomenclature.resolve(k) for k in SAP_MATERIAL_KEYS) if c
+    }
 
     all_canonical = sorted(
-        set(cs_parts.keys()) | set(bom_parts.keys()) | set(sap_parts.keys())
+        set(cs_parts) | set(bom_parts) | set(sap_parts)
     )
 
-    # ── Phase 1: Build context per part ───────────────────────────────────
-    all_parts = []
-    for canonical in all_canonical:
-        ctx = _build_part_context(
-            canonical, cs_parts, bom_parts, sap_parts,
-            coating_required=coating_required,
-            stages=stages,
-        )
-        all_parts.append(ctx)
+    # ── Phase 1: build per-part context ───────────────────────────────────
+    all_parts = [
+        _build_part_context(c, cs_parts, bom_parts, sap_parts,
+                            coating_required=coating_required,
+                            sap_expected=(c in sap_expected))
+        for c in all_canonical
+    ]
 
-    # ── Phase 2: Rigid pass ───────────────────────────────────────────────
-    clear_parts = []
-    needs_llm   = []
+    # ── Phase 2: Stage 1 deterministic clear ──────────────────────────────
+    clear_parts, needs_llm = [], []
     for ctx in all_parts:
-        result = _rigid_evaluate(ctx)
-        if result["clear"]:
+        if _stage1_clear(ctx):
             ctx["discrepancies"] = []
-            ctx["rigid_result"]  = result
             clear_parts.append(ctx)
         else:
-            ctx["rigid_result"] = result
             needs_llm.append(ctx)
 
-    logger.info(
-        f"Rigid pass: {len(clear_parts)} clear, {len(needs_llm)} need LLM review"
-    )
+    logger.info(f"Stage 1: {len(clear_parts)} cleared, {len(needs_llm)} to LLM")
 
-    # ── Phase 3: LLM evaluation (only genuine family conflicts) ────────────
-    if needs_llm:
-        _llm_evaluate_all(needs_llm, sap_metadata)
+    unresolved = _dedupe_unresolved(cs_unresolved + bom_unresolved + sap_unresolved)
 
-    # ── Assemble results ──────────────────────────────────────────────────
+    # ── Phase 3: Stage 2+3 single LLM call ────────────────────────────────
+    reconciliations = []
+    if needs_llm or unresolved:
+        reconciliations = _llm_stage23(needs_llm, unresolved, sap_metadata, sap_expected)
+
+    # ── Assemble output (unchanged contract) ──────────────────────────────
     parts_comparison = sorted(
         [_clean_for_output(p) for p in clear_parts + needs_llm],
         key=lambda p: p["canonical_name"],
     )
-
-    # Deduplicate unresolved list by (source, original_name) to prevent the
-    # same part name appearing multiple times when a CS drawing lists the same
-    # part description across multiple rows (different refs or quantities).
-    # Keep first occurrence of each unique (source, original_name) pair.
-    seen_unresolved = set()
-    deduped_unresolved = []
-    for u in cs_unresolved + bom_unresolved + sap_unresolved:
-        key = (u.get("source", ""), u.get("original_name", "").upper().strip())
-        if key not in seen_unresolved:
-            seen_unresolved.add(key)
-            deduped_unresolved.append(u)
-    unresolved = deduped_unresolved
-
     total_discrepancies = sum(len(p["discrepancies"]) for p in parts_comparison)
 
     results = {
@@ -301,601 +283,326 @@ def compare(identifier: str, processed_dir: Path) -> dict:
         },
         "parts": parts_comparison,
         "unresolved": unresolved,
+        "reconciliations": reconciliations,   # LLM name-match proposals (for review)
         "sap_metadata": sap_metadata,
     }
 
-    output_path = processed_dir / "comparison_results.json"
-    with open(output_path, "w") as f:
+    with open(processed_dir / "comparison_results.json", "w") as f:
         json.dump(results, f, indent=2)
-
-    logger.info(
-        f"Comparison complete for {identifier}: "
-        f"{len(all_canonical)} parts, {total_discrepancies} discrepancies"
-    )
+    logger.info(f"Comparison complete for {identifier}: "
+                f"{len(all_canonical)} parts, {total_discrepancies} discrepancies")
     return results
 
 
-# ── Normalization ─────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════
+# Normalization  (CS / BOM / SAP  ->  {canonical: {present, material, ...}})
+# ═══════════════════════════════════════════════════════════════════════════
 
-def _clean_cs_description(desc: str) -> list[str]:
-    """
-    Generate lookup candidates from a raw CS drawing description string.
-
-    CS drawings from different pump families use varying conventions:
-      - Trailing dots:           "PUMP SHAFT."  -> "PUMP SHAFT"
-      - Parenthetical locations: "BEARING BUSH. (PUMP)" -> "BEARING BUSH"
-      - Abbreviations with dots: "BRG. HOUSING." -> "BRG. HOUSING" / "BRG HOUSING"
-
-    Returns a list of candidates to try in order (most specific first).
-    The nomenclature resolver tries each until one matches.
-    """
-    import re as _re
-    candidates = []
-
-    # Candidate 1: original (already stripped of outer whitespace)
-    candidates.append(desc)
-
-    # Candidate 2: strip trailing dot(s) and spaces
+def _clean_cs_description(desc: str) -> list:
+    candidates = [desc]
     stripped = desc.rstrip(". ").strip()
     if stripped != desc:
         candidates.append(stripped)
-
-    # Candidate 3: strip parenthetical suffix e.g. "(PUMP)", "(MOTOR HALF)", "(IMP)"
-    # This handles: "BEARING BUSH. (PUMP)." -> "BEARING BUSH"
-    no_paren = _re.sub(r"[\s]*[(][^)]*[)]\.?$", "", stripped).strip().rstrip(". ").strip()
+    no_paren = re.sub(r"[\s]*[(][^)]*[)]\.?$", "", stripped).strip().rstrip(". ").strip()
     if no_paren and no_paren not in candidates:
         candidates.append(no_paren)
-
-    # Candidate 4: normalize internal dots in abbreviations
-    # "BRG. HOUSING." -> "BRG HOUSING"
-    no_abbrev_dots = _re.sub(r"[.][ ]+", " ", no_paren).strip()
-    if no_abbrev_dots and no_abbrev_dots not in candidates:
-        candidates.append(no_abbrev_dots)
-
+    no_abbrev = re.sub(r"[.][ ]+", " ", no_paren).strip()
+    if no_abbrev and no_abbrev not in candidates:
+        candidates.append(no_abbrev)
     return candidates
 
 
-def _normalize_cs(cs_data: list, nom: Nomenclature) -> tuple[dict, list]:
-    parts      = {}
-    unresolved = []
-
+def _normalize_cs(cs_data: list, nom: Nomenclature) -> tuple:
+    parts, unresolved = {}, []
     for entry in cs_data:
         desc = (entry.get("description") or "").strip()
         if not desc or desc.upper() in ("DESCRIPTION", "REF.", "MATERIAL."):
             continue
         if _is_fastener_or_generic(desc):
             continue
-
-        # Try multiple cleaned candidates before giving up
         canonical = None
-        for candidate in _clean_cs_description(desc):
-            canonical = nom.resolve(candidate) or _try_partial_resolve(candidate, nom)
+        for cand in _clean_cs_description(desc):
+            canonical = nom.resolve(cand) or _try_partial_resolve(cand, nom)
             if canonical:
                 break
-
         if canonical:
             if canonical not in parts:
                 raw_mat = entry.get("material")
-
-                # CS sanity check: flag consumable material or coating brand
-                # on a structural part — both indicate a CS extraction error.
-                cs_extraction_warning = None
+                warning = None
+                # CS sanity: consumable/coating brand on a structural part = extraction error
                 if canonical in STRUCTURAL_PART_NAMES and raw_mat:
                     if is_consumable_material(raw_mat):
-                        cs_extraction_warning = (
-                            f"CS extraction suspect: '{raw_mat}' looks like a consumable "
-                            f"material assigned to structural part '{canonical}'. "
-                            f"Likely a PDF row-span extraction error. "
-                            f"CS material excluded from comparison."
-                        )
+                        warning = (f"CS extraction suspect: '{raw_mat}' is a consumable on "
+                                   f"structural part '{canonical}'; excluded from comparison.")
                     elif is_coating_brand(raw_mat):
-                        cs_extraction_warning = (
-                            f"CS extraction suspect: '{raw_mat}' looks like a coating "
-                            f"product name, not a base material grade, for structural "
-                            f"part '{canonical}'. Likely the extractor captured a coating "
-                            f"annotation instead of the alloy code. "
-                            f"CS material excluded from comparison."
-                        )
-                    if cs_extraction_warning:
-                        logger.warning(cs_extraction_warning)
-                        raw_mat = None  # Exclude from comparison
-
-                parts[canonical] = {
-                    "present":  True,
-                    "material": raw_mat,
-                    "qty":      entry.get("qty"),
-                    "cs_extraction_warning": cs_extraction_warning,
-                }
+                        warning = (f"CS extraction suspect: '{raw_mat}' is a coating brand on "
+                                   f"structural part '{canonical}'; excluded from comparison.")
+                    if warning:
+                        logger.warning(warning); raw_mat = None
+                parts[canonical] = {"present": True, "material": raw_mat,
+                                    "qty": entry.get("qty"), "cs_extraction_warning": warning}
         else:
-            unresolved.append({
-                "source":        "cs",
-                "original_name": desc,
-                "ref":           entry.get("ref"),
-            })
-
+            unresolved.append({"source": "cs", "original_name": desc, "ref": entry.get("ref")})
     return parts, unresolved
 
 
-def _normalize_bom(bom_data: list, nom: Nomenclature) -> tuple[dict, list]:
-    parts      = {}
-    unresolved = []
-
+def _normalize_bom(bom_data: list, nom: Nomenclature) -> tuple:
+    parts, unresolved = {}, []
     for entry in bom_data:
         desc = (entry.get("description") or "").strip()
         if not desc:
             continue
-
         prefix = _extract_bom_prefix(desc)
-        if not prefix:
-            continue
-
-        canonical = nom.resolve(prefix) or _try_partial_resolve(prefix, nom)
+        canonical = None
+        if prefix:
+            canonical = nom.resolve(prefix) or _try_partial_resolve(prefix, nom)
         if not canonical:
             canonical = nom.resolve(desc) or _try_partial_resolve(desc, nom)
-
         if not canonical:
-            unresolved.append({
-                "source":        "bom",
-                "original_name": desc,
-                "item_number":   entry.get("item_number"),
-            })
+            unresolved.append({"source": "bom", "original_name": desc,
+                               "item_number": entry.get("item_number")})
             continue
-
         material, has_coating = _extract_material_from_bom_desc(desc)
-
         if canonical not in parts:
-            parts[canonical] = {
-                "present":  True,
-                "material": material,
-                "qty":      entry.get("quantity"),
-                "coating":  has_coating,
-            }
-
+            parts[canonical] = {"present": True, "material": material,
+                                "qty": entry.get("quantity"), "coating": has_coating}
     return parts, unresolved
 
 
-def _normalize_sap(
-    sap_data: dict, nom: Nomenclature
-) -> tuple[dict, list, dict]:
-    parts      = {}
-    unresolved = []
-    metadata   = {}
-
-    entries = sap_data.get("entries", [])
-
-    for entry in entries:
-        key   = (entry.get("key")   or "").strip()
-        value = (entry.get("value") or "")
+def _normalize_sap(sap_data: dict, nom: Nomenclature) -> tuple:
+    parts, unresolved, metadata = {}, [], {}
+    for entry in sap_data.get("entries", []):
+        key = (entry.get("key") or "").strip()
+        value = entry.get("value")
         if not key or value is None:
             continue
-
         value_str = str(value).strip()
         if not value_str:
             continue
-
         canonical = nom.resolve(key)
-
         if canonical:
             if canonical not in parts:
+                # placeholder values are "not specified" — keep present, drop material
+                is_placeholder = value_str.upper() in SAP_PLACEHOLDER_VALUES
                 has_coating = "COATING" in value_str.upper()
                 parts[canonical] = {
-                    "present":      True,
-                    "material":     value_str,
+                    "present": True,
+                    "material": None if is_placeholder else value_str,
                     "raw_material": value_str,
-                    "coating":      has_coating,
+                    "coating": has_coating,
                 }
         else:
             metadata[key] = value_str
-
     return parts, unresolved, metadata
 
 
-# ── Part Context Builder ──────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════
+# Per-part context + Stage 1 clear
+# ═══════════════════════════════════════════════════════════════════════════
 
-def _build_part_context(
-    canonical: str,
-    cs_parts: dict,
-    bom_parts: dict,
-    sap_parts: dict,
-    coating_required: bool = False,
-    stages: int = 1,
-) -> dict:
-    cs  = cs_parts.get(canonical)
-    bom = bom_parts.get(canonical)
-    sap = sap_parts.get(canonical)
+def _build_part_context(canonical, cs_parts, bom_parts, sap_parts,
+                        coating_required=False, sap_expected=False) -> dict:
+    cs, bom, sap = cs_parts.get(canonical), bom_parts.get(canonical), sap_parts.get(canonical)
+    raw_materials, coating_flags = {}, {}
+    for src, entry in (("cs", cs), ("bom", bom), ("sap", sap)):
+        if entry and entry.get("material"):
+            raw_materials[src] = entry["material"]
+        if entry:
+            coating_flags[src] = bool(entry.get("coating", False)) or \
+                "COATING" in (entry.get("material") or "").upper()
 
-    raw_materials = {}
-    coating_flags = {}
-    cs_warning    = None
-
-    if cs:
-        if cs.get("material"):
-            raw_materials["cs"] = cs["material"]
-        coating_flags["cs"] = "COATING" in (cs.get("material") or "").upper()
-        cs_warning = cs.get("cs_extraction_warning")
-
-    if bom:
-        if bom.get("material"):
-            raw_materials["bom"] = bom["material"]
-        coating_flags["bom"] = bool(bom.get("coating", False))
-
-    if sap:
-        if sap.get("material"):
-            raw_materials["sap"] = sap["material"]
-        coating_flags["sap"] = bool(sap.get("coating", False))
-
-    # Material comparison with coating_required context
     if len(raw_materials) >= 2:
-        mat_comparison = rigid_materials_match(
-            raw_materials, coating_flags, coating_required=coating_required
-        )
-        mat_comparison["method"] = "rigid"
-    elif len(raw_materials) == 1:
-        mat_comparison = {
-            "method": "rigid", "result": "INSUFFICIENT",
-            "normalized": {}, "families": {}, "coating_match": None,
-            "explanation": "Only one source has material data",
-        }
+        mat = rigid_materials_match(raw_materials, coating_flags, coating_required=coating_required)
+        mat["method"] = "rigid"
     else:
-        mat_comparison = {
-            "method": "rigid", "result": "INSUFFICIENT",
-            "normalized": {}, "families": {}, "coating_match": None,
-            "explanation": "No material data available",
-        }
-
+        mat = {"method": "rigid", "result": "INSUFFICIENT", "normalized": {}, "families": {},
+               "coating_match": None,
+               "explanation": ("Only one source has material data" if raw_materials
+                               else "No material data available")}
     return {
-        "canonical_name":    canonical,
-        "cs":                cs,
-        "bom":               bom,
-        "sap":               sap,
-        "material_comparison": mat_comparison,
-        "coating_required":  coating_required,
-        "cs_extraction_warning": cs_warning,
-        "discrepancies":     [],
+        "canonical_name": canonical, "cs": cs, "bom": bom, "sap": sap,
+        "material_comparison": mat, "coating_required": coating_required,
+        "cs_extraction_warning": (cs or {}).get("cs_extraction_warning"),
+        "is_integral": canonical in MAJOR_WETTED_PARTS,
+        "is_structural": canonical in STRUCTURAL_PART_NAMES,
+        "sap_expected": sap_expected,
+        "discrepancies": [],
     }
 
 
-# ── Rigid Evaluation ──────────────────────────────────────────────────────
+def _presence_concern(ctx) -> bool:
+    """True if an absence matters given document purpose (needs LLM judgment)."""
+    in_cs, in_bom = ctx["cs"] is not None, ctx["bom"] is not None
+    # CS ⊆ BOM: a CS part absent from BOM is always a concern
+    if in_cs and not in_bom:
+        return True
+    # integral part must be in both CS and BOM
+    if ctx["is_integral"] and (not in_cs or not in_bom):
+        return True
+    return False
 
-def _rigid_evaluate(ctx: dict) -> dict:
-    """
-    Evaluate a part using the authority model and return a result dict.
 
-    Returns:
-        {
-            "clear": bool,
-            "reason": str,   # why it was cleared or why it needs LLM
-            "warnings": list # extraction warnings to include in report
-        }
-    """
-    canonical = ctx["canonical_name"]
-    cs  = ctx.get("cs")
-    bom = ctx.get("bom")
-    sap = ctx.get("sap")
-    mat = ctx["material_comparison"]
-    warnings = []
-
-    # Collect any CS extraction warning
+def _stage1_clear(ctx) -> bool:
+    """Clear deterministically only when fully consistent. Otherwise -> LLM."""
     if ctx.get("cs_extraction_warning"):
-        warnings.append({
-            "type":   "CS_EXTRACTION_WARNING",
-            "reason": ctx["cs_extraction_warning"],
-        })
-
-    # ── Absence checks ────────────────────────────────────────────────────
-    # SAP absence is ALWAYS expected — never flag
-    # BOM absence: only flag for major wetted parts
-    if not bom and canonical in MAJOR_WETTED_PARTS:
-        return {
-            "clear": False,
-            "reason": f"Major wetted part '{canonical}' is absent from BOM",
-            "warnings": warnings,
-        }
-
-    # CS absence: flag if part has no presence in CS and is a major structural part
-    if not cs and canonical in MAJOR_WETTED_PARTS:
-        return {
-            "clear": False,
-            "reason": f"Major wetted part '{canonical}' is absent from CS drawing",
-            "warnings": warnings,
-        }
-
-    # ── Material comparison ───────────────────────────────────────────────
-    result = mat["result"]
-
-    # INSUFFICIENT = only one source has material data
-    # Under the authority model, this is fine — nothing to compare
-    if result == "INSUFFICIENT":
-        return {
-            "clear": True,
-            "reason": "Only one source has material data — no comparison possible",
-            "warnings": warnings,
-        }
-
-    # MATCH = all sources with material data resolve to same family
+        return False                      # let the LLM adjudicate excluded CS material
+    if _presence_concern(ctx):
+        return False
+    result = ctx["material_comparison"]["result"]
+    if result == "MISMATCH":
+        return False
     if result == "MATCH":
-        # Check coating separately
-        if mat.get("coating_match") is False and not ctx["coating_required"]:
-            return {
-                "clear": False,
-                "reason": "Material families match but coating flags differ",
-                "warnings": warnings,
-            }
-        return {
-            "clear": True,
-            "reason": mat.get("explanation", "All sources agree"),
-            "warnings": warnings,
-        }
+        if ctx["material_comparison"].get("coating_match") is False and not ctx["coating_required"]:
+            return False
+        return True
+    # INSUFFICIENT (≤1 source has material) and no presence concern -> nothing to compare
+    return True
 
-    # MISMATCH = genuine family conflict — apply two checks before sending to LLM
 
-    # Check A: if CS material was excluded (consumable extraction warning),
-    # re-evaluate with BOM and SAP only
-    if result == "MISMATCH" and ctx.get("cs_extraction_warning"):
-        bom_mat = (bom or {}).get("material")
-        sap_mat = (sap or {}).get("material")
-        if bom_mat and sap_mat:
-            reduced = rigid_materials_match(
-                {"bom": bom_mat, "sap": sap_mat},
-                {"bom": bool((bom or {}).get("coating", False)),
-                 "sap": bool((sap or {}).get("coating", False))},
-                coating_required=ctx["coating_required"],
-            )
-            if reduced["result"] == "MATCH":
-                return {
-                    "clear": True,
-                    "reason": "BOM and SAP agree; CS excluded due to extraction warning",
-                    "warnings": warnings,
-                }
+# ═══════════════════════════════════════════════════════════════════════════
+# Stage 2 + 3 — single GPT-5.5 call
+# ═══════════════════════════════════════════════════════════════════════════
 
-    # Check B: Cross-source confidence check (Fix 2 — Strainer false positive)
-    # If BOM and SAP both have material data and AGREE with each other,
-    # but CS shows a completely different family, this is almost certainly
-    # a CS extraction error (row-span from an adjacent part), not a real mismatch.
-    # Add a CS_EXTRACTION_WARNING and clear the flag — BOM+SAP agreement
-    # is authoritative when they both point to the same family.
-    #
-    # Safety guard: only apply this when:
-    #   1. BOM and SAP are both present and agree
-    #   2. CS family is genuinely different (not just a notation variant)
-    #   3. No CS extraction warning already exists (avoid double-warning)
-    if result == "MISMATCH" and not ctx.get("cs_extraction_warning"):
-        bom_mat = (bom or {}).get("material")
-        sap_mat = (sap or {}).get("material")
-        cs_mat  = (cs or {}).get("material")
+def _llm_stage23(parts: list, unresolved: list, sap_metadata: dict, sap_expected: set) -> list:
+    payload = _build_llm_payload(parts, unresolved, sap_metadata)
+    llm = _call_openai(payload)
+    if llm is None:
+        logger.error("LLM unavailable — conservative fallback flagging")
+        _fallback_flag(parts)
+        return []
+    _apply_verdicts(parts, llm.get("verdicts", []))
+    return llm.get("reconciliations", [])
 
-        if bom_mat and sap_mat and cs_mat:
-            bom_sap_check = rigid_materials_match(
-                {"bom": bom_mat, "sap": sap_mat},
-                {"bom": bool((bom or {}).get("coating", False)),
-                 "sap": bool((sap or {}).get("coating", False))},
-                coating_required=ctx["coating_required"],
-            )
-            if bom_sap_check["result"] == "MATCH":
-                # BOM and SAP agree — CS is the outlier
-                # Flag it as a likely extraction error
-                cross_source_warning = (
-                    f"CS extraction suspect: CS shows '{cs_mat}' but BOM and SAP "
-                    f"both agree on a different material family. "
-                    f"Likely a PDF row-span error where the material from an adjacent "
-                    f"part was assigned to this row. CS material excluded from comparison."
-                )
-                logger.warning(cross_source_warning)
-                warnings.append({
-                    "type":   "CS_EXTRACTION_WARNING",
-                    "reason": cross_source_warning,
+
+def _build_llm_payload(parts: list, unresolved: list, sap_metadata: dict) -> dict:
+    pump = sap_metadata.get("VT pump Common Name", "Unknown Pump")
+    stages = sap_metadata.get("No of Stages", "?")
+    part_rows = []
+    for p in parts:
+        row = {"part": p["canonical_name"],
+               "is_integral": p["is_integral"], "sap_expected": p["sap_expected"],
+               "rigid_result": p["material_comparison"]["result"],
+               "families": p["material_comparison"].get("families", {})}
+        for src in ("cs", "bom", "sap"):
+            e = p.get(src)
+            row[src] = None if not e else {"present": True, "material": e.get("material")}
+        if p.get("cs_extraction_warning"):
+            row["cs_note"] = p["cs_extraction_warning"]
+        part_rows.append(row)
+    return {"pump": pump, "stages": stages,
+            "parts_to_evaluate": part_rows,
+            "unresolved_names": unresolved}
+
+
+def _call_openai(payload: dict):
+    """Single rich GPT-5.5 call. Returns dict {verdicts, reconciliations} or None."""
+    api_key = getattr(config, "OPENAI_API_KEY", None)
+    if not api_key:
+        logger.warning("OPENAI_API_KEY not set")
+        return None
+    try:
+        from openai import OpenAI
+        client = OpenAI(api_key=api_key)
+        model = getattr(config, "OPENAI_MODEL", "gpt-4.1-mini")
+        user_content = (
+            LLM_INSTRUCTIONS
+            + "\n\nPUMP: " + str(payload["pump"]) + "  STAGES: " + str(payload["stages"])
+            + "\n\nPARTS TO EVALUATE (JSON):\n"
+            + json.dumps(payload["parts_to_evaluate"], indent=1, ensure_ascii=False)
+            + "\n\nUNRESOLVED NAMES (JSON):\n"
+            + json.dumps(payload["unresolved_names"], indent=1, ensure_ascii=False)
+        )
+        kw = dict(model=model,
+                  messages=[{"role": "system", "content": LLM_SYSTEM},
+                            {"role": "user", "content": user_content}],
+                  response_format={"type": "json_object"})
+        resp = client.chat.completions.create(**kw)
+        return json.loads(resp.choices[0].message.content)
+    except Exception as e:
+        logger.error(f"OpenAI comparison call failed: {e}")
+        return None
+
+
+def _apply_verdicts(parts: list, verdicts: list):
+    by_name = {v.get("part", ""): v for v in verdicts}
+    for p in parts:
+        v = by_name.get(p["canonical_name"])
+        if not v:
+            logger.warning(f"No LLM verdict for '{p['canonical_name']}' — fallback")
+            _fallback_flag_single(p)
+            continue
+        mc = p["material_comparison"]
+        mc["method"] = "llm"
+        mc["explanation"] = v.get("explanation", "")
+        mc["authority"] = v.get("authority", "MANUAL_REVIEW")
+        mc["correct_material"] = v.get("correct_material")
+        discs = v.get("discrepancies", [])
+        if v.get("status") == "FLAGGED" and discs:
+            if any(d.get("type") == "MATERIAL_MISMATCH" for d in discs):
+                mc["result"] = "MISMATCH"
+            for d in discs:
+                p["discrepancies"].append({
+                    "type": d.get("type", "UNKNOWN"),
+                    "source_in_error": d.get("source_in_error", "UNKNOWN"),
+                    "reason": d.get("reason", "Flagged by AI evaluation"),
+                    "detail": d.get("reason", ""),
+                    "authority": v.get("authority", "MANUAL_REVIEW"),
+                    "correct_material": v.get("correct_material"),
                 })
-                # Update the context so downstream code knows CS was excluded
-                if ctx.get("cs"):
-                    ctx["cs"]["cs_extraction_warning"] = cross_source_warning
-                    ctx["cs"]["material"] = None
-                ctx["cs_extraction_warning"] = cross_source_warning
-                return {
-                    "clear": True,
-                    "reason": "BOM and SAP agree; CS outlier excluded as likely extraction error",
-                    "warnings": warnings,
-                }
+        else:
+            if mc["result"] == "MISMATCH":
+                mc["result"] = "MATCH"
+            p["discrepancies"] = [d for d in p["discrepancies"]
+                                  if d.get("type") == "CS_EXTRACTION_WARNING"]
 
-    return {
-        "clear": False,
-        "reason": mat.get("explanation", "Family conflict between sources"),
-        "warnings": warnings,
-    }
+
+def _fallback_flag(parts: list):
+    for p in parts:
+        _fallback_flag_single(p)
+
+
+def _fallback_flag_single(p: dict):
+    mc = p["material_comparison"]
+    mc["method"] = "fallback"
+    mc["explanation"] = "AI evaluation unavailable — flagged for manual review"
+    if mc["result"] == "MISMATCH":
+        mats = {s: p[s]["material"] for s in ("cs", "bom", "sap")
+                if p.get(s) and p[s].get("material")}
+        p["discrepancies"].append({
+            "type": "MATERIAL_MISMATCH", "source_in_error": "UNKNOWN",
+            "reason": "Material conflict requires manual review: "
+                      + ", ".join(f"{s}: {m}" for s, m in mats.items()),
+            "detail": str(mats), "authority": "MANUAL_REVIEW", "correct_material": None,
+        })
+    elif _presence_concern(p):
+        missing = [s for s in ("cs", "bom") if not p.get(s)]
+        p["discrepancies"].append({
+            "type": "MISSING", "source_in_error": ",".join(missing).upper() or "UNKNOWN",
+            "reason": f"Part '{p['canonical_name']}' expected but absent from: "
+                      + ", ".join(missing).upper(),
+            "detail": "", "authority": "MANUAL_REVIEW", "correct_material": None,
+        })
 
 
 def _clean_for_output(part: dict) -> dict:
-    """Prepare a part context dict for JSON output."""
-    rigid_result = part.get("rigid_result", {})
-    warnings = rigid_result.get("warnings", [])
-
-    # Merge warnings into discrepancies list as WARNING type
     discrepancies = list(part.get("discrepancies", []))
-    for w in warnings:
-        # Only add if not already present
-        if not any(d.get("type") == w["type"] for d in discrepancies):
-            discrepancies.append(w)
-
+    if part.get("cs_extraction_warning"):
+        if not any(d.get("type") == "CS_EXTRACTION_WARNING" for d in discrepancies):
+            discrepancies.append({"type": "CS_EXTRACTION_WARNING",
+                                  "reason": part["cs_extraction_warning"]})
     return {
-        "canonical_name":    part["canonical_name"],
-        "cs":                part["cs"],
-        "bom":               part["bom"],
-        "sap":               part["sap"],
+        "canonical_name": part["canonical_name"],
+        "cs": part["cs"], "bom": part["bom"], "sap": part["sap"],
         "material_comparison": part["material_comparison"],
-        "discrepancies":     discrepancies,
+        "discrepancies": discrepancies,
     }
 
 
-# ── Pass 2: LLM Evaluation ────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════
+# BOM description helpers
+# ═══════════════════════════════════════════════════════════════════════════
 
-def _llm_evaluate_all(parts: list[dict], sap_metadata: dict):
-    if not config.GEMINI_API_KEY:
-        logger.warning("GEMINI_API_KEY not set — falling back to conservative flagging")
-        _fallback_flag_all(parts)
-        return
-
-    stages    = sap_metadata.get("No of Stages", "unknown")
-    pump_name = sap_metadata.get("VT pump Common Name", "Unknown Pump")
-
-    parts_text = "\n\n".join(
-        _format_part_for_prompt(i, p) for i, p in enumerate(parts, 1)
-    )
-
-    prompt = LLM_EVALUATION_PROMPT.format(
-        pump_name=pump_name,
-        stages=stages,
-        parts_text=parts_text,
-    )
-
-    llm_results = _call_gemini_with_retry(prompt, retries=2)
-
-    if llm_results is None:
-        logger.error("LLM evaluation failed — falling back to conservative flagging")
-        _fallback_flag_all(parts)
-        return
-
-    _apply_llm_results(parts, llm_results)
-
-
-def _format_part_for_prompt(index: int, part: dict) -> str:
-    """Format one part for the LLM prompt — concise and information-dense."""
-    name  = part["canonical_name"]
-    lines = [f"{index}. {name}"]
-
-    for src in ("cs", "bom", "sap"):
-        entry = part.get(src)
-        if not entry:
-            lines.append(f"   {src.upper()}: absent")
-            continue
-        mat     = entry.get("material")
-        coating = entry.get("coating", False)
-        mat_str = f'"{mat}"' if mat else "not specified"
-        coat_str = " | coating: YES" if coating else ""
-        lines.append(f"   {src.upper()}: material={mat_str}{coat_str}")
-
-    # Show the family conflict explicitly
-    mat_comp = part["material_comparison"]
-    families = mat_comp.get("families", {})
-    if families:
-        fam_str = " vs ".join(f"{s}={f}" for s, f in families.items())
-        lines.append(f"   Family conflict: {fam_str}")
-
-    return "\n".join(lines)
-
-
-def _apply_llm_results(parts: list[dict], llm_results: list[dict]):
-    llm_by_name = {r.get("part", ""): r for r in llm_results}
-
-    for part in parts:
-        llm_result = llm_by_name.get(part["canonical_name"])
-        if not llm_result:
-            logger.warning(f"LLM returned no result for '{part['canonical_name']}' — fallback")
-            _fallback_flag_single(part)
-            continue
-
-        status        = llm_result.get("status", "CLEAR")
-        explanation   = llm_result.get("explanation", "")
-        authority     = llm_result.get("authority", "MANUAL_REVIEW")
-        correct_mat   = llm_result.get("correct_material")
-        discrepancies = llm_result.get("discrepancies", [])
-
-        part["material_comparison"]["method"]          = "llm"
-        part["material_comparison"]["explanation"]     = explanation
-        part["material_comparison"]["authority"]       = authority
-        part["material_comparison"]["correct_material"] = correct_mat
-
-        if status == "FLAGGED" and discrepancies:
-            if any(d.get("type") == "MATERIAL_MISMATCH" for d in discrepancies):
-                part["material_comparison"]["result"] = "MISMATCH"
-            for disc in discrepancies:
-                part["discrepancies"].append({
-                    "type":            disc.get("type", "UNKNOWN"),
-                    "source_in_error": disc.get("source_in_error", "UNKNOWN"),
-                    "reason":          disc.get("reason", "Flagged by AI evaluation"),
-                    "detail":          disc.get("reason", ""),
-                    "authority":       authority,
-                    "correct_material": correct_mat,
-                })
-        else:
-            # LLM cleared it — override any MISMATCH from rigid pass
-            if part["material_comparison"]["result"] == "MISMATCH":
-                part["material_comparison"]["result"] = "MATCH"
-            # Keep extraction warnings but clear material discrepancies
-            part["discrepancies"] = [
-                d for d in part["discrepancies"]
-                if d.get("type") == "CS_EXTRACTION_WARNING"
-            ]
-
-
-def _fallback_flag_all(parts: list[dict]):
-    for part in parts:
-        _fallback_flag_single(part)
-
-
-def _fallback_flag_single(part: dict):
-    part["material_comparison"]["method"] = "fallback"
-    part["material_comparison"]["explanation"] = (
-        "AI evaluation unavailable — flagged for manual review"
-    )
-    mat = part["material_comparison"]
-    if mat["result"] == "MISMATCH":
-        mats = {}
-        for s in ("cs", "bom", "sap"):
-            entry = part.get(s)
-            if entry and entry.get("material"):
-                mats[s] = entry["material"]
-        part["discrepancies"].append({
-            "type":            "MATERIAL_MISMATCH",
-            "source_in_error": "UNKNOWN",
-            "reason":          f"Material conflict requires manual review: "
-                               + ", ".join(f"{s}: {m}" for s, m in mats.items()),
-            "detail":          str(mats),
-            "authority":       "MANUAL_REVIEW",
-            "correct_material": None,
-        })
-
-
-def _call_gemini_with_retry(prompt: str, retries: int = 2) -> list | None:
-    genai.configure(api_key=config.GEMINI_API_KEY)
-    model = genai.GenerativeModel(config.GEMINI_MODEL)
-
-    for attempt in range(retries + 1):
-        try:
-            response = model.generate_content(
-                prompt,
-                generation_config=genai.GenerationConfig(
-                    response_mime_type="application/json",
-                ),
-            )
-            raw = response.text.strip()
-            if raw.startswith("```"):
-                raw = raw.split("```")[1]
-                if raw.startswith("json"):
-                    raw = raw[4:]
-                raw = raw.strip()
-
-            result = json.loads(raw)
-            if isinstance(result, list):
-                logger.info(f"LLM evaluation returned {len(result)} results")
-                return result
-            logger.warning(f"LLM returned non-list JSON: {type(result)}")
-            return None
-
-        except json.JSONDecodeError as e:
-            logger.error(f"LLM JSON parse error (attempt {attempt + 1}): {e}")
-        except Exception as e:
-            logger.error(f"LLM API error (attempt {attempt + 1}): {e}")
-
-        if attempt < retries:
-            wait = 2 ** attempt
-            logger.info(f"Retrying LLM call in {wait}s...")
-            time.sleep(wait)
-
-    return None
-
-
-# ── BOM description helpers ───────────────────────────────────────────────
-
-def _extract_bom_prefix(description: str) -> str | None:
+def _extract_bom_prefix(description: str):
     upper = description.upper()
     for prefix in _BOM_PART_PREFIXES:
         if upper.startswith(prefix):
@@ -903,21 +610,14 @@ def _extract_bom_prefix(description: str) -> str | None:
     return None
 
 
-def _extract_material_from_bom_desc(desc: str) -> tuple[str | None, bool]:
-    upper       = desc.upper().strip()
+def _extract_material_from_bom_desc(desc: str) -> tuple:
+    upper = desc.upper().strip()
     has_coating = bool(re.search(r"\+\s*COAT", upper.replace(" ", "")))
-
     patterns = [
-        r"(CA\d+\w*)(?:\+COAT)?$",
-        r"(GGG\d+)(?:\+COAT)?$",
-        r"(SS\s?\d{3}\w*)(?:\+CUTRUB)?$",
-        r"CUT\s*RUB\w*\s+(SS\d+)$",
-        r"(SS\d+)\+CUTRUB$",
-        r"(FG\s?\d+)(?:\+COAT)?$",
-        r"\b(HTS)$",
-        r"\b(MS)$",
+        r"(CA\d+\w*)(?:\+COAT)?$", r"(GGG\d+)(?:\+COAT)?$", r"(SS\s?\d{3}\w*)(?:\+CUTRUB)?$",
+        r"CUT\s*RUB\w*\s+(SS\d+)$", r"(SS\d+)\+CUTRUB$", r"(FG\s?\d+)(?:\+COAT)?$",
+        r"\b(HTS)$", r"\b(MS)$",
     ]
-
     for pat in patterns:
         m = re.search(pat, upper)
         if m:
@@ -925,51 +625,49 @@ def _extract_material_from_bom_desc(desc: str) -> tuple[str | None, bool]:
             if has_coating and "COAT" not in result:
                 result += " + COATING"
             return result, has_coating
-
     if "GRAPHITED" in upper and "COTTON" in upper:
         return "GRAPHITED COTTON", False
     if "NITRILE" in upper:
         return "NITRILE RUBBER", False
-
     return None, has_coating
 
 
-# ── Shared helpers ────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════
+# Shared helpers
+# ═══════════════════════════════════════════════════════════════════════════
 
 def _is_fastener_or_generic(desc: str) -> bool:
     upper = desc.upper()
     keywords = [
-        "FASTNER", "FASTENER", "GASKET", "O' RING", "O RING", "'O' RING",
-        "WASHER", "STUD", "HEX NUT", "HEX HD SCR", "SOC SET SCR",
-        "SOC HD CAP", "HEX PLUG", "DOWEL PIN", "RIVET", "ERECTION PACKER",
-        "FOUNDATION BOLT", "NAME PLATE", "INDICATOR ARROW", "CORD ",
-        "BES KEY", "S-BER KEY", "KEY ", " KEY",
-        "GLAND PACKING", "GLD PACK",
+        "FASTNER", "FASTENER", "GASKET", "O' RING", "O RING", "'O' RING", "WASHER", "STUD",
+        "HEX NUT", "HEX HD SCR", "SOC SET SCR", "SOC HD CAP", "HEX PLUG", "DOWEL PIN",
+        "RIVET", "ERECTION PACKER", "FOUNDATION BOLT", "NAME PLATE", "INDICATOR ARROW",
+        "CORD ", "BES KEY", "S-BER KEY", "KEY ", " KEY", "GLAND PACKING", "GLD PACK",
     ]
     return any(kw in upper for kw in keywords)
 
 
-def _try_partial_resolve(desc: str, nom: Nomenclature) -> str | None:
+def _try_partial_resolve(desc: str, nom: Nomenclature):
     words = desc.split()
     for n in range(min(4, len(words)), 1, -1):
-        result = nom.resolve(" ".join(words[:n]))
-        if result:
-            return result
+        r = nom.resolve(" ".join(words[:n]))
+        if r:
+            return r
     return None
 
 
+def _dedupe_unresolved(items: list) -> list:
+    seen, out = set(), []
+    for u in items:
+        key = (u.get("source", ""), u.get("original_name", "").upper().strip())
+        if key not in seen:
+            seen.add(key)
+            out.append(u)
+    return out
+
+
 def _resolve_coating_requirement(sap_metadata: dict) -> bool:
-    """Return True if SAP metadata says coating is required for this pump."""
-    val = sap_metadata.get("Coating Reqd By Customer", "").upper()
-    return val in ("YES", "Y", "TRUE", "1")
-
-
-def _parse_stages(stages_str: str) -> int:
-    """Parse the number of stages from SAP metadata string."""
-    try:
-        return int(str(stages_str).strip().lstrip("0") or "1")
-    except (ValueError, TypeError):
-        return 1
+    return sap_metadata.get("Coating Reqd By Customer", "").upper() in ("YES", "Y", "TRUE", "1")
 
 
 def _load_json(path: Path, default=None):
@@ -979,15 +677,14 @@ def _load_json(path: Path, default=None):
     return default
 
 
-# ── Validation ────────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════
+# Validation  (unchanged — human confirms flags; disagreements learn aliases)
+# ═══════════════════════════════════════════════════════════════════════════
 
-def apply_validation(
-    identifier: str, processed_dir: Path, decisions: list[dict]
-) -> dict:
-    results      = _load_json(processed_dir / "comparison_results.json", default={})
+def apply_validation(identifier: str, processed_dir: Path, decisions: list) -> dict:
+    results = _load_json(processed_dir / "comparison_results.json", default={})
     nomenclature = Nomenclature()
-    confirmed    = []
-    dismissed    = []
+    confirmed, dismissed, ignored, unresolved_items = [], [], [], []
 
     for decision in decisions:
         canonical  = decision["canonical_name"]
@@ -1002,36 +699,40 @@ def apply_validation(
                     if disc_index < len(discs):
                         reason = discs[disc_index].get("reason")
                     break
-            confirmed.append({
-                "canonical_name":    canonical,
-                "discrepancy_index": disc_index,
-                "reason":            reason,
-            })
+            confirmed.append({"canonical_name": canonical,
+                               "discrepancy_index": disc_index, "reason": reason})
+
         elif action == "disagree":
             mapped        = decision.get("mapped_canonical")
             original_name = decision.get("original_name")
             if mapped and original_name:
                 nomenclature.add_alias(mapped, original_name)
-            dismissed.append({
-                "canonical_name":    canonical,
-                "discrepancy_index": disc_index,
-                "mapped_to":         mapped,
-            })
+            dismissed.append({"canonical_name": canonical,
+                               "discrepancy_index": disc_index, "mapped_to": mapped})
+
+        elif action == "ignore":
+            ignored.append({"canonical_name": canonical, "discrepancy_index": disc_index})
+
+        elif action == "unresolved":
+            unresolved_items.append({"canonical_name": canonical})
 
     validation_status = {
-        "identifier":              identifier,
-        "timestamp":               datetime.now(timezone.utc).isoformat(),
-        "confirmed_discrepancies": confirmed,
-        "dismissed_discrepancies": dismissed,
-        "total_confirmed":         len(confirmed),
-        "total_dismissed":         len(dismissed),
+        "identifier":               identifier,
+        "timestamp":                datetime.now(timezone.utc).isoformat(),
+        "confirmed_discrepancies":  confirmed,
+        "dismissed_discrepancies":  dismissed,
+        "ignored_discrepancies":    ignored,
+        "unresolved_discrepancies": unresolved_items,
+        "total_confirmed":          len(confirmed),
+        "total_dismissed":          len(dismissed),
+        "total_ignored":            len(ignored),
+        "total_unresolved":         len(unresolved_items),
     }
-
     with open(processed_dir / "validation_status.json", "w") as f:
         json.dump(validation_status, f, indent=2)
-
     logger.info(
-        f"Validation for {identifier}: "
-        f"{len(confirmed)} confirmed, {len(dismissed)} dismissed"
+        f"Validation for {identifier}: {len(confirmed)} confirmed, "
+        f"{len(dismissed)} dismissed, {len(ignored)} ignored, "
+        f"{len(unresolved_items)} unresolved"
     )
     return validation_status

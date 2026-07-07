@@ -22,6 +22,13 @@
   background: var(--color-success-bg);
 }
 
+.ignored {
+  border-color: #94a3b8;
+  border-left: 4px solid #94a3b8;
+  background: #f8fafc;
+  opacity: 0.8;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -140,17 +147,19 @@
 }
 
 .agreeBtn,
-.disagreeBtn {
+.disagreeBtn,
+.ignoreBtn {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.9rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   font-size: 0.8rem;
   font-weight: 600;
   background: var(--color-surface);
   transition: all var(--transition);
+  cursor: pointer;
 }
 
 .agreeBtn:hover {
@@ -165,15 +174,40 @@
   background: var(--color-success-bg);
 }
 
+.ignoreBtn:hover {
+  border-color: #94a3b8;
+  color: #475569;
+  background: #f1f5f9;
+}
+
+.decisionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
 .decisionStatus {
   font-size: 0.8rem;
   font-weight: 600;
-  padding: 0.5rem 0.875rem;
+  padding: 0.45rem 0.875rem;
   border-radius: var(--radius-sm);
   background: var(--color-bg);
   border: 1px solid var(--color-border-light);
   color: var(--color-text-secondary);
+  flex: 1;
 }
+
+.undoBtn {
+  font-size: 0.75rem;
+  color: #64748b;
+  background: none;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.65rem;
+  cursor: pointer;
+}
+.undoBtn:hover { background: #f1f5f9; color: #334155; }
 
 .dropdown {
   margin-top: 0.875rem;
