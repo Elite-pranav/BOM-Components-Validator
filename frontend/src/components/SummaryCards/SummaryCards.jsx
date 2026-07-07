@@ -1,16 +1,19 @@
 import styles from "./SummaryCards.module.css";
 
 export default function SummaryCards({ results }) {
-  const csBom = results.cs_bom || [];
+  const csBom    = results.cs_bom    || [];
   const bomExcel = results.bom_excel || [];
-  const sapData = results.sap_data || {};
-  const sapParts = sapData.parts ? Object.keys(sapData.parts).length : 0;
-  const sapMeta = sapData.metadata ? Object.keys(sapData.metadata).length : 0;
+  const sapData  = results.sap_data  || {};
 
-  // Try to pull key metadata for display
-  const meta = sapData.metadata || {};
-  const pumpName = meta["VT pump Common Name"] || meta["Pump Common Name"] || null;
-  const stages = meta["No of Stages"] || null;
+  // New shape: { entries: [{key, value}], design_text: "..." }
+  const entries  = sapData.entries || [];
+
+  // Pull key metadata for the badge strip from the entries list
+  const findEntry = (key) =>
+    entries.find((e) => e.key === key)?.value || null;
+
+  const pumpName = findEntry("VT pump Common Name") || findEntry("Pump Common Name");
+  const stages   = findEntry("No of Stages");
 
   const cards = [
     {
@@ -25,7 +28,7 @@ export default function SummaryCards({ results }) {
     },
     {
       title: "SAP Data",
-      value: `${sapParts} parts, ${sapMeta} fields`,
+      value: `${entries.length} fields`,
       color: "#8b5cf6",
     },
   ];
@@ -46,7 +49,7 @@ export default function SummaryCards({ results }) {
       {(pumpName || stages) && (
         <div className={styles.meta}>
           {pumpName && <span className={styles.badge}>{pumpName}</span>}
-          {stages && <span className={styles.badge}>{stages} Stages</span>}
+          {stages   && <span className={styles.badge}>{stages} Stages</span>}
         </div>
       )}
     </div>

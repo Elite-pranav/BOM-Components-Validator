@@ -1,0 +1,1438 @@
+{
+  "identifier": "81355130",
+  "timestamp": "2026-05-04T05:29:56.150544+00:00",
+  "summary": {
+    "total_canonical_parts": 43,
+    "discrepancies_found": 9,
+    "unresolved_parts": 5
+  },
+  "parts": [
+    {
+      "canonical_name": "Abutment Ring",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 3,
+        "cs_extraction_warning": "CS extraction suspect: 'NITRILE RUBBER' looks like a consumable material assigned to structural part 'Abutment Ring'. Likely a PDF row-span extraction error. CS material excluded from comparison."
+      },
+      "bom": null,
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "No material data available"
+      },
+      "discrepancies": [
+        {
+          "type": "CS_EXTRACTION_WARNING",
+          "reason": "CS extraction suspect: 'NITRILE RUBBER' looks like a consumable material assigned to structural part 'Abutment Ring'. Likely a PDF row-span extraction error. CS material excluded from comparison."
+        }
+      ]
+    },
+    {
+      "canonical_name": "Adapter Plate",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 7,
+        "cs_extraction_warning": null
+      },
+      "bom": null,
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "No material data available"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Adjusting Ring",
+      "cs": {
+        "present": true,
+        "material": "MS IS 2062 GR B",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "cs": "MS B",
+          "bom": "MS"
+        },
+        "families": {
+          "cs": "UNKNOWN:MS B",
+          "bom": "MS"
+        },
+        "coating_match": true,
+        "explanation": "CS and BOM agree on the general material family (MS); SAP is absent, so CS is the authority.",
+        "method": "llm",
+        "authority": "CS",
+        "correct_material": "MS IS 2062 GR B"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Alignment Pad",
+      "cs": {
+        "present": true,
+        "material": "NITRILE RUBBER",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "FG 260",
+        "qty": 4,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "ASTM A276 GR SS410",
+        "raw_material": "ASTM A276 GR SS410",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MISMATCH",
+        "normalized": {
+          "cs": "NITRILE RUBBER",
+          "bom": "FG 260",
+          "sap": "SS410"
+        },
+        "families": {
+          "cs": "NITRILE_RUBBER",
+          "bom": "FG260",
+          "sap": "SS410"
+        },
+        "coating_match": true,
+        "explanation": "Significant material mismatch across all sources (CS, BOM, SAP) requiring manual review to determine the correct material for this critical component.",
+        "method": "llm",
+        "authority": "MANUAL_REVIEW",
+        "correct_material": null
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "source_in_error": "UNKNOWN",
+          "reason": "CS lists Nitrile Rubber, BOM lists FG260, and SAP lists SS410, representing three different material families.",
+          "detail": "CS lists Nitrile Rubber, BOM lists FG260, and SAP lists SS410, representing three different material families.",
+          "authority": "MANUAL_REVIEW",
+          "correct_material": null
+        }
+      ]
+    },
+    {
+      "canonical_name": "Bearing Bush",
+      "cs": {
+        "present": true,
+        "material": "CUTLESS + SS410",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "CUTLESS + SS410",
+        "raw_material": "CUTLESS + SS410",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "cs": "SS410",
+          "bom": "SS410",
+          "sap": "SS410"
+        },
+        "families": {
+          "cs": "SS410",
+          "bom": "SS410",
+          "sap": "SS410"
+        },
+        "coating_match": true,
+        "explanation": "All sources resolve to family: SS410",
+        "method": "rigid"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Bearing Bush Carrier",
+      "cs": {
+        "present": true,
+        "material": "CI IS 210 GR FG260",
+        "qty": 3,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "FG260",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "cs": "FG260",
+          "bom": "FG260"
+        },
+        "families": {
+          "cs": "FG260",
+          "bom": "FG260"
+        },
+        "coating_match": true,
+        "explanation": "All sources resolve to family: FG260",
+        "method": "rigid"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Bearing Housing Sub-Assembly",
+      "cs": {
+        "present": true,
+        "material": "SS410",
+        "qty": 2,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "SS304",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "result": "MISMATCH",
+        "normalized": {
+          "cs": "SS410",
+          "bom": "SS304"
+        },
+        "families": {
+          "cs": "SS410",
+          "bom": "SS304"
+        },
+        "coating_match": true,
+        "explanation": "CS (SS410) and BOM (SS304) disagree on the material family, and SAP is absent. CS is given precedence as it's the drawing ground truth.",
+        "method": "llm",
+        "authority": "CS",
+        "correct_material": "SS410"
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "source_in_error": "BOM",
+          "reason": "BOM lists SS304, but CS lists SS410 for the same part.",
+          "detail": "BOM lists SS304, but CS lists SS410 for the same part.",
+          "authority": "CS",
+          "correct_material": "SS410"
+        }
+      ]
+    },
+    {
+      "canonical_name": "Cooling Coil",
+      "cs": {
+        "present": true,
+        "material": "CUTLESS + SS410",
+        "qty": 6,
+        "cs_extraction_warning": null
+      },
+      "bom": null,
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "Only one source has material data"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Delivery Bend & Motor Stool",
+      "cs": {
+        "present": true,
+        "material": "MS",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "MS",
+        "raw_material": "MS",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "cs": "MS",
+          "bom": "MS",
+          "sap": "MS"
+        },
+        "families": {
+          "cs": "MS",
+          "bom": "MS",
+          "sap": "MS"
+        },
+        "coating_match": true,
+        "explanation": "All sources resolve to family: MS",
+        "method": "rigid"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Diffuser",
+      "cs": {
+        "present": true,
+        "material": "WCB + COATING",
+        "qty": 4,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": null,
+        "qty": 4,
+        "coating": true
+      },
+      "sap": {
+        "present": true,
+        "material": "WCB + COATING",
+        "raw_material": "WCB + COATING",
+        "coating": true
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "cs": "WCB",
+          "sap": "WCB"
+        },
+        "families": {
+          "cs": "MS",
+          "sap": "MS"
+        },
+        "coating_match": true,
+        "explanation": "All sources resolve to family: MS",
+        "method": "rigid"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Flexible Coupling",
+      "cs": {
+        "present": true,
+        "material": "FORGED STEEL",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": null,
+      "sap": {
+        "present": true,
+        "material": "Forged Steel",
+        "raw_material": "Forged Steel",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "cs": "FORGED STEEL",
+          "sap": "FORGED STEEL"
+        },
+        "families": {
+          "cs": "UNKNOWN:FORGED STEEL",
+          "sap": "UNKNOWN:FORGED STEEL"
+        },
+        "coating_match": true,
+        "explanation": "All sources resolve to family: UNKNOWN:FORGED STEEL",
+        "method": "rigid"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Gland Sleeve",
+      "cs": null,
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "method": "llm",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "CS is absent, SAP is absent, and BOM specifies SS410. Therefore, BOM is the sole authority and the material is accepted.",
+        "authority": "BOM",
+        "correct_material": "SS410"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Impeller",
+      "cs": null,
+      "bom": {
+        "present": true,
+        "material": null,
+        "qty": 4,
+        "coating": true
+      },
+      "sap": {
+        "present": true,
+        "material": "CF8M + COATING",
+        "raw_material": "CF8M + COATING",
+        "coating": true
+      },
+      "material_comparison": {
+        "method": "llm",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "SAP and BOM agree on the material family (CF8M) with coating. CS is absent, making SAP+BOM the authoritative source.",
+        "authority": "SAP+BOM",
+        "correct_material": "CF8M"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Impeller Distance Sleeve",
+      "cs": null,
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 2,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "Only one source has material data"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Impeller Nose Cap",
+      "cs": {
+        "present": true,
+        "material": "CF8M + COATING",
+        "qty": 4,
+        "cs_extraction_warning": null
+      },
+      "bom": null,
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "Only one source has material data"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Impeller Wear Ring",
+      "cs": null,
+      "bom": null,
+      "sap": {
+        "present": true,
+        "material": "NOT APPLICABLE",
+        "raw_material": "NOT APPLICABLE",
+        "coating": false
+      },
+      "material_comparison": {
+        "method": "llm",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "SAP indicates 'NOT APPLICABLE' for this part, and BOM/CS are absent. This is considered a clear entry.",
+        "authority": "SAP",
+        "correct_material": "NOT APPLICABLE"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Intermediate Bearing Sleeve",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1,
+        "cs_extraction_warning": "CS extraction suspect: CS shows 'CI IS 210 GR FG260' but BOM and SAP both agree on a different material family. Likely a PDF row-span error where the material from an adjacent part was assigned to this row. CS material excluded from comparison."
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 6,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "ASTM A276 GR SS410",
+        "raw_material": "ASTM A276 GR SS410",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MISMATCH",
+        "normalized": {
+          "cs": "FG260",
+          "bom": "SS410",
+          "sap": "SS410"
+        },
+        "families": {
+          "cs": "FG260",
+          "bom": "SS410",
+          "sap": "SS410"
+        },
+        "coating_match": true,
+        "explanation": "Family conflict: cs\u2192FG260; bom\u2192SS410; sap\u2192SS410",
+        "method": "rigid"
+      },
+      "discrepancies": [
+        {
+          "type": "CS_EXTRACTION_WARNING",
+          "reason": "CS extraction suspect: CS shows 'CI IS 210 GR FG260' but BOM and SAP both agree on a different material family. Likely a PDF row-span error where the material from an adjacent part was assigned to this row. CS material excluded from comparison."
+        }
+      ]
+    },
+    {
+      "canonical_name": "Intermediate Shaft",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1,
+        "cs_extraction_warning": "CS extraction suspect: CS shows 'A 276 GR SS410(T Condition)' but BOM and SAP both agree on a different material family. Likely a PDF row-span error where the material from an adjacent part was assigned to this row. CS material excluded from comparison."
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410T",
+        "qty": 6,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "A276 GR SS410(T Condition)",
+        "raw_material": "A276 GR SS410(T Condition)",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MISMATCH",
+        "normalized": {
+          "cs": "A 276 ()",
+          "bom": "SS410T",
+          "sap": "SS410"
+        },
+        "families": {
+          "cs": "UNKNOWN:A 276 ()",
+          "bom": "SS410",
+          "sap": "SS410"
+        },
+        "coating_match": true,
+        "explanation": "Family conflict: cs\u2192UNKNOWN:A 276 (); bom\u2192SS410; sap\u2192SS410",
+        "method": "rigid"
+      },
+      "discrepancies": [
+        {
+          "type": "CS_EXTRACTION_WARNING",
+          "reason": "CS extraction suspect: CS shows 'A 276 GR SS410(T Condition)' but BOM and SAP both agree on a different material family. Likely a PDF row-span error where the material from an adjacent part was assigned to this row. CS material excluded from comparison."
+        }
+      ]
+    },
+    {
+      "canonical_name": "Lock Nut",
+      "cs": {
+        "present": true,
+        "material": "IS:1570, GR.40C8",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": null,
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "Only one source has material data"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Logging Ring",
+      "cs": null,
+      "bom": {
+        "present": true,
+        "material": "FG260",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "CI IS 210 GR FG260",
+        "raw_material": "CI IS 210 GR FG260",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "bom": "FG260",
+          "sap": "FG260"
+        },
+        "families": {
+          "bom": "FG260",
+          "sap": "FG260"
+        },
+        "coating_match": true,
+        "explanation": "All sources resolve to family: FG260",
+        "method": "rigid"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Loose Stuffing Box",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "FG260",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "Only one source has material data"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Muff Coupling",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1,
+        "cs_extraction_warning": "CS extraction suspect: CS shows 'ASTM A216, GR.WCB' but BOM and SAP both agree on a different material family. Likely a PDF row-span error where the material from an adjacent part was assigned to this row. CS material excluded from comparison."
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 7,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "ASTM A276 GR SS410",
+        "raw_material": "ASTM A276 GR SS410",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MISMATCH",
+        "normalized": {
+          "cs": "WCB",
+          "bom": "SS410",
+          "sap": "SS410"
+        },
+        "families": {
+          "cs": "MS",
+          "bom": "SS410",
+          "sap": "SS410"
+        },
+        "coating_match": true,
+        "explanation": "Family conflict: cs\u2192MS; bom\u2192SS410; sap\u2192SS410",
+        "method": "rigid"
+      },
+      "discrepancies": [
+        {
+          "type": "CS_EXTRACTION_WARNING",
+          "reason": "CS extraction suspect: CS shows 'ASTM A216, GR.WCB' but BOM and SAP both agree on a different material family. Likely a PDF row-span error where the material from an adjacent part was assigned to this row. CS material excluded from comparison."
+        }
+      ]
+    },
+    {
+      "canonical_name": "Neck Ring",
+      "cs": null,
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 8,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "ASTM A743 GR CF8M/SS410",
+        "raw_material": "ASTM A743 GR CF8M/SS410",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "bom": "SS410",
+          "sap": "CF8M, SS410"
+        },
+        "families": {
+          "bom": "SS410",
+          "sap": "SS316, SS410"
+        },
+        "coating_match": true,
+        "explanation": "SAP lists CF8M/SS410 and BOM lists SS410. Since SS410 is common and BOM agrees with one of SAP's options, this is considered a clear match.",
+        "method": "llm",
+        "authority": "SAP+BOM",
+        "correct_material": "SS410"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Oil Level Indicator",
+      "cs": {
+        "present": true,
+        "material": "MFG STD",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": null,
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "Only one source has material data"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Oil Retainer Bush",
+      "cs": {
+        "present": true,
+        "material": "MS IS 2062 GR B",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": null,
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "Only one source has material data"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Pump Bearing Sleeve",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 4,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 4,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "ASTM A276 GR SS410",
+        "raw_material": "ASTM A276 GR SS410",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "bom": "SS410",
+          "sap": "SS410"
+        },
+        "families": {
+          "bom": "SS410",
+          "sap": "SS410"
+        },
+        "coating_match": true,
+        "explanation": "All sources resolve to family: SS410",
+        "method": "rigid"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Pump Shaft",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 8,
+        "cs_extraction_warning": "CS extraction suspect: CS shows 'CF8M' but BOM and SAP both agree on a different material family. Likely a PDF row-span error where the material from an adjacent part was assigned to this row. CS material excluded from comparison."
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410T",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "A276 GR SS410(T Condition)",
+        "raw_material": "A276 GR SS410(T Condition)",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MISMATCH",
+        "normalized": {
+          "cs": "CF8M",
+          "bom": "SS410T",
+          "sap": "SS410"
+        },
+        "families": {
+          "cs": "SS316",
+          "bom": "SS410",
+          "sap": "SS410"
+        },
+        "coating_match": true,
+        "explanation": "Family conflict: cs\u2192SS316; bom\u2192SS410; sap\u2192SS410",
+        "method": "rigid"
+      },
+      "discrepancies": [
+        {
+          "type": "CS_EXTRACTION_WARNING",
+          "reason": "CS extraction suspect: CS shows 'CF8M' but BOM and SAP both agree on a different material family. Likely a PDF row-span error where the material from an adjacent part was assigned to this row. CS material excluded from comparison."
+        }
+      ]
+    },
+    {
+      "canonical_name": "RM Pipe (Intermediate)",
+      "cs": null,
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 5,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "MS",
+        "raw_material": "MS",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "bom": "MS",
+          "sap": "MS"
+        },
+        "families": {
+          "bom": "MS",
+          "sap": "MS"
+        },
+        "coating_match": true,
+        "explanation": "CS is absent, but SAP and BOM agree on MS. Therefore, SAP+BOM are the authoritative source.",
+        "method": "llm",
+        "authority": "SAP+BOM",
+        "correct_material": "MS"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "RM Pipe (Taper/Bottom)",
+      "cs": null,
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "method": "llm",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "CS is absent and SAP is absent, so BOM is the sole authority for the material (MS).",
+        "authority": "BOM",
+        "correct_material": "MS"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "RM Pipe (Top)",
+      "cs": {
+        "present": true,
+        "material": "MS",
+        "qty": 5,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "cs": "MS",
+          "bom": "MS"
+        },
+        "families": {
+          "cs": "MS",
+          "bom": "MS"
+        },
+        "coating_match": true,
+        "explanation": "All sources resolve to family: MS",
+        "method": "rigid"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Ratchet",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": null,
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "No material data available"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Sand Collar",
+      "cs": {
+        "present": true,
+        "material": "ASTM A276 GR SS410",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "result": "MISMATCH",
+        "normalized": {
+          "cs": "SS410",
+          "bom": "MS"
+        },
+        "families": {
+          "cs": "SS410",
+          "bom": "MS"
+        },
+        "coating_match": true,
+        "explanation": "CS (SS410) and BOM (MS) disagree on the material family, and SAP is absent. CS is given precedence as it's the drawing ground truth.",
+        "method": "llm",
+        "authority": "CS",
+        "correct_material": "SS410"
+      },
+      "discrepancies": [
+        {
+          "type": "MATERIAL_MISMATCH",
+          "source_in_error": "BOM",
+          "reason": "BOM lists MS, but CS lists SS410 for the same part.",
+          "detail": "BOM lists MS, but CS lists SS410 for the same part.",
+          "authority": "CS",
+          "correct_material": "SS410"
+        }
+      ]
+    },
+    {
+      "canonical_name": "Sleeve Nut",
+      "cs": null,
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 2,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "Only one source has material data"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Sole Plate",
+      "cs": {
+        "present": true,
+        "material": "MS IS 2062 GR B",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "MS",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "cs": "MS B",
+          "bom": "MS"
+        },
+        "families": {
+          "cs": "UNKNOWN:MS B",
+          "bom": "MS"
+        },
+        "coating_match": true,
+        "explanation": "CS and BOM agree on the general material family (MS); SAP is absent, so CS is the authority.",
+        "method": "llm",
+        "authority": "CS",
+        "correct_material": "MS IS 2062 GR B"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Split Collar",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 7,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410",
+        "qty": 7,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "Only one source has material data"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Split Gland",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 3,
+        "cs_extraction_warning": "CS extraction suspect: 'GRAPHITED COTTON' looks like a consumable material assigned to structural part 'Split Gland'. Likely a PDF row-span extraction error. CS material excluded from comparison."
+      },
+      "bom": {
+        "present": true,
+        "material": "FG260",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "CI IS 210 GR FG260",
+        "raw_material": "CI IS 210 GR FG260",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "bom": "FG260",
+          "sap": "FG260"
+        },
+        "families": {
+          "bom": "FG260",
+          "sap": "FG260"
+        },
+        "coating_match": true,
+        "explanation": "All sources resolve to family: FG260",
+        "method": "rigid"
+      },
+      "discrepancies": [
+        {
+          "type": "CS_EXTRACTION_WARNING",
+          "reason": "CS extraction suspect: 'GRAPHITED COTTON' looks like a consumable material assigned to structural part 'Split Gland'. Likely a PDF row-span extraction error. CS material excluded from comparison."
+        }
+      ]
+    },
+    {
+      "canonical_name": "Strainer",
+      "cs": {
+        "present": true,
+        "material": "ASTM A276 GR SS304",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "SS304",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "ASTM A276 GR SS304",
+        "raw_material": "ASTM A276 GR SS304",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "cs": "SS304",
+          "bom": "SS304",
+          "sap": "SS304"
+        },
+        "families": {
+          "cs": "SS304",
+          "bom": "SS304",
+          "sap": "SS304"
+        },
+        "coating_match": true,
+        "explanation": "All sources resolve to family: SS304",
+        "method": "rigid"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Suction Bell Mouth",
+      "cs": {
+        "present": true,
+        "material": "FG260 + COATING",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": null,
+        "qty": 1,
+        "coating": true
+      },
+      "sap": {
+        "present": true,
+        "material": "FG260 + COATING",
+        "raw_material": "FG260 + COATING",
+        "coating": true
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "cs": "FG260",
+          "sap": "FG260"
+        },
+        "families": {
+          "cs": "FG260",
+          "sap": "FG260"
+        },
+        "coating_match": true,
+        "explanation": "All sources resolve to family: FG260",
+        "method": "rigid"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Taper Connecting Piece",
+      "cs": null,
+      "bom": {
+        "present": true,
+        "material": null,
+        "qty": 3,
+        "coating": true
+      },
+      "sap": null,
+      "material_comparison": {
+        "method": "llm",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "CS and SAP are absent. BOM has a 'not specified' material but does have a coating noted. The absence of a specific material in BOM leads to it being treated as clear based on available information, with null material.",
+        "authority": "BOM",
+        "correct_material": null
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Thrust Bearing",
+      "cs": {
+        "present": true,
+        "material": "COPPER",
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": null,
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "Only one source has material data"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Thrust Block",
+      "cs": {
+        "present": true,
+        "material": "SS410",
+        "qty": 2,
+        "cs_extraction_warning": null
+      },
+      "bom": null,
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "Only one source has material data"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Top Shaft",
+      "cs": {
+        "present": true,
+        "material": null,
+        "qty": 1,
+        "cs_extraction_warning": null
+      },
+      "bom": {
+        "present": true,
+        "material": "SS410T",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": {
+        "present": true,
+        "material": "A276 GR SS410(T Condition)",
+        "raw_material": "A276 GR SS410(T Condition)",
+        "coating": false
+      },
+      "material_comparison": {
+        "result": "MATCH",
+        "normalized": {
+          "bom": "SS410T",
+          "sap": "SS410"
+        },
+        "families": {
+          "bom": "SS410",
+          "sap": "SS410"
+        },
+        "coating_match": true,
+        "explanation": "All sources resolve to family: SS410",
+        "method": "rigid"
+      },
+      "discrepancies": []
+    },
+    {
+      "canonical_name": "Water Deflector",
+      "cs": null,
+      "bom": {
+        "present": true,
+        "material": "NITRILE RUBBER",
+        "qty": 1,
+        "coating": false
+      },
+      "sap": null,
+      "material_comparison": {
+        "method": "rigid",
+        "result": "INSUFFICIENT",
+        "normalized": {},
+        "families": {},
+        "coating_match": null,
+        "explanation": "Only one source has material data"
+      },
+      "discrepancies": []
+    }
+  ],
+  "unresolved": [
+    {
+      "source": "cs",
+      "original_name": "RISING MAIN PIPE (BOT)",
+      "ref": "1151"
+    },
+    {
+      "source": "cs",
+      "original_name": "GLAND BUSH",
+      "ref": "2111"
+    },
+    {
+      "source": "cs",
+      "original_name": "O'RING (DIFFUSER & R.M. PIPE TOP)",
+      "ref": "4250-1"
+    },
+    {
+      "source": "cs",
+      "original_name": "AS REQD",
+      "ref": "NON WETTED FASTENERS"
+    },
+    {
+      "source": "cs",
+      "original_name": "1",
+      "ref": "WETTED FASTENERS"
+    }
+  ],
+  "sap_metadata": {
+    "Region": "India",
+    "Manufacturing Clearance": "YES",
+    "VT pump Common Name": "VMF 28B PUMP",
+    "Vertical Pump Type": "VMF 28B x 4 STG PUMP",
+    "No of Stages": "04",
+    "MOC category": "Non Standard Category",
+    "Replacement Of Existing": "No",
+    "Type of Sealing": "Gland Pack",
+    "Scope of Supply": "Bare Pump + Accessories",
+    "Bought Out Item": "Not Applicable",
+    "Late Delivery Clause": "NOT APPLICABLE",
+    "GA/CS Required For": "Approval",
+    "Pump Dry Weight": "10,500.00 kg",
+    "Customer Template Available?": "NO",
+    "List of Accessories": "Coupling Guard",
+    "Certification Applicable": "Not Applicable",
+    "Customer Tag Number": "1",
+    "Application": "Irrigation",
+    "Liquid Handled": "Raw Water",
+    "Liquid Turbidity in NTU": "1.00",
+    "Dir Of Rot of Pump(From D.E)": "Clock Wise",
+    "Type of Drive": "HT Motor",
+    "Motor Pole": "6",
+    "Dir Of Rot Of Motor (From D.E)": "Bi Directional",
+    "Full Load Speed (RPM)": "990 RPM",
+    "Inprocess Insp (Stage Witness)": "No",
+    "Inspection Agency": "DEPT/CLIENT/TPI",
+    "QAP Approval": "Required",
+    "Performance Test": "With Job Motor",
+    "Packing Type": "Rubber wood crate",
+    "Fumigation Required": "No",
+    "Fumigation Certificate Reqd?": "No",
+    "Quality Assurance Plan": "QAPII",
+    "Coupling Type": "Standard (Pin Bush)Finish Bore",
+    "Coupling Make": "UNIQUE",
+    "Impeller diameter notes": "REF.81339820/32 & 81329817/31",
+    "Order Against GA Drawing no": "81355130-10 GA",
+    "Order Against CS Drawing no": "81355130-10 CS",
+    "Motor Make": "ABB",
+    "Design Instructions": "SEE DESIGN/SALES TEXT",
+    "Flow (m3/h)": "2,664.00 m3/h",
+    "Shut off Head (m)": "191.00 m",
+    "Fluid Specific Gravity": "1.000",
+    "Tolerance on Efficiency": "NO",
+    "Nett Gen Head": "139.24 m",
+    "Head Loss": "0.50 m",
+    "Bowl Efficiency (%)": "89.44 %",
+    "Pump BKW (kW)": "1,133.50 KW",
+    "Motor Rating (kW)": "1,300.00 KW",
+    "Flange Drilling": "M & P STANDARD",
+    "Ambient Temp (\u00b0C)": "46.00 \u00b0C",
+    "Painting Type": "DomesticStd(WILOGreen)QDEnamel",
+    "Painting Inspection": "NO",
+    "Coating Make": "Standard (Asian glass flake)",
+    "Impeller Diameter (mm)": "IMP. \u00d8595 X 19\u00b0",
+    "Frame Size HT Motor": "NMI 450L6A VAFI",
+    "Sales Group": "Domestic",
+    "Performance Curve No.": "VMF 28B_50_6_A_R01",
+    "Inspection Applicable": "Yes",
+    "Coating Reqd By Customer": "YES",
+    "Power Loss": "1.824",
+    "St Box Packing": "Standred (Graphited Cotton )",
+    "Bowl Head (m)": "139.74 m",
+    "Shaft Tube requirement": "No",
+    "Lubrication System": "Self Lubrication",
+    "Location Of Delivery": "Above floor",
+    "Type Of Motor Shaft": "Solid Shaft",
+    "Minimum Submergence": "2.50 m",
+    "Design of VT pump": "Non Pull Out",
+    "Non Wetted Fasteners": "ASTM A276 GR SS304",
+    "Thrust Bearing Lubrication": "Antifriction Oil (ISO VG 220)",
+    "Type of Thrust Brg Cooling": "Water",
+    "Diff Moc Depending On Stg": "For All Stages",
+    "Sump Depth": "20,000.00 mm",
+    "Column Pipe Size": "600 mm",
+    "Column Pipe Thickness": "8 mm",
+    "Brg Bush In Bell Mouth": "M&P Std",
+    "Impeller Trimming": "Impeller Trimming",
+    "Flange Drilling Face Type": "Flat Face",
+    "Wetted Fasteners": "ASTM A276 GR SS304",
+    "Non Reverse Ratchet": "Yes",
+    "Intermediate Pipe Length": "M&P Standard",
+    "Minimum Submergence Test": "No",
+    "Bearing Make": "M&P Standard",
+    "Base Frame Required In Tender": "No",
+    "CFD Required": "No",
+    "Explosion is required": "YES",
+    "Coating Thickness (\u00b5m)": "300 micron",
+    "Type Of Strainer": "Bar Type",
+    "Muff Coupling Type": "Solid",
+    "Pump Bill Of Material Status": "All BOM release",
+    "Pump BOM allocated": "AKSHAY JADHAV",
+    "Provides Pump Suc Size": "0.00",
+    "Provides Pump Del Size": "600.00",
+    "Product group Name": "Vertical Turbine",
+    "Article Number 02": "8158728",
+    "Product Category": "Not Applicable",
+    "Nameplate article": "8072779",
+    "Fire Fighting App Agency": "NOT APPLICABLE",
+    "Performance Testing Standard": "ISO 9906 GR II B",
+    "VT No of Stages": "4",
+    "evaluation compl.": "1",
+    "sales document type": "Order",
+    "E_VBAP_KWMENG": "3.000",
+    "Type of Closure": "CACA",
+    "Motor_Eng_GearBox GADAttached?": "YES",
+    "Appvd_Submited_GA_CS_Attached?": "YES",
+    "Appvd_Spe_Coup_Drg_Attached?": "NOT APPLICABLE"
+  }
+}

@@ -1,8 +1,10 @@
 .footer {
   text-align: center;
-  padding: 1rem 2rem;
+  padding: 1.25rem 2rem;
   font-size: 0.75rem;
-  color: var(--color-text-muted);
+  color: var(--color-text-faint);
   border-top: 1px solid var(--color-border);
   margin-top: auto;
+  background: var(--color-surface);
+  letter-spacing: 0.01em;
 }

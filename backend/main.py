@@ -17,6 +17,8 @@ import shutil
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 # Ensure the project root is on sys.path so `backend.*` imports work
 # regardless of which directory this script is invoked from.
@@ -39,15 +41,35 @@ EXTRACTORS = [CSExtractor, BOMExtractor, SAPExtractor]
 # ── Core extraction logic ────────────────────────────────────────────────────
 
 def process_folder(folder: Path, processed: Path | None = None):
-    """Run all extractors on a single document folder."""
+    """Run all extractors on a single document folder.
+
+    CSExtractor runs first (sequentially) because it has an internal
+    render → crop → Gemini pipeline that must complete before results
+    are assembled. BOMExtractor and SAPExtractor are then run in parallel
+    as they are independent of CS.
+    """
     folder_id = folder.name
     if processed is None:
         processed = config.PROCESSED_DIR / folder_id
+
+    processed.mkdir(parents=True, exist_ok=True)
     results = {}
 
-    with ThreadPoolExecutor(max_workers=len(EXTRACTORS)) as pool:
+    # ── Step 1: CS (sequential — render + Gemini pipeline) ────────────────
+    try:
+        cs_ext = CSExtractor(raw_folder=folder, processed_folder=processed)
+        results["CSExtractor"] = cs_ext.extract()
+        logger.info(f"CSExtractor completed for {folder_id}")
+    except Exception as e:
+        logger.error(f"CSExtractor failed for {folder_id}: {e}")
+        results["CSExtractor"] = None
+
+    # ── Step 2: BOM + SAP (parallel — independent of CS) ──────────────────
+    parallel_extractors = [BOMExtractor, SAPExtractor]
+
+    with ThreadPoolExecutor(max_workers=len(parallel_extractors)) as pool:
         futures = {}
-        for ExtractorClass in EXTRACTORS:
+        for ExtractorClass in parallel_extractors:
             ext = ExtractorClass(raw_folder=folder, processed_folder=processed)
             future = pool.submit(ext.extract)
             futures[future] = ExtractorClass.__name__
@@ -61,7 +83,7 @@ def process_folder(folder: Path, processed: Path | None = None):
                 logger.error(f"{name} failed for {folder_id}: {e}")
                 results[name] = None
 
-    return results
+    return results  
 
 
 # ── CLI mode ─────────────────────────────────────────────────────────────────
@@ -127,7 +149,7 @@ def create_app():
         response_data = {}
         for key, filename in [
             ("cs_bom", "cs_bom.json"),
-            ("bom_excel", "bom.json"),
+            ("bom_excel", "bom_data.json"),
             ("sap_data", "sap_data.json"),
         ]:
             json_path = processed_dir / filename
@@ -179,20 +201,6 @@ def create_app():
         logger.info(f"Starting extraction for {identifier}")
         process_folder(upload_dir, processed=processed_dir)
 
-        # Create aliased copies with identifier prefix
-        alias_map = {
-            "cs_bom.json": f"{identifier}_extracted_cs.json",
-            "bom.json": f"{identifier}_extracted_bom.json",
-            "sap_data.json": f"{identifier}_extracted_sap.json",
-            "sap_raw.json": f"{identifier}_sap_raw.json",
-            "rendered_cs_page.png": f"{identifier}_rendered_cs_page.png",
-            "rendered_cs_table.png": f"{identifier}_rendered_cs_table.png",
-        }
-        for original, alias in alias_map.items():
-            src = processed_dir / original
-            if src.exists():
-                shutil.copy2(src, processed_dir / alias)
-
         response_data = _read_results(processed_dir)
         logger.info(f"Extraction completed for {identifier}")
         return {"status": "completed", "identifier": identifier, "results": response_data}
@@ -224,6 +232,54 @@ def create_app():
                 )
 
         raise HTTPException(404, f"No {doc_type} document found for {identifier}")
+
+    # ── Comparison & Validation Endpoints ────────────────────────────────
+
+    @app.post("/api/compare/{identifier}")
+    async def compare_parts(identifier: str):
+        _, processed_dir = _get_dirs(identifier)
+        if not processed_dir.exists():
+            raise HTTPException(404, "No extracted data found. Run extraction first.")
+
+        from backend.comparator import compare
+        results = compare(identifier, processed_dir)
+        return {"status": "completed", "identifier": identifier, "comparison": results}
+
+    @app.post("/api/validate/{identifier}")
+    async def validate_parts(identifier: str, body: dict):
+        _, processed_dir = _get_dirs(identifier)
+        if not processed_dir.exists():
+            raise HTTPException(404, "No comparison results found. Run comparison first.")
+
+        from backend.comparator import apply_validation
+        decisions = body.get("decisions", [])
+        validation = apply_validation(identifier, processed_dir, decisions)
+        return {"status": "completed", "identifier": identifier, "validation": validation}
+
+    @app.get("/api/report/{identifier}")
+    async def get_report(identifier: str):
+        _, processed_dir = _get_dirs(identifier)
+        report_path = processed_dir / f"{identifier}_validation_report.pdf"
+
+        if not report_path.exists():
+            # Generate on the fly
+            from backend.report import generate_report
+            report_path = generate_report(identifier, processed_dir)
+
+        if not report_path.exists():
+            raise HTTPException(404, "Could not generate report. Ensure validation is complete.")
+
+        return FileResponse(
+            path=str(report_path),
+            media_type="application/pdf",
+            filename=report_path.name,
+        )
+
+    @app.get("/api/nomenclature")
+    async def get_nomenclature():
+        from backend.comparator import Nomenclature
+        nom = Nomenclature()
+        return {"canonical_names": nom.get_all_canonical()}
 
     return app
 
