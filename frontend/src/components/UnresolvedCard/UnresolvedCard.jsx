@@ -1,14 +1,17 @@
 import { useState } from "react";
+import { FiExternalLink } from "react-icons/fi";
 import styles from "./UnresolvedCard.module.css";
 
 const SOURCE_LABELS = { cs: "CS Drawing", bom: "Excel BOM", sap: "SAP Data" };
 
-export default function UnresolvedCard({ item, canonicalNames, onResolve, resolved }) {
+export default function UnresolvedCard({ item, canonicalNames, onResolve, resolved, onOpenNomenclature }) {
   const [search, setSearch] = useState("");
 
   const filteredNames = canonicalNames.filter((n) =>
     n.toLowerCase().includes(search.toLowerCase())
   );
+
+  const noResults = search.length > 0 && filteredNames.length === 0;
 
   return (
     <div className={`${styles.card} ${resolved ? styles.resolved : ""}`}>
@@ -39,6 +42,26 @@ export default function UnresolvedCard({ item, canonicalNames, onResolve, resolv
               </button>
             ))}
           </div>
+
+          {noResults ? (
+            <div className={styles.emptyHint}>
+              <span>No match for "{search}".</span>
+              {onOpenNomenclature && (
+                <button className={styles.addLink} onClick={onOpenNomenclature}>
+                  Add it in Nomenclature Manager <FiExternalLink />
+                </button>
+              )}
+            </div>
+          ) : (
+            onOpenNomenclature && (
+              <div className={styles.subtleHint}>
+                Part missing from the list?{" "}
+                <button className={styles.subtleLink} onClick={onOpenNomenclature}>
+                  Open Nomenclature Manager
+                </button>
+              </div>
+            )
+          )}
         </div>
       )}
     </div>

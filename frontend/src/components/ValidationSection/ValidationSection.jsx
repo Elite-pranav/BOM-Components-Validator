@@ -5,7 +5,7 @@ import { fetchNomenclature, submitValidation, getReportUrl } from "../../api/cli
 import { FiSend, FiDownload, FiArrowLeft } from "react-icons/fi";
 import styles from "./ValidationSection.module.css";
 
-export default function ValidationSection({ comparison, identifier, onBack }) {
+export default function ValidationSection({ comparison, identifier, onBack, onOpenNomenclature }) {
   const [canonicalNames, setCanonicalNames] = useState([]);
   const [decisions, setDecisions] = useState({});         // canonical_name → decision object | null
   const [unresolvedMappings, setUnresolvedMappings] = useState({});
@@ -155,6 +155,7 @@ export default function ValidationSection({ comparison, identifier, onBack }) {
                 canonicalNames={canonicalNames}
                 onResolve={handleUnresolvedResolve}
                 resolved={unresolvedMappings[item.original_name]}
+                onOpenNomenclature={onOpenNomenclature}
               />
             ))}
           </div>
