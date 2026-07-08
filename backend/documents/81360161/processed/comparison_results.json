@@ -1,9 +1,9 @@
 {
   "identifier": "81360161",
-  "timestamp": "2026-07-04T13:48:56.901697+00:00",
+  "timestamp": "2026-07-08T04:13:30.505210+00:00",
   "summary": {
     "total_canonical_parts": 39,
-    "discrepancies_found": 11,
+    "discrepancies_found": 13,
     "unresolved_parts": 77
   },
   "parts": [
@@ -65,7 +65,7 @@
           "sap": "SS410"
         },
         "coating_match": true,
-        "explanation": "SS410 in CS and SAP is authoritative over the BOM FG260 entry.",
+        "explanation": "This is a genuine alloy-family mismatch, with BOM conflicting against the higher-authority CS and SAP.",
         "method": "llm",
         "authority": "CS+SAP",
         "correct_material": "ASTM A276 GR SS410"
@@ -74,8 +74,8 @@
         {
           "type": "MATERIAL_MISMATCH",
           "source_in_error": "BOM",
-          "reason": "BOM lists Alignment Pad as FG 260 while CS and SAP list SS410.",
-          "detail": "BOM lists Alignment Pad as FG 260 while CS and SAP list SS410.",
+          "reason": "BOM lists Alignment Pad as FG260 while CS and SAP both specify SS410.",
+          "detail": "BOM lists Alignment Pad as FG260 while CS and SAP both specify SS410.",
           "authority": "CS+SAP",
           "correct_material": "ASTM A276 GR SS410"
         }
@@ -176,7 +176,7 @@
           "bom": "SS304"
         },
         "coating_match": true,
-        "explanation": "With no SAP value, CS authority makes the BOM SS304 entry a genuine alloy mismatch.",
+        "explanation": "CS is the highest available authority here and its FG260 conflicts materially with BOM SS304.",
         "method": "llm",
         "authority": "CS",
         "correct_material": "CI IS 210 GR FG260"
@@ -185,8 +185,8 @@
         {
           "type": "MATERIAL_MISMATCH",
           "source_in_error": "BOM",
-          "reason": "BOM lists Bearing Housing Sub-Assembly as SS304 while CS lists FG260 cast iron.",
-          "detail": "BOM lists Bearing Housing Sub-Assembly as SS304 while CS lists FG260 cast iron.",
+          "reason": "BOM lists Bearing Housing Sub-Assembly as SS304 while CS specifies FG260.",
+          "detail": "BOM lists Bearing Housing Sub-Assembly as SS304 while CS specifies FG260.",
           "authority": "CS",
           "correct_material": "CI IS 210 GR FG260"
         }
@@ -208,7 +208,7 @@
         "normalized": {},
         "families": {},
         "coating_match": null,
-        "explanation": "A CS-listed part should be present in the manufacturing BOM.",
+        "explanation": "A CS-shown part missing from BOM is a genuine presence discrepancy.",
         "authority": "CS",
         "correct_material": "COPPER"
       },
@@ -216,8 +216,8 @@
         {
           "type": "MISSING",
           "source_in_error": "BOM",
-          "reason": "Cooling Coil appears in CS but is absent from the BOM.",
-          "detail": "Cooling Coil appears in CS but is absent from the BOM.",
+          "reason": "Cooling Coil is shown on CS but absent from BOM, where real parts should be listed.",
+          "detail": "Cooling Coil is shown on CS but absent from BOM, where real parts should be listed.",
           "authority": "CS",
           "correct_material": "COPPER"
         }
@@ -280,11 +280,20 @@
         "normalized": {},
         "families": {},
         "coating_match": null,
-        "explanation": "SAP provides the expected material, BOM contains the part without a conflicting material, and the apparent CS absence is likely covered by the proposed CS 'CASING & DIFFUSER' reconciliation.",
+        "explanation": "Diffuser is integral and should appear on CS; BOM and SAP presence do not remove that omission.",
         "authority": "SAP",
         "correct_material": "FG260 + COATING"
       },
-      "discrepancies": []
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "source_in_error": "CS",
+          "reason": "Diffuser is an integral part expected on CS but is absent there.",
+          "detail": "Diffuser is an integral part expected on CS but is absent there.",
+          "authority": "SAP",
+          "correct_material": "FG260 + COATING"
+        }
+      ]
     },
     {
       "canonical_name": "Flexible Coupling",
@@ -312,10 +321,10 @@
           "sap": "UNKNOWN:FORGED STEEL"
         },
         "coating_match": true,
-        "explanation": "CS and SAP both state forged steel, and the apparent BOM absence is likely covered by the proposed BOM flexible-coupling reconciliation.",
+        "explanation": "CS and SAP both show compatible forged steel entries and BOM absence is natural for this non-integral part.",
         "method": "llm",
         "authority": "CS+SAP",
-        "correct_material": "Forged Steel"
+        "correct_material": "FORGED STEEL."
       },
       "discrepancies": []
     },
@@ -355,7 +364,7 @@
         "normalized": {},
         "families": {},
         "coating_match": null,
-        "explanation": "An integral gland sleeve should appear on the cross-section drawing.",
+        "explanation": "As an integral part present in BOM, Gland Sleeve should also appear on CS.",
         "authority": "BOM",
         "correct_material": "SS410"
       },
@@ -363,8 +372,8 @@
         {
           "type": "MISSING",
           "source_in_error": "CS",
-          "reason": "Gland Sleeve is marked integral but is absent from CS.",
-          "detail": "Gland Sleeve is marked integral but is absent from CS.",
+          "reason": "Gland Sleeve is an integral part expected on CS but is absent there.",
+          "detail": "Gland Sleeve is an integral part expected on CS but is absent there.",
           "authority": "BOM",
           "correct_material": "SS410"
         }
@@ -427,17 +436,17 @@
         "normalized": {},
         "families": {},
         "coating_match": null,
-        "explanation": "The CS-listed integral wear ring should be present in the BOM; SAP has no conflicting material value.",
-        "authority": "CS",
+        "explanation": "A CS-listed integral part missing from BOM is a genuine discrepancy; SAP has no conflicting material value.",
+        "authority": "CS+SAP",
         "correct_material": "ASTM A743GR CA6NM"
       },
       "discrepancies": [
         {
           "type": "MISSING",
           "source_in_error": "BOM",
-          "reason": "Impeller Wear Ring appears in CS but is absent from the BOM.",
-          "detail": "Impeller Wear Ring appears in CS but is absent from the BOM.",
-          "authority": "CS",
+          "reason": "Impeller Wear Ring is shown on CS but absent from BOM, where all real parts should be listed.",
+          "detail": "Impeller Wear Ring is shown on CS but absent from BOM, where all real parts should be listed.",
+          "authority": "CS+SAP",
           "correct_material": "ASTM A743GR CA6NM"
         }
       ]
@@ -692,7 +701,7 @@
         "normalized": {},
         "families": {},
         "coating_match": null,
-        "explanation": "A CS-listed oil level indicator should be included in the manufacturing BOM.",
+        "explanation": "Its absence from BOM is the only genuine issue based on document purpose.",
         "authority": "CS",
         "correct_material": "MFG.STD"
       },
@@ -700,8 +709,8 @@
         {
           "type": "MISSING",
           "source_in_error": "BOM",
-          "reason": "Oil Level Indicator appears in CS but is absent from the BOM.",
-          "detail": "Oil Level Indicator appears in CS but is absent from the BOM.",
+          "reason": "Oil Level Indicator is shown on CS but absent from BOM, where real parts should be listed.",
+          "detail": "Oil Level Indicator is shown on CS but absent from BOM, where real parts should be listed.",
           "authority": "CS",
           "correct_material": "MFG.STD"
         }
@@ -723,7 +732,7 @@
         "normalized": {},
         "families": {},
         "coating_match": null,
-        "explanation": "A CS-listed oil retainer bush should be present in the manufacturing BOM.",
+        "explanation": "A CS-shown part missing from BOM is a valid discrepancy.",
         "authority": "CS",
         "correct_material": "M.S. IS:2062, GR.E250 BR."
       },
@@ -731,8 +740,8 @@
         {
           "type": "MISSING",
           "source_in_error": "BOM",
-          "reason": "Oil Retainer Bush appears in CS but is absent from the BOM.",
-          "detail": "Oil Retainer Bush appears in CS but is absent from the BOM.",
+          "reason": "Oil Retainer Bush is shown on CS but absent from BOM, where real parts should be listed.",
+          "detail": "Oil Retainer Bush is shown on CS but absent from BOM, where real parts should be listed.",
           "authority": "CS",
           "correct_material": "M.S. IS:2062, GR.E250 BR."
         }
@@ -895,7 +904,7 @@
         "normalized": {},
         "families": {},
         "coating_match": null,
-        "explanation": "A CS-listed ratchet should be present in the manufacturing BOM.",
+        "explanation": "Its BOM omission is a genuine discrepancy.",
         "authority": "CS",
         "correct_material": "ASTM A743, GR.CA15."
       },
@@ -903,8 +912,8 @@
         {
           "type": "MISSING",
           "source_in_error": "BOM",
-          "reason": "Ratchet appears in CS but is absent from the BOM.",
-          "detail": "Ratchet appears in CS but is absent from the BOM.",
+          "reason": "Ratchet is shown on CS but absent from BOM, where real parts should be listed.",
+          "detail": "Ratchet is shown on CS but absent from BOM, where real parts should be listed.",
           "authority": "CS",
           "correct_material": "ASTM A743, GR.CA15."
         }
@@ -1149,7 +1158,7 @@
         "normalized": {},
         "families": {},
         "coating_match": null,
-        "explanation": "The integral CS-listed taper connecting piece should be present in the BOM.",
+        "explanation": "This integral CS part should also be present in BOM.",
         "authority": "CS",
         "correct_material": "CI IS 210 GR FG260"
       },
@@ -1157,8 +1166,8 @@
         {
           "type": "MISSING",
           "source_in_error": "BOM",
-          "reason": "Taper Connecting Piece appears in CS but is absent from the BOM.",
-          "detail": "Taper Connecting Piece appears in CS but is absent from the BOM.",
+          "reason": "Taper Connecting Piece is shown on CS but absent from BOM, where all real parts should be listed.",
+          "detail": "Taper Connecting Piece is shown on CS but absent from BOM, where all real parts should be listed.",
           "authority": "CS",
           "correct_material": "CI IS 210 GR FG260"
         }
@@ -1180,7 +1189,7 @@
         "normalized": {},
         "families": {},
         "coating_match": null,
-        "explanation": "A CS-listed thrust bearing should be present in the manufacturing BOM.",
+        "explanation": "The issue is BOM omission, not material mismatch.",
         "authority": "CS",
         "correct_material": "NO. 29438 E"
       },
@@ -1188,8 +1197,8 @@
         {
           "type": "MISSING",
           "source_in_error": "BOM",
-          "reason": "Thrust Bearing appears in CS but is absent from the BOM.",
-          "detail": "Thrust Bearing appears in CS but is absent from the BOM.",
+          "reason": "Thrust Bearing is shown on CS but absent from BOM, where real parts should be listed.",
+          "detail": "Thrust Bearing is shown on CS but absent from BOM, where real parts should be listed.",
           "authority": "CS",
           "correct_material": "NO. 29438 E"
         }
@@ -1211,18 +1220,18 @@
         "normalized": {},
         "families": {},
         "coating_match": null,
-        "explanation": "A CS-listed thrust block should be present in the manufacturing BOM.",
+        "explanation": "Even without a CS material value, its absence from BOM is a genuine discrepancy.",
         "authority": "CS",
-        "correct_material": null
+        "correct_material": ""
       },
       "discrepancies": [
         {
           "type": "MISSING",
           "source_in_error": "BOM",
-          "reason": "Thrust Block appears in CS but is absent from the BOM.",
-          "detail": "Thrust Block appears in CS but is absent from the BOM.",
+          "reason": "Thrust Block is shown on CS but absent from BOM, where real parts should be listed.",
+          "detail": "Thrust Block is shown on CS but absent from BOM, where real parts should be listed.",
           "authority": "CS",
-          "correct_material": null
+          "correct_material": ""
         }
       ]
     },
@@ -1280,11 +1289,20 @@
         "normalized": {},
         "families": {},
         "coating_match": null,
-        "explanation": "CS lists nitrile rubber and the apparent BOM absence is likely covered by the proposed BOM water-deflector reconciliation.",
+        "explanation": "This appears missing from BOM by exact evaluated name, but there is a strong likely unresolved-name match needing confirmation.",
         "authority": "CS",
         "correct_material": "NITRILE RUBBER"
       },
-      "discrepancies": []
+      "discrepancies": [
+        {
+          "type": "MISSING",
+          "source_in_error": "BOM",
+          "reason": "Water Deflector is shown on CS but absent from BOM under that name, though a likely matching BOM item exists for confirmation.",
+          "detail": "Water Deflector is shown on CS but absent from BOM under that name, though a likely matching BOM item exists for confirmation.",
+          "authority": "CS",
+          "correct_material": "NITRILE RUBBER"
+        }
+      ]
     }
   ],
   "unresolved": [
@@ -1676,15 +1694,15 @@
   ],
   "reconciliations": [
     {
-      "canonical": "Diffuser",
+      "canonical": "Water Deflector",
       "same_as": [
         {
-          "source": "cs",
-          "name": "CASING & DIFFUSER"
+          "source": "bom",
+          "name": "S-WATER DEFL 111516PR32 NITRILE(HD70-75)"
         }
       ],
       "confidence": "high",
-      "reason": "The CS combined callout explicitly includes the diffuser as part of the casing/diffuser assembly."
+      "reason": "The abbreviation 'WATER DEFL' and matching nitrile material strongly indicate the same physical water deflector part."
     },
     {
       "canonical": "Flexible Coupling",
@@ -1695,18 +1713,40 @@
         }
       ],
       "confidence": "high",
-      "reason": "BOM abbreviation 'COUP FLEX' is the flexible coupling and 'FS' aligns with the forged-steel coupling entry."
+      "reason": "The BOM name explicitly denotes a flexible coupling and FS aligns with the forged steel coupling entry."
     },
     {
-      "canonical": "Water Deflector",
+      "canonical": "Gland Sleeve",
       "same_as": [
         {
           "source": "bom",
-          "name": "S-WATER DEFL 111516PR32 NITRILE(HD70-75)"
+          "name": "SLV 1000555352 SS410"
+        }
+      ],
+      "confidence": "medium",
+      "reason": "SLV is a common abbreviation for sleeve and the SS410 material matches the evaluated Gland Sleeve."
+    },
+    {
+      "canonical": "Diffuser",
+      "same_as": [
+        {
+          "source": "cs",
+          "name": "CASING & DIFFUSER"
         }
       ],
       "confidence": "high",
-      "reason": "BOM abbreviation 'WATER DEFL' directly names the water deflector and specifies nitrile material."
+      "reason": "The unresolved CS label explicitly includes Diffuser as part of a combined depiction."
+    },
+    {
+      "canonical": "Bearing Housing Sub-Assembly",
+      "same_as": [
+        {
+          "source": "cs",
+          "name": "R.M.PIPE (TOP)"
+        }
+      ],
+      "confidence": "low",
+      "reason": "This may relate to the bearing housing lubrication or piping assembly, but the name does not clearly prove identity."
     }
   ],
   "sap_metadata": {

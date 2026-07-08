@@ -107,6 +107,7 @@ export default function App() {
             comparison={comparison}
             identifier={identifier}
             onBack={() => setStep("results")}
+            onOpenNomenclature={() => setShowNomenclature(true)}
           />
         )}
       </main>
